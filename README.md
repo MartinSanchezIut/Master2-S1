@@ -1,6 +1,6 @@
 # Master2-S1
 
-HAI916I : IA pour le génie logiciel.
+HAI916I : IA pour le génie logiciel. <br>
 HAI931I : Systèmes réflexifs, models@runtime.
 HAI913I : Evolution et restructuration des logiciels.
 HAI912I : Developpement mobile avancé, IoT et embarqué.
