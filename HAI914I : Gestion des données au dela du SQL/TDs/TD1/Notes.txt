@@ -1,0 +1,70 @@
+Lancer le serveur Neo4J: ./home/e20180002097/neo4j-community-3.5.21_Ext/bin/neo4j start
+                         ~/neo4j-community-3.5.21_Ext/bin/neo4j start
+
+Sur le web : http://localhost:7474/browser/
+
+
+
+
+
+
+
+Deuxieme partie du TP : 
+
+Importation des csv:
+        LOAD CSV WITH HEADERS FROM 'file:///Commune.csv' AS communes
+        CREATE (co:Commune {codeinsee : toInteger(communes.codeinsee), name : communes.name, longitude : toFloat(communes.longitude), latitude : toFloat(communes.latitude)});
+
+
+        LOAD CSV WITH HEADERS FROM 'file:///Departement.csv' AS departements
+        CREATE (d:Departement {id : departements.id, name : departements.name});
+
+
+        LOAD CSV WITH HEADERS FROM 'file:///Region.csv' AS regions
+        CREATE (r:Region {id : toInteger(regions.id), name : regions.name});
+
+
+        LOAD CSV WITH HEADERS FROM 'file:///Com_Dep.csv' AS com_dep
+        MERGE (co : Commune { codeinsee : toInteger(com_dep.codeinsee) })
+        MERGE (d : Departement { id : com_dep.id })
+        CREATE (co)-[:WITHIN]->(d);
+
+
+        LOAD CSV WITH HEADERS FROM 'file:///Reg_Dep.csv' AS reg_dep
+        MERGE (r : Region { id : toInteger(reg_dep.idR) })
+        MERGE (d : Departement { id : reg_dep.idD })
+        CREATE (d)-[:WITHIN]->(r);
+
+
+        LOAD CSV WITH HEADERS FROM 'file:///Com_Com.csv' AS com_com
+        MERGE (co1 : Commune { codeinsee : toInteger(com_com.codeinsee1) })
+        MERGE (co2 : Commune { codeinsee : toInteger(com_com.codeinsee2) })
+        CREATE (co1)-[:NEARBY]->(co2);
+
+
+Enrichissement: 
+
+Creer toulouse
+CREATE (n:Commune {codeinsee:31555, latitude: 43.604652, longitude:1.444209, name: 'TOULOUSE'})
+MATCH (s:Commune {name:'TOULOUSE'}), (r:Departement {name:'HAUTE-GARONNE'}) CREATE (s) -[:WITHIN]-> (r) return *
+MATCH (s:Departement {name:'HAUTE-GARONNE'}), (r:Region {name:'OCCITANIE'}) CREATE (s) -[:WITHIN]-> (r) return *
+
+MATCH (n:Commune {name:"TOULOUSE"})-[r:WITHIN]->(b:Region {name:"OCCITANIE"} )
+DELETE r
+
+
+MATCH (s:Commune {name:'MONTPELLIER'}), (r:Departement {name:'HERAULT'}) CREATE (s) -[:CHEFLIEU]-> (r) return *
+MATCH (s:Commune {name:'NIMES'}), (r:Departement {name:'GARD'}) CREATE (s) -[:CHEFLIEU]-> (r) return *
+
+
+MATCH (s:Commune {name:'TOULOUSE'}), (r:Departement {name:'HAUTE-GARONNE'}) CREATE (s) -[:CHEFLIEU]-> (r) return *
+MATCH (s:Commune {name:'TOULOUSE'}), (r:Region {name:'OCCITANIE'}) CREATE (s) -[:CHEFLIEU]-> (r) return *
+
+
+Nombre de département en OCCITANIE:
+MATCH (r:Region {name:"OCCITANIE"}) -[:WITHIN]- (n:Departement)
+RETURN r, n
+
+Tout les departement de toutes les regions:
+MATCH (r:Region) -[:WITHIN]- (n:Departement)
+RETURN r.name, COUNT(n)
