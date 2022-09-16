@@ -13,5 +13,5 @@ HAI934I : Vérification automatique de programmes (https://moodle.umontpellier.f
 HAI919I : Ingénierie des modèles (https://moodle.umontpellier.fr/course/view.php?id=2951)                                <br>
 
 ## Options :                                                   <br>
-HAI914I : Gestion des données au dela du SQL (noSQL).          <br>
+HAI914I : Gestion des données au dela du SQL (noSQL).    (https://moodle.umontpellier.fr/course/view.php?id=22507)       <br>
 HAI902I : Aide à la décision.                                  <br>
