@@ -6,12 +6,13 @@ public class TestSudokuBT {
     private SudokuPPC ppc;
 
     @Test
-    void executionTimeTest() {
-        LocalDate time0 = LocalDate.now();
+    void executionTimeTest() {        
+        long startTime = System.nanoTime();
         SudokuBT.main(null);
-        LocalDate time1 = LocalDate.now();
+        long endTime = System.nanoTime();
 
-        LocalDate time = time1.minus(time0.) ;
+        long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+
 
     }
 }
