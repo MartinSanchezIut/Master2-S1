@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Maps:Map xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:Maps="Maps"
+    xsi:schemaLocation="Maps My.ecore"
+    name="test">
+  <spaces xsi:type="Maps:Garden"
+      name="Hello"/>
+  <spaces xsi:type="Maps:Square"
+      name="Babliboup"/>
+  <roads xsi:type="Maps:Street"
+      name="SaintPatoche"/>
+</Maps:Map>
