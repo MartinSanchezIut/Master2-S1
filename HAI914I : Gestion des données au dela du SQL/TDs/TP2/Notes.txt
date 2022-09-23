@@ -1,0 +1,68 @@
+
+Ajouter le label "Maire": 
+    MATCH (c: Commune) -[:ADMINISTREE_PAR]-> (p :Personne) SET p:Maire return p
+
+
+Liste de toutes les procedures: 
+    CALL dbms.procedures() YIELD name, signature RETURN name, signature
+
+
+Exporter en json: 
+    call apoc.export.json.query("MATCH (c:Commune) -[:WITHIN]-> (d:Departement) -[:WITHIN]-> (r:Region)
+    Return id(c), labels(c), c.name, d.name, r.name", "test.json", {})
+[
+  {
+    "file": "test.json",
+    "source": "statement: cols(5)",
+    "format": "json",
+    "nodes": 0,
+    "relationships": 0,
+    "properties": 292,
+    "time": 16,
+    "rows": 58,
+    "batchSize": -1,
+    "batches": 0,
+    "done": true,
+    "data": null
+  }
+]
+
+Pour le graphe rdf:
+:POST /rdf/cypher { "cypher":"MATCH (v:Commune) RETURN v" , "format" : "N3"}
+
+:POST /rdf/cypher { "cypher":"MATCH (v:Commune) WHERE v.name = 'MONTPELLIER' RETURN v" , "format" : "N3"}
+:POST /rdf/cypher { "cypher":"MATCH (v:Commune) WHERE id(v) = 45 RETURN v" , "format" : "N3"}
+
+:POST /rdf/cypher { "cypher":"MATCH (c:Commune {name:'MONTPELLIER'}) -[:ADMINISTREE_PAR]-> (p:Maire) RETURN c, p" , "format" : "N3"}
+
+
+:POST /rdf/cypher { "cypher":"MATCH (c:Commune {name:'MONTPELLIER'}) -[*]-> (p:Maire) RETURN c, p" , "format" : "N3"}
+
+Impossible de representer les relations en RDF
+
+
+
+
+
+WITH ' PREFIX sch: <http://schema.org/>
+CONSTRUCT{ ?item a sch:City;
+sch:address ?inseeCode;
+sch:name ?itemLabel ;
+sch:geoTouches ?otherItem .
+?otherItem a sch:City;
+sch:name ?otheritemLabel ;
+sch:address ?otherinseeCode . }
+WHERE { ?item wdt:P374 ?inseeCode .
+?item wdt:P47 ?otherItem .
+?otherItem wdt:P374 ?otherinseeCode .
+?item rdfs:label ?itemLabel .
+filter(lang(?itemLabel) = "fr") .
+?otherItem rdfs:label ?otheritemLabel .
+filter(lang(?otheritemLabel) = "fr") .
+FILTER regex(?inseeCode, "ˆ34") .
+} limit 400 ' AS sparql CALL semantics.importRDF(
+"https://query.wikidata.org/sparql?query=" +
+apoc.text.urlencode(sparql),"JSON-LD",
+{ headerParams: { Accept: "application/ld+json"} })
+YIELD terminationStatus, triplesLoaded,namespaces,extraInfo
+RETURN terminationStatus, triplesLoaded,namespaces,extraInfo

@@ -61,6 +61,11 @@ MATCH (s:Commune {name:'TOULOUSE'}), (r:Departement {name:'HAUTE-GARONNE'}) CREA
 MATCH (s:Commune {name:'TOULOUSE'}), (r:Region {name:'OCCITANIE'}) CREATE (s) -[:CHEFLIEU]-> (r) return *
 
 
+MATCH (n:Commune) -[:CHEFLIEU]-> (:Region) SET n:CapitaleRegion RETURN n
+MATCH (n:Commune) -[:CHEFLIEU]-> (:Departement) SET n:Prefecture RETURN n
+
+
+
 Nombre de département en OCCITANIE:
 MATCH (r:Region {name:"OCCITANIE"}) -[:WITHIN]- (n:Departement)
 RETURN r, n
@@ -68,3 +73,5 @@ RETURN r, n
 Tout les departement de toutes les regions:
 MATCH (r:Region) -[:WITHIN]- (n:Departement)
 RETURN r.name, COUNT(n)
+
+
