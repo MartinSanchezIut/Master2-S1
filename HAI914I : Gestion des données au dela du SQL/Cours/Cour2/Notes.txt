@@ -1,0 +1,14 @@
+merge : créer si l'objet n'est pas deja crée
+
+
+Possibilité d'en faire un web service
+browser web : http://localhost:7474/db/data/node/20
+client curl : curl i --user neo4j:neo4j17 http://localhost:7474/db/data/node/20
+
+curl -H "Accept: application/json; charset=UTF-8" -H "Content-Type: application/json"
+-X POST http://neo4j:neo4j17@localhost:7474/db/data/cypher
+-d ’{"query" : "CREATE (n:City { code:34 , name : {name} })
+RETURN n", "params" : { "name" : "Montpellier" }}’
+
+
+
