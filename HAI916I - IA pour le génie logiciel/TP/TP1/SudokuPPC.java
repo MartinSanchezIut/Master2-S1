@@ -23,7 +23,10 @@ public class SudokuPPC {
     Model model;
 
     public static void main(String[] args) throws ParseException {
+        SudokuPPC.PPC(4, true, args);
+    }
 
+    public static void PPC(int size, boolean showStats, String[] args) throws ParseException {
         final Options options = configParameters();
         final CommandLineParser parser = new DefaultParser();
         final CommandLine line = parser.parse(options, args);
@@ -34,7 +37,7 @@ public class SudokuPPC {
             formatter.printHelp("sudoku", options, true);
             System.exit(0);
         }
-        instance = 4;
+        instance = size;
         // Check arguments and options
         for (Option opt : line.getOptions()) {
             checkOption(line, opt.getLongOpt());
@@ -43,18 +46,20 @@ public class SudokuPPC {
         n = instance;
         s = (int) Math.sqrt(n);
 
-        new SudokuPPC().solve();   // Potentielle erreur
+        new SudokuPPC().solve(showStats);   // Potentielle erreur
+
     }
 
-    public void solve() {
+    public void solve(boolean printStatistics) {
 
         buildModel();
 
+        //model.getSolver().
         model.getSolver().solve();
 
         printGrid();
 
-        model.getSolver().printStatistics();
+        if (printStatistics) {        model.getSolver().printStatistics(); }
 
     }
 
