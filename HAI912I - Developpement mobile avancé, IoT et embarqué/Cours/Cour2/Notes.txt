@@ -1,0 +1,11 @@
+
+u0 --- R1 ------ R2 ------ u1
+
+Les résistances entre u0 et u1 s'additionnent
+
+
+U visé = R1 / (R1 + R2) * U
+
+
+
+ /!\ U = R * I /!\

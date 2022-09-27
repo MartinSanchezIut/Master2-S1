@@ -14,7 +14,7 @@ public class PackageVisitor extends ASTVisitor {
     @Override
     public boolean visit(PackageDeclaration node) {
         packag.add(node);
-        return super.visit(node);
+        return super.visit(node); // a revoir
     }
 
     public List<PackageDeclaration> getPackages(){
