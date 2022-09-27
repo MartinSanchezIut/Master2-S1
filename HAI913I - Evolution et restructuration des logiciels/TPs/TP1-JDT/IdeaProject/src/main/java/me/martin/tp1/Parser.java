@@ -27,7 +27,7 @@ public class Parser {
             System.out.println("Quel fichier voulez vous parser ? ");
             String fileName = scanner.nextLine();
 
-            if (fileName.isEmpty()) { fileName = "/home/e20180002097/Bureau/RestrucLogi/IdeaProject/src/main/resources/" ; }
+            if (fileName.isEmpty()) { fileName = "src/main/resources/" ; }
 
             System.out.println("Parsing de : " + fileName);
 
@@ -118,7 +118,7 @@ public class Parser {
 
             parser.setUnitName("");
 
-            String[] sources = { "/home/e20180002097/Bureau/RestrucLogi/IdeaProject/src/" };
+            String[] sources = { "src/" };
             String[] classpath = {jrePath};
 
             parser.setEnvironment(classpath, sources, new String[] { "UTF-8"}, true);
