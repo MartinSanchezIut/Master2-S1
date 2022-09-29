@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Maps:Map xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Maps="Maps" name="test">
+  <spaces xsi:type="Maps:Garden" name="Hello" borderedfly="//@roads.0"/>
+  <spaces xsi:type="Maps:Square" name="Babliboup" borderedfly="//@roads.7"/>
+  <spaces xsi:type="Maps:Garden" name="COUCOU"/>
+  <roads xsi:type="Maps:Street" border="//@spaces.0" name="SaintPatoche"/>
+  <roads xsi:type="Maps:Pedestrian" name="Alban"/>
+  <roads xsi:type="Maps:Pedestrian" name="Arthor"/>
+  <roads xsi:type="Maps:Pedestrian" name="Gaetan"/>
+  <roads xsi:type="Maps:Pedestrian" name="Martin"/>
+  <roads xsi:type="Maps:Pedestrian" name="Matthieu"/>
+  <roads xsi:type="Maps:Pedestrian" name="Matthieu"/>
+  <roads xsi:type="Maps:Street" meet="//@roads.0 //@roads.1" border="//@spaces.1" name="RueDeLaSoif"/>
+</Maps:Map>
