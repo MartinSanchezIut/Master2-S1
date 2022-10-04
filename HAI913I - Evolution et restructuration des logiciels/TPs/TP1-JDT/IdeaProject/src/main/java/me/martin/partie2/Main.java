@@ -18,88 +18,62 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+            TO DO :
+
+        CLI + exo 1
+
+       graphe d'appel: https://jgrapht.org/
+
+
+     */
+
+
 
     public static void main(String[] args) throws IOException {
-        /**
-         *          GUI
-         */
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Quel fichier voulez vous parser ? ");
-        String fileName = scanner.nextLine();
-
-        if (fileName.isEmpty()) { fileName = "src/main/resources/PP.java" ; }
-
-        System.out.println("Parsing de : " + fileName + "\n\n");
-        final File folder = new File(fileName);
-        if (!folder.exists()) { System.exit(2); }
-
-        ArrayList<File> javaFiles = new ArrayList<>();
-
-        if (folder.isDirectory()) {
-            javaFiles = Utils.listJavaFilesForFolder(folder);
-        }else if(folder.isFile() && folder.canRead()) {
-            javaFiles = new ArrayList<>() ;
-            javaFiles.add(folder);
-        }
-
-        /**
-         *          Visitors initialization
-         */
-
-        ClassVisitor classes = new ClassVisitor();
-        MethodeVisitor methods = new MethodeVisitor();
-        PackageVisitor packages = new PackageVisitor();
-        int nbOfLineOfCode = 0;
-        /**
-         *          Parsing all files
-         */
-        for (File fileEntry : javaFiles) {
-            String content = FileUtils.readFileToString(fileEntry);
-
-            CompilationUnit ast = Parser.parse(content.toCharArray());
-
-            nbOfLineOfCode += Utils.getNumberOfLines(fileEntry.getAbsolutePath()) ;
-            ast.accept(classes);
-            ast.accept(methods);
-            ast.accept(packages);
-        }
-
+       CLI cli = CLI.init() ;
 
 
         /**
-         *          Printing result
+         *          Parser and Visitors initialization
          */
-        System.out.print("Nombre de classes : ");         System.out.println(classes.getClasses().size());
-        System.out.print("Nombre de lignes de code : "); System.out.println(nbOfLineOfCode);
-        System.out.print("Nombre de méthodes : ");         System.out.println(methods.getMethods().size());
-        System.out.print("Nombre de packages : ");    System.out.println(packages.getPackages().size());
 
 
-        System.out.print("Nombre moyen de méthodes par classe : "); System.out.println( methods.getMethods().size() / classes.getClasses().size());
-        System.out.print("Nombre moyen de lignes par méthodes : "); System.out.println( Utils.getNumberOfLines(fileName) / methods.getMethods().size());
+        Parser parser = new Parser().setClassVisitor(new ClassVisitor())
+                                    .setMethodVisitor(new MethodeVisitor())
+                                    .setPackageVisitor(new PackageVisitor());
 
-        int nbAttributesTotal = 0;
-        for (TypeDeclaration m : classes.getClasses()) { nbAttributesTotal =  m.getFields().length; }
-        System.out.print("Nombre moyen d'attributs par classe : "); System.out.println( nbAttributesTotal / classes.getClasses().size());
+        ArrayList<CompilationUnit> asts = parser.getAstFromFiles(cli.getJavaFiles()) ;
 
+        /**
+         *          Using CLI
+         */
+         cli.processInput(parser, cli.getInput());
 
-
-        System.out.println("10% de classes qui ont le plus de méthodes : ");
-        System.out.println("10% de classes qui ont le plus d'attributs' : ");
-        System.out.println("Classes qui ont le plus d'attribut et de méthodes : ");
-
-        System.out.println("Classes de plus de x méthodes :");
-
-
-        System.out.println("10% de méthodes qui ont le plus de lignes par classes : ");
-        System.out.println("Le nombre maximal de paramettres de méthodes : ");
+     System.out.print("Nombre de classes : ");         System.out.println(parser.getNumberOfClasses());
+     System.out.print("Nombre de méthodes : ");        System.out.println(parser.getNumberOfMethods());
+     System.out.print("Nombre de packages : ");        System.out.println(parser.getNumberOfPackages());
+     System.out.print("Nombre de lignes de code : ");  System.out.println(parser.getNumberOfLines());
 
 
+     System.out.print("Nombre moyen de méthodes par classe : "); System.out.println( parser.getNumberOfMethods() / parser.getNumberOfClasses());
+     System.out.print("Nombre moyen de lignes par méthodes : "); System.out.println( parser.getNumberOfLines() / parser.getNumberOfMethods());
 
 
+     System.out.print("Nombre moyen d'attributs par classe : "); System.out.println( parser.getNumberOfAttributes() / parser.getNumberOfClasses());
+
+
+     System.out.println("TODO");
+
+     System.out.println("10% de classes qui ont le plus de méthodes : ");
+     System.out.println("10% de classes qui ont le plus d'attributs' : ");
+     System.out.println("Classes qui ont le plus d'attribut et de méthodes : ");
+
+     System.out.println("Classes de plus de x méthodes :");
+
+
+     System.out.println("10% de méthodes qui ont le plus de lignes par classes : ");
+     System.out.println("Le nombre maximal de paramettres de méthodes : ");
 
     }
-
-
 }

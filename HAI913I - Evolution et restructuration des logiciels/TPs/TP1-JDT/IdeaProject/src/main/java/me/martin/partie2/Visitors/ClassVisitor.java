@@ -12,8 +12,9 @@ public class ClassVisitor extends ASTVisitor {
 
     @Override
     public boolean visit(TypeDeclaration node) {
-         // if (node.isInterface())
-        classe.add(node);
+        if (! node.isInterface()) {
+            classe.add(node);
+        }
         return super.visit(node);
     }
 
