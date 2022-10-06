@@ -19,6 +19,11 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_cWxwcEVsEe2jTOJGNMMraQ" name="Human"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_I2HNMEVsEe2jTOJGNMMraQ" name="Cat">
       <generalization xmi:type="uml:Generalization" xmi:id="_S6QLoEVsEe2jTOJGNMMraQ" general="_KMaRwEVsEe2jTOJGNMMraQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5SRC0EWBEe2iBrnD5785wQ" name="coucou" type="__LErQEVrEe2jTOJGNMMraQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B3dXAEWCEe2iBrnD5785wQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B3GxsEWCEe2iBrnD5785wQ" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_k35a8EWCEe2iBrnD5785wQ" name="Manger"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="__LErQEVrEe2jTOJGNMMraQ" name="Dog">
       <generalization xmi:type="uml:Generalization" xmi:id="_VQr3gEVsEe2jTOJGNMMraQ" general="_KMaRwEVsEe2jTOJGNMMraQ"/>

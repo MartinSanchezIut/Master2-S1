@@ -61,12 +61,20 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_I2N64UVsEe2jTOJGNMMraQ" y="15"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_I2QXIEVsEe2jTOJGNMMraQ" type="Class_AttributeCompartment">
+          <children xmi:type="notation:Shape" xmi:id="_5TH-cEWBEe2iBrnD5785wQ" type="Property_ClassAttributeLabel">
+            <element xmi:type="uml:Property" href="model.uml#_5SRC0EWBEe2iBrnD5785wQ"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_5TH-cUWBEe2iBrnD5785wQ"/>
+          </children>
           <styles xmi:type="notation:TitleStyle" xmi:id="_I2QXIUVsEe2jTOJGNMMraQ"/>
           <styles xmi:type="notation:SortingStyle" xmi:id="_I2QXIkVsEe2jTOJGNMMraQ"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_I2QXI0VsEe2jTOJGNMMraQ"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I2QXJEVsEe2jTOJGNMMraQ"/>
         </children>
         <children xmi:type="notation:BasicCompartment" xmi:id="_I2QXJUVsEe2jTOJGNMMraQ" type="Class_OperationCompartment">
+          <children xmi:type="notation:Shape" xmi:id="_k4EaEEWCEe2iBrnD5785wQ" type="Operation_ClassOperationLabel">
+            <element xmi:type="uml:Operation" href="model.uml#_k35a8EWCEe2iBrnD5785wQ"/>
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_k4EaEUWCEe2iBrnD5785wQ"/>
+          </children>
           <styles xmi:type="notation:TitleStyle" xmi:id="_I2QXJkVsEe2jTOJGNMMraQ"/>
           <styles xmi:type="notation:SortingStyle" xmi:id="_I2QXJ0VsEe2jTOJGNMMraQ"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_I2QXKEVsEe2jTOJGNMMraQ"/>

@@ -60,16 +60,18 @@ public class Main {
 		
 		
 		//   Pour bouger une class de package
-		/*
+		
 		Package dest =  (Package) umlP.getPackagedElement("AnnimalPackage")  ;
 		Package sour  =  (Package) umlP.getPackagedElement("AnotherPackage")  ;
 		
 		Class c = (Class) sour.getPackagedElement("Husky") ;
 				// Utils.findClassInPackage("Husky", Utils.findPackageInPackage("AnotherPackage", p)); 
 		
-		moveClassToPackage(c, dest) ;
-		*/
+		//moveClassToPackage(c, dest) ;
 		
+		
+		Class d = (Class) dest.getPackagedElement("Cat") ;
+		setAttributeToPrivateInClass(d, "coucou") ;
 		
 		
 		
@@ -89,7 +91,7 @@ public class Main {
 				o.setIsStatic(false);
 				o.setName("get"+a.getName());
 				o.setType(a.getType());
-				theclass.getAllOperations().add(o) ;
+				theclass.getOwnedOperations().add(o) ;
 				
 				// Setter
 				o = UMLFactory.eINSTANCE.createOperation();
