@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_pBV6YEVzEe2jTOJGNMMraQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qG-FsEVzEe2jTOJGNMMraQ" source="PapyrusCSSForceValue">
+    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qG-FsUVzEe2jTOJGNMMraQ" key="canonical" value="true"/>
+  </eAnnotations>
+  <children xmi:type="notation:Shape" xmi:id="_qG-swEVzEe2jTOJGNMMraQ" type="Package_Shape">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qHqCMEVzEe2jTOJGNMMraQ" source="PapyrusCSSForceValue">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qHqCMUVzEe2jTOJGNMMraQ" key="mutable" value="true"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_qG-swkVzEe2jTOJGNMMraQ" type="Package_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_qG-sw0VzEe2jTOJGNMMraQ" type="Package_PackagedElementCompartment">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_t4XTsEVzEe2jTOJGNMMraQ" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_t4XTsUVzEe2jTOJGNMMraQ" key="collapsed" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_qG-sxEVzEe2jTOJGNMMraQ" showTitle="true"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qG-sxUVzEe2jTOJGNMMraQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_qHGBgEVzEe2jTOJGNMMraQ" type="compartment_shape_display">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yZCpkEVzEe2jTOJGNMMraQ" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yZCpkUVzEe2jTOJGNMMraQ" key="visible" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_qHGBgUVzEe2jTOJGNMMraQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qHGBgkVzEe2jTOJGNMMraQ"/>
+    </children>
+    <element xmi:type="uml:Package" href="test.uml#_pBDmiEVzEe2jTOJGNMMraQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qG-swUVzEe2jTOJGNMMraQ" x="320" y="220" width="460" height="301"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_qG_T0EVzEe2jTOJGNMMraQ" type="Package_Shape">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qHqCMkVzEe2jTOJGNMMraQ" source="PapyrusCSSForceValue">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qHqCM0VzEe2jTOJGNMMraQ" key="mutable" value="true"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_qG_T0kVzEe2jTOJGNMMraQ" type="Package_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_qG_T00VzEe2jTOJGNMMraQ" type="Package_PackagedElementCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_qG_T1EVzEe2jTOJGNMMraQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qG_T1UVzEe2jTOJGNMMraQ"/>
+    </children>
+    <element xmi:type="uml:Package" href="test.uml#_pBDmkkVzEe2jTOJGNMMraQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qG_T0UVzEe2jTOJGNMMraQ" x="840" y="300"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_pBV6YUVzEe2jTOJGNMMraQ" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_pBV6YkVzEe2jTOJGNMMraQ"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_pBV6Y0VzEe2jTOJGNMMraQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+    <owner xmi:type="uml:Model" href="test.uml#_pBDmgEVzEe2jTOJGNMMraQ"/>
+  </styles>
+  <styles xmi:type="notation:CanonicalStyle" xmi:id="_qG7pcEVzEe2jTOJGNMMraQ"/>
+  <element xmi:type="uml:Model" href="test.uml#_pBDmgEVzEe2jTOJGNMMraQ"/>
+</notation:Diagram>
