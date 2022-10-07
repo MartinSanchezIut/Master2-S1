@@ -1,0 +1,45 @@
+export COUCH3=http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-2.infra.umontpellier.fr:5984
+
+prefix de commande : curl -H "Cache-Control: no-cache"
+curl -H "Cache-Control: no-cache" -X GET $COUCH3
+
+
+Creation de ma base de données :
+curl -X PUT $COUCH3/sanchezoccitanie
+
+
+Ajouter les fichier: 
+curl -X POST $COUCH3/sanchezoccitanie/_bulk_docs -d @DATA/aveyron.json -H "Content-Type:application/json"
+
+curl -X POST $COUCH3/sanchezoccitanie/_bulk_docs -d @DATA/gard.json -H "Content-Type:application/json"
+
+curl -X POST $COUCH3/sanchezoccitanie/_bulk_docs -d @DATA/hauteGaronne.json -H "Content-Type:application/json"
+
+curl -X POST $COUCH3/sanchezoccitanie/_bulk_docs -d @DATA/herault.json -H "Content-Type:application/json"
+
+curl -X POST $COUCH3/sanchezoccitanie/_bulk_docs -d @DATA/regions_partiel.json -H "Content-Type:application/json"
+
+
+
+
+3- 
+1)   curl -X GET $COUCH3/
+2)   curl -X GET $COUCH3/sanchezoccitanie
+  Oui = "doc_count":314
+
+3)   curl -X GET $COUCH3/sanchezoccitanie/_all_docs
+
+4)   curl -X GET $COUCH3/sanchezoccitanie/_all_docs
+
+5)   curl -X GET $COUCH3/sanchezoccitanie/91
+91 etant l'id d'un document
+
+ _rev: 1-xxxxxx    1 = une modification
+
+
+ 4- 
+
+curl -X GET $COUCH3/desbos_occitanie/_design_docs
+curl -X GET $COUCH3/desbos_occitanie/_design/411
+
+function(doc) { if (doc.type==`old_region`) {emit(doc._id, doc) ;} }
