@@ -14,6 +14,7 @@ import org.chocosolver.solver.variables.IntVar;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -21,6 +22,8 @@ import static org.chocosolver.solver.search.strategy.Search.minDomLBSearch;
 import static org.chocosolver.util.tools.ArrayUtils.append;
 
 public class SudokuPPC {
+
+    static String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
     static int n;
     static int s;
@@ -32,8 +35,6 @@ public class SudokuPPC {
     Model model;
 
     public static void main(String[] args) throws ParseException, IOException {
-//        SudokuPPC.PPC(4, true, args);
-
         final Options options = configParameters();
         final CommandLineParser parser = new DefaultParser();
         final CommandLine line = parser.parse(options, args);
@@ -44,7 +45,7 @@ public class SudokuPPC {
             formatter.printHelp("sudoku", options, true);
             System.exit(0);
         }
-        instance = 4;
+        instance = 16;
         // Check arguments and options
         for (Option opt : line.getOptions()) {
             checkOption(line, opt.getLongOpt());
@@ -55,16 +56,17 @@ public class SudokuPPC {
 
         SudokuPPC ppc = new SudokuPPC() ;
         ppc.buildModel();
-        ppc.addConstraintFromFile("src\\main\\resources\\constains.csv");
+        ppc.addConstraintFromFile("src\\main\\resources\\figure3.csv");
 
         ppc.model.getSolver().solve();
 
         ppc.printGrid();
 
         ppc.model.getSolver().printStatistics();
+
     }
 
-    public static void PPC(int size, boolean showStats, String[] args) throws ParseException {
+    public static void solvePPC(int size, boolean showStats, String[] args) throws ParseException {
         final Options options = configParameters();
         final CommandLineParser parser = new DefaultParser();
         final CommandLine line = parser.parse(options, args);
@@ -84,10 +86,30 @@ public class SudokuPPC {
         n = instance;
         s = (int) Math.sqrt(n);
 
-
         new SudokuPPC().solve(showStats);   // Potentielle erreur
     }
+    public static void solveAllPPC(int size, boolean showStats, String[] args) throws ParseException {
+        final Options options = configParameters();
+        final CommandLineParser parser = new DefaultParser();
+        final CommandLine line = parser.parse(options, args);
 
+        boolean helpMode = line.hasOption("help"); // args.length == 0
+        if (helpMode) {
+            final HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("sudoku", options, true);
+            System.exit(0);
+        }
+        instance = size;
+        // Check arguments and options
+        for (Option opt : line.getOptions()) {
+            checkOption(line, opt.getLongOpt());
+        }
+
+        n = instance;
+        s = (int) Math.sqrt(n);
+
+        new SudokuPPC().getxSolutions(showStats, -1);   // Potentielle erreur
+    }
 
     public void addConstraintFromFile(String filepath) {
         try{
@@ -99,10 +121,14 @@ public class SudokuPPC {
                 String[] row = sc.nextLine().replace(" ", "").split(",") ;
 
                 for (int i = 0; i < row.length; i++) {
-                    if (Integer.parseInt(row[i]) != 0) {
-                       // System.out.println(line + "  " + i + " = " + Integer.parseInt(row[i]));
-                        model.arithm(rows[line][i], "=" , Integer.parseInt(row[i])).post();
+                   /* if (Integer.parseInt(row[i], row.length) != 0) {
+                        model.arithm(rows[line][i], "=" , Integer.parseInt(row[i], row.length)).post();
+                    }*/
+
+                    if (! row[i].equalsIgnoreCase("0")) {
+                        model.arithm(rows[line][i], "=" , Integer.parseInt(row[i], 35)).post();
                     }
+
                 }
 
                 line++;
@@ -114,7 +140,26 @@ public class SudokuPPC {
         }
     }
 
-
+    /**
+     * Retourne un certain nombre de solutions
+     * @param printStatistics
+     * @param numberOfSolution Nombre de solutions (<0 = toutes les solutions)
+     */
+    public void getxSolutions(boolean printStatistics, int numberOfSolution) {
+        buildModel();
+        if (numberOfSolution <= 0) {
+            while (model.getSolver().solve()){
+                printGrid();
+                if (printStatistics) {        model.getSolver().printStatistics(); }
+            }
+        }else {
+            for (int i = 0; i  <  numberOfSolution; i++) {
+                model.getSolver().solve();
+                printGrid();
+                if (printStatistics) {        model.getSolver().printStatistics(); }
+            }
+        }
+    }
     public void solve(boolean printStatistics) {
 
         buildModel();
@@ -129,7 +174,6 @@ public class SudokuPPC {
     }
 
     public void printGrid() {
-
         String a;
         a = "┌───";
         String b;
@@ -150,8 +194,6 @@ public class SudokuPPC {
         k = "───┴─";
         String esp = " ";
 
-
-
         for (int i = 0; i < n; i++) {
 
             for (int line = 0; line < n; line++) {
@@ -166,11 +208,18 @@ public class SudokuPPC {
             System.out.println("");
             System.out.print("│ ");
             for (int j = 0; j < n; j++) {
+                int val = rows[i][j].getValue();
+                if (val > 9)
+                    System.out.print(esp + alphabet[val-9-1] + " │ ");
+                else
+                    System.out.print(esp + rows[i][j].getValue() + " │ ");
+
+                /*
                 if (rows[i][j].getValue() > 9)
                     System.out.print(rows[i][j].getValue() + " │ ");
                 else
                     System.out.print(esp + rows[i][j].getValue() + " │ ");
-
+                */
             }
 
             if (i == n - 1) {
@@ -180,7 +229,6 @@ public class SudokuPPC {
                 }
             }
             System.out.println("");
-
         }
     }
 
@@ -258,6 +306,5 @@ public class SudokuPPC {
         model.getSolver().setSearch(minDomLBSearch(append(rows)));
 
     }
-
 }
 

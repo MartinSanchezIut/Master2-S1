@@ -140,18 +140,17 @@ public class SudokuBT {
         return false;
         }
 
-
-        @Override
-        public String toString() {
-            String str = "";
-            for (int i = 0; i < n; i++) {
-                str += "\n" + Arrays.toString(this.grid[i]);
-            }
-            return str + "\n";
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i = 0; i < n; i++) {
+            str += "\n" + Arrays.toString(this.grid[i]);
         }
+        return str + "\n";
+    }
 
-        public static void main (String args[]){
-            SudokuBT test = new SudokuBT(4);
-            test.findSolution(0, 0);
-        }
+    public static void main (String args[]){
+        SudokuBT test = new SudokuBT(4);
+        test.findSolution(0, 0);
+    }
     }
