@@ -20,6 +20,7 @@ import java.util.Scanner;
 
 import static org.chocosolver.solver.search.strategy.Search.minDomLBSearch;
 import static org.chocosolver.util.tools.ArrayUtils.append;
+import static org.chocosolver.util.tools.ArrayUtils.get;
 
 public class SudokuPPC {
 
@@ -35,6 +36,12 @@ public class SudokuPPC {
     Model model;
 
     public static void main(String[] args) throws ParseException, IOException {
+        SudokuPPC ppc = getPPC(9, null) ;
+        ppc.createGTSudokuConstraint("src\\main\\resources\\figure4.csv");
+        ppc.solve(false);
+    }
+
+    public static SudokuPPC getPPC(int size, String[] args) throws ParseException {
         final Options options = configParameters();
         final CommandLineParser parser = new DefaultParser();
         final CommandLine line = parser.parse(options, args);
@@ -45,7 +52,7 @@ public class SudokuPPC {
             formatter.printHelp("sudoku", options, true);
             System.exit(0);
         }
-        instance = 16;
+        instance = size;
         // Check arguments and options
         for (Option opt : line.getOptions()) {
             checkOption(line, opt.getLongOpt());
@@ -54,16 +61,7 @@ public class SudokuPPC {
         n = instance;
         s = (int) Math.sqrt(n);
 
-        SudokuPPC ppc = new SudokuPPC() ;
-        ppc.buildModel();
-        ppc.addConstraintFromFile("src\\main\\resources\\figure3.csv");
-
-        ppc.model.getSolver().solve();
-
-        ppc.printGrid();
-
-        ppc.model.getSolver().printStatistics();
-
+        return new SudokuPPC() ;
     }
 
     public static void solvePPC(int size, boolean showStats, String[] args) throws ParseException {
@@ -112,6 +110,7 @@ public class SudokuPPC {
     }
 
     public void addConstraintFromFile(String filepath) {
+        if (model == null) { buildModel(); }
         try{
             FileInputStream fileInput = new FileInputStream(filepath);
             Scanner sc = new Scanner(fileInput);
@@ -140,37 +139,89 @@ public class SudokuPPC {
         }
     }
 
+    public void createGTSudokuConstraint(String filepath){
+        if (model == null) { buildModel(); }
+        try {
+            FileInputStream fileInput = new FileInputStream(filepath);
+            Scanner sc = new Scanner(fileInput);
+
+            int line = 0;
+            boolean end = false;
+
+            while(! end) {
+                String rowConstraint = "";
+                String colConstraint = "";
+                if (sc.hasNextLine())  { rowConstraint = sc.nextLine(); } else { end = true; }
+                if (sc.hasNextLine())  { colConstraint = sc.nextLine(); } else { end = true; }
+
+                String[] row = rowConstraint.replace(" ", "").split(",") ;
+
+                int indexA = 0;
+                int indexB = 1;
+                for (String value : row) {
+                    if (value.equals("<")) {
+                        model.arithm(rows[line][indexA], "<" , rows[line][indexB]).post();
+                        // System.out.println("["+ (line) +"]["+indexA+"] <  ["+ (line) +"]["+ indexB +"]");
+                    }
+                    if (value.equals(">")) {
+                        model.arithm(rows[line][indexA], ">" , rows[line][indexB]).post();
+                        // System.out.println("["+ (line) +"]["+indexA+"] >  ["+ (line) +"]["+ (indexB) +"]");
+                    }
+                    //if (value.equals("|")) { indexA++; indexB++; }
+                    indexA++;
+                    indexB++;
+                }
+
+                String[] col = colConstraint.replace(" ", "").split(",") ;
+                int colNumber = 0;
+                for (String value : col) {
+                    if (value.equals("∧")) {
+                        // System.out.println("["+ (line) +"]["+ colNumber +"] <  ["+ ((line%2)+1) +"]["+ colNumber +"]");
+                        model.arithm(rows[line][colNumber], "<" , rows[(line)+1][colNumber]).post();
+                    }
+                    if (value.equals("∨")) {
+                        // System.out.println("["+(line)+"]["+ colNumber +"] >  ["+ (line+1) +"]["+ colNumber +"]");
+                        model.arithm(rows[line][colNumber], ">" , rows[line+1][colNumber]).post();
+                    }
+                    //if (value.equals("|")) { indexA++; indexB++; }
+                    colNumber++;
+                }
+                line++;
+            }
+        }
+        catch(IOException e) { e.printStackTrace(); }
+    }
+
     /**
      * Retourne un certain nombre de solutions
      * @param printStatistics
      * @param numberOfSolution Nombre de solutions (<0 = toutes les solutions)
      */
-    public void getxSolutions(boolean printStatistics, int numberOfSolution) {
-        buildModel();
+    public int getxSolutions(boolean printStatistics, int numberOfSolution) {
+        if (model == null) { buildModel(); }
+
+        int foundSolutions = 0;
         if (numberOfSolution <= 0) {
             while (model.getSolver().solve()){
+                foundSolutions++;
                 printGrid();
                 if (printStatistics) {        model.getSolver().printStatistics(); }
             }
         }else {
             for (int i = 0; i  <  numberOfSolution; i++) {
                 model.getSolver().solve();
+                foundSolutions++;
                 printGrid();
                 if (printStatistics) {        model.getSolver().printStatistics(); }
             }
         }
+        return foundSolutions;
     }
     public void solve(boolean printStatistics) {
-
-        buildModel();
-
-        //model.getSolver().
+        if (model == null) { buildModel(); }
         model.getSolver().solve();
-
         printGrid();
-
         if (printStatistics) {        model.getSolver().printStatistics(); }
-
     }
 
     public void printGrid() {

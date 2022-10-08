@@ -3,6 +3,7 @@ import me.martin.tp1IAGL.SudokuPPC;
 import org.apache.commons.cli.ParseException;
 import org.junit.Test;
 
+import static me.martin.tp1IAGL.SudokuPPC.getPPC;
 import static org.junit.Assert.assertTrue;
 
 
@@ -10,18 +11,8 @@ public class TestSudoku {
 
 /*
     Idées :
-        Combien de solutions en 5sec
-        Qui va le plus vite
-        Premier a 30 solutions
-
-        Meme chose en faisant varier la taille
-
-
-
-
-// taille n du tableau, notion de temps, nombre de solution trouver par algo
-//premier qui arrive a 100 solutions
-//celui qui trouve le plus de solution
+        Premier a 100 solution
+        nombre de solution trouver par algo
 
  */
 
@@ -29,9 +20,25 @@ public class TestSudoku {
     private SudokuPPC ppc;
 
 
-    /*
-              Execution time testing
-     */
+
+    @Test
+    public void findTheMostOfSolutions() throws ParseException {
+        SudokuBT test = new SudokuBT(4);
+        test.findSolutionAll(0, 0);
+        int countbt = test.foundSolutions ;
+
+        SudokuPPC ppc = SudokuPPC.getPPC(4, null) ;
+        int countppc = ppc.getxSolutions(false, -1);
+
+        System.out.println("-----------------------------------------");
+        System.out.println("BT solutions : " + countbt);
+        System.out.println("PPC solutions : " + countppc);
+        if (countbt > countppc) { System.out.println("More solutions : PPC");
+        }else {                         System.out.println("More solutions : BT"); }
+        System.out.println("-----------------------------------------");
+
+        assertTrue(true);
+    }
 
     @Test
     public void firstToFinishForSize4() throws ParseException {
@@ -113,7 +120,6 @@ public class TestSudoku {
 
         assertTrue(true);
     }
-
 
 
     @Test

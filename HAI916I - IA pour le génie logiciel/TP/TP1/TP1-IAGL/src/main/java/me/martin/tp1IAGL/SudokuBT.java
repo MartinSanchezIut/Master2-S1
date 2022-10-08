@@ -12,11 +12,13 @@ public class SudokuBT {
     int s;
     int[][] grid;
 
+    public int foundSolutions ;
 
     public SudokuBT(int n) {
         this.n = n;
         this.s = (int) Math.sqrt(n);
         this.grid = new int[n][n];
+        foundSolutions = 0;
     }
 
     private boolean solutionChecker() {
@@ -123,6 +125,7 @@ public class SudokuBT {
         if (i == -1 && j == -1) {
             if (solutionChecker()) {
                 System.out.println(this);
+                foundSolutions++;
                 return false;
             } else {
                 return false;
