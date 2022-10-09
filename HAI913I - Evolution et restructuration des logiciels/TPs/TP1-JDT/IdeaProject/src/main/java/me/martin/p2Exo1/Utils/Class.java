@@ -1,4 +1,4 @@
-package me.martin.partie2.Utils;
+package me.martin.p2Exo1.Utils;
 
 import java.util.ArrayList;
 

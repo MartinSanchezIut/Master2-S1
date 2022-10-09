@@ -1,4 +1,4 @@
-package me.martin.partie2.Visitors;
+package me.martin.p2Exo1.Visitors;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.TypeDeclaration;

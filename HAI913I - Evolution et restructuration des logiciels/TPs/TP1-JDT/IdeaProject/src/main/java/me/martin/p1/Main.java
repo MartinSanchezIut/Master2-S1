@@ -1,4 +1,4 @@
-package me.martin.tp1;
+package me.martin.p1;
 
 import java.util.HashSet;
 import java.util.Set;
