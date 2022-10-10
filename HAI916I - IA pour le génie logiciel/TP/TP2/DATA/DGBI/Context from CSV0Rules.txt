@@ -1,0 +1,5 @@
+<0> Fossil => CVS,Git,Hg,SVN,BZR,TFVC,Arch,Perforce
+<0> Git,BZR,TFVC => CVS,Hg,SVN,Arch,Perforce,Fossil
+<0> Git,SVN,TFVC => CVS,Hg,BZR,Arch,Perforce,Fossil
+<0> Git,Hg,TFVC => CVS,SVN,BZR,Arch,Perforce,Fossil
+<0> CVS,Git,SVN,Perforce => Hg,BZR,TFVC,Arch,Fossil

@@ -1,0 +1,4 @@
+<2> Perforce => Git,SVN
+<2> Git,SVN,BZR => CVS,Hg
+<2> Git,Hg,BZR => CVS,SVN
+<2> CVS,Git,Hg,SVN => BZR

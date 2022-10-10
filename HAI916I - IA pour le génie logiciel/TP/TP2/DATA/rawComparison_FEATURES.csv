@@ -1,0 +1,20 @@
+Name,Code review,Bug tracking,Web hosting,Wiki,Translation system,Shell server,Mailing list,Forum,Personal repository,Private repository,Announce,Build system,Team,Release binaries,Self-hosting
+Assembla,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,Yes,Yes,Yes,Yes,Un­known,Commercially
+Azure DevOps Services,Yes,Yes,Yes,Yes,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Commercially (Azure DevOps Server)
+Bitbucket,Yes,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,Yes,Yes,No,Commercially (Bitbucket Server formerly Stash)
+Buddy,Yes,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+CloudForge,Un­known,Yes,Yes,Yes,No,No,No,No,Un­known,Un­known,Un­known,Un­known,Un­known,Un­known,No
+GForge,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Gitea,Yes,Yes,No,Yes,No,No,No,No,Yes,Yes,Un­known,"3rd-party (e.g. Travis CI, Appveyor and others)",Yes,Yes,Yes
+GitHub,Yes,Yes,Yes,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Commercially (GitHub Enterprise)
+GitLab,Yes,Yes,Yes,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+GNU Savannah,Yes,Yes,Yes,No,No,Yes,Yes,No,No,No,Yes,No,Yes,Un­known,Yes
+Helix TeamHub,Yes,Yes,No,Yes,No,No,Yes,Yes,Yes,Yes,No,"Yes, with hooks. Jenkins, TeamCity, etc.",No,Yes,Yes
+Kallithea,Yes,No,Yes,No,No,Un­known,No,No,Yes,Yes,No,No,Yes,Yes,Yes
+Launchpad,Yes,Yes,No,No,Yes,No,Yes,No,Yes,Yes,Yes,Yes,Yes,Un­known,Yes
+OSDN,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,No,Yes,Yes,No
+Ourproject.org,Un­known,Yes,Yes,Yes,No,Un­known,Yes,Yes,Un­known,Un­known,Un­known,Un­known,Un­known,Un­known,Yes
+Phabricator,Yes,Yes,Yes,Yes,Un­known,Yes,Un­known,Yes,Un­known,Un­known,Un­known,Un­known,Un­known,Un­known,Yes
+RhodeCode,Yes,No,Yes,No,No,Un­known,No,No,Yes,Yes,Yes,No,Yes,Yes,Yes
+SourceForge,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes
+Name,Code review,Bug tracking,Web hosting,Wiki,Translation system,Shell server,Mailing list,Forum,Personal repository,Private repository,Announce,Build system,Team,Release binaries,Self-hosting

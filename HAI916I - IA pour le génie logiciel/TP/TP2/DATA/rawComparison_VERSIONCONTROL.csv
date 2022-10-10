@@ -1,0 +1,22 @@
+Name,CVS,Git,Hg,SVN,BZR,TFVC,Arch,Perforce,Fossil
+Assembla,No,Yes,No,Yes,No,No,No,Yes,No
+Azure DevOps Services,No,Yes,No,No,No,Yes,No,No,No
+Bitbucket,No,Yes,Until Feb 2020,No,No,No,No,No,No
+Buddy,No,Yes,No,No,No,No,No,No,No
+CloudForge,No,Yes,No,Yes,No,No,No,No,No
+GForge,Yes,Yes,No,Yes,No,No,No,No,No
+Gitea,No,Yes,No,No,No,No,No,No,No
+GitHub,No,Yes,No,Partial,No,No,No,No,No
+GitLab,No,Yes,No,No,No,No,No,No,No
+GNU Savannah,Yes,Yes,Yes,Yes,Yes,No,Yes,No,No
+Kallithea,No,Yes,Yes,No,No,No,No,No,No
+Launchpad,Import only,Yes,Import only,Import only,Yes,No,No,No,Un­known
+OSDN,Yes,Yes,Yes,Yes,Yes,No,No,Un­known,Un­known
+Ourproject.org,Yes,No,No,Yes,No,No,No,Un­known,Un­known
+OW2,Dropped,Yes,No,Dropped,No,No,No,No,No
+Helix TeamHub,No,Yes,Yes,Yes,No,No,No,Yes,No
+Phabricator,No,Yes,Yes,Yes,No,No,No,No,No
+RhodeCode,No,Yes,Yes,Yes,No,No,No,No,No
+SEUL.org,Yes,No,No,Yes,No,No,No,Un­known,Un­known
+SourceForge,Dropped,Yes,Yes,Yes,Dropped,No,No,Un­known,No
+Name,CVS,Git,Hg,SVN,BZR,TFVC,Arch,Perforce,Fossil

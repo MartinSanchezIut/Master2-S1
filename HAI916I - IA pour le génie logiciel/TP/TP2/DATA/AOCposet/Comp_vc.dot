@@ -1,0 +1,37 @@
+digraph G { 
+	rankdir=BT;
+0 [shape=record,style=filled,fillcolor=lightblue,label="{0 (I: 9, E: 0)|Fossil\n|}"];
+1 [shape=record,style=filled,label="{1 (I: 6, E: 1)|Arch\n|GNU Savannah\n}"];
+2 [shape=record,style=filled,label="{2 (I: 5, E: 2)||OSDN\n}"];
+3 [shape=record,style=filled,label="{3 (I: 4, E: 1)||Helix TeamHub\n}"];
+4 [shape=record,style=filled,label="{4 (I: 3, E: 2)|Perforce\n|Assembla\n}"];
+5 [shape=record,style=filled,label="{5 (I: 3, E: 3)||GForge\n}"];
+6 [shape=record,style=filled,fillcolor=orange,label="{6 (I: 3, E: 6)||Phabricator\nRhodeCode\nSourceForge\n}"];
+7 [shape=record,style=filled,label="{7 (I: 2, E: 1)|TFVC\n|Azure DevOps Services\n}"];
+8 [shape=record,style=filled,fillcolor=orange,label="{8 (I: 2, E: 8)|Hg\n|Bitbucket\nKallithea\n}"];
+9 [shape=record,style=filled,label="{9 (I: 2, E: 9)||CloudForge\n}"];
+10 [shape=record,style=filled,label="{10 (I: 2, E: 3)|BZR\n|Launchpad\n}"];
+11 [shape=record,style=filled,fillcolor=orange,label="{11 (I: 2, E: 5)|CVS\n|Ourproject.org\nSEUL.org\n}"];
+12 [shape=record,style=filled,fillcolor=orange,label="{12 (I: 1, E: 18)|Git\n|Buddy\nGitea\nGitHub\nGitLab\nOW2\n}"];
+13 [shape=record,style=filled,fillcolor=lightblue,label="{13 (I: 1, E: 11)|SVN\n|}"];
+	0 -> 1
+	0 -> 3
+	0 -> 7
+	1 -> 2
+	2 -> 5
+	2 -> 6
+	2 -> 10
+	3 -> 4
+	3 -> 6
+	4 -> 9
+	5 -> 9
+	5 -> 11
+	6 -> 8
+	6 -> 9
+	7 -> 12
+	8 -> 12
+	9 -> 12
+	9 -> 13
+	10 -> 12
+	11 -> 13
+}
