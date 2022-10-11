@@ -78,13 +78,13 @@ public class Parser {
 
             for (MethodInvocation i : mcv.getCalledMethods()) {
                 Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
-                callGraph.addVertex(caller);
+                callGraph.addVertex(called);
                 callGraph.addEdge(new Edge(caller, called));
             }
 
             for (SuperMethodInvocation i : mcv.getSuperMethods()) {
                 Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
-                callGraph.addVertex(caller);
+                callGraph.addVertex(called);
                 callGraph.addEdge(new Edge(caller, called));
             }
         }

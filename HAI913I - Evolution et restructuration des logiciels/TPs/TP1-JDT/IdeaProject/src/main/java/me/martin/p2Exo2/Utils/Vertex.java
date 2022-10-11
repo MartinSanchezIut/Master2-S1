@@ -1,5 +1,6 @@
 package me.martin.p2Exo2.Utils;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Vertex {
@@ -30,4 +31,5 @@ public class Vertex {
     public String toString() {
         return name;
     }
+
 }

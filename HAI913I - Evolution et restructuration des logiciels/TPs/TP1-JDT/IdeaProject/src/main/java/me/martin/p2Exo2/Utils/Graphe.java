@@ -28,4 +28,12 @@ public class Graphe {
     public Set<Edge> getListEdge() {
         return listEdge;
     }
+
+    @Override
+    public String toString() {
+        return "Graphe{" +
+                "listVertex=" + listVertex +
+                ", listEdge=" + listEdge +
+                '}';
+    }
 }
