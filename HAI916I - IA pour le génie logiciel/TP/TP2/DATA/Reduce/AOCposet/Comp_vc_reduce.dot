@@ -1,0 +1,28 @@
+digraph G { 
+	rankdir=BT;
+0 [shape=record,style=filled,label="{0 (I: 6, E: 1)|Arch\n|GNU Savannah\n}"];
+1 [shape=record,style=filled,label="{1 (I: 5, E: 2)||OSDN\n}"];
+2 [shape=record,style=filled,label="{2 (I: 4, E: 1)||Helix TeamHub\n}"];
+3 [shape=record,style=filled,label="{3 (I: 3, E: 2)|Perforce\n|Assembla\n}"];
+4 [shape=record,style=filled,label="{4 (I: 3, E: 3)||GForge\n}"];
+5 [shape=record,style=filled,label="{5 (I: 2, E: 1)|TFVC\n|Azure DevOps Services\n}"];
+6 [shape=record,style=filled,label="{6 (I: 2, E: 4)|Hg\n|Bitbucket\n}"];
+7 [shape=record,style=filled,label="{7 (I: 2, E: 3)|BZR\n|Launchpad\n}"];
+8 [shape=record,style=filled,label="{8 (I: 2, E: 4)|CVS\n|Ourproject.org\n}"];
+9 [shape=record,style=filled,fillcolor=lightblue,label="{9 (I: 1, E: 8)|Git\n|}"];
+10 [shape=record,style=filled,fillcolor=lightblue,label="{10 (I: 1, E: 6)|SVN\n|}"];
+	0 -> 1
+	1 -> 4
+	1 -> 6
+	1 -> 7
+	2 -> 3
+	2 -> 6
+	3 -> 9
+	3 -> 10
+	4 -> 8
+	4 -> 9
+	5 -> 9
+	6 -> 9
+	7 -> 9
+	8 -> 10
+}
