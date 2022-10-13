@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TP3
+Bundle-SymbolicName: TP3; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.uml2.uml
