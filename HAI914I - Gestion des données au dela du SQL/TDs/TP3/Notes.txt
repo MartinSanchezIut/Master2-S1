@@ -38,8 +38,75 @@ curl -X POST $COUCH3/sanchezoccitanie/_bulk_docs -d @DATA/regions_partiel.json -
 
 
  4- 
+4.1
+function (doc) {
+  if (doc.type === "commune" && doc.nom === "MONTPELLIER") {
+    emit(doc._id, [doc.codeInsee],[doc.dep, doc.latitude, doc.longitude] );
+  }
+}
 
-curl -X GET $COUCH3/desbos_occitanie/_design_docs
-curl -X GET $COUCH3/desbos_occitanie/_design/411
 
-function(doc) { if (doc.type==`old_region`) {emit(doc._id, doc) ;} }
+function (doc) {
+  if(doc.type === "commune") {
+    emit(doc._id, [doc.nom, doc.longitude, doc.latitude]);    
+  }
+}
+
+
+function (doc) {
+  if (doc.nom_reg === "Occitanie") {
+    emit(doc._id, [doc.president.prenom, doc.president.nom]);
+  }
+}
+
+
+function (doc) {
+    if (doc.type === "old_region") {
+      emit(doc._id, doc);
+    }
+}
+
+
+4.2
+
+function(doc) { 
+  if (doc.type==`commune`){
+    emit([doc.old_reg, doc.dep, doc.nom], 1) ;
+  }
+}
+
+
+function (doc) {
+  if (doc.type === "commune") {
+    if (doc.populations) {
+      for (var i = 0; i<doc.populations.length; i++){ 
+        var pop = doc.populations[i]; 
+        if (pop.pop_1985) 
+          emit([doc.old_reg, doc.dep, doc.nom], pop.pop_1985);
+      }
+    }
+  }
+}
+// Faire varier le group level pour avoir dep et regions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

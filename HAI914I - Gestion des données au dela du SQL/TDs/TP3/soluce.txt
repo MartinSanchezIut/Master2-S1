@@ -1,0 +1,148 @@
+export COUCH3='http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984'
+
+curl -X PUT http://COUCH3/rouquettecampredonoccitanie
+
+curl -X POST http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/_bulk_docs -d @herault.json -H "Content-Type: application/json"
+
+curl -X POST http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/_bulk_docs -d @gard.json -H "Content-Type: application/json"
+
+curl -X POST http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/_bulk_docs -d @aveyron.json -H "Content-Type: application/json"
+
+curl -X POST http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/_bulk_docs -d @hauteGaronne.json -H "Content-Type: application/json"
+
+curl -X POST http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/_bulk_docs -d @regions_partiel.json -H "Content-Type: application/json"
+
+-- 3 Appropriation de la base de données
+
+// 1
+
+curl -X GET http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984
+
+// 2
+
+curl -X GET http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie
+
+Oui il y a un attribut "doc_count" : 320
+
+// 3
+
+curl -X GET http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/_all_docs
+
+// 4
+
+curl -X GET http://admin:7kR9fu0L8ZYqEp4ZJVdX@prodpeda-couchdb3-1.infra.umontpellier.fr:5984/rouquettecampredonoccitanie/"34101"?revs=true
+
+
+Le numéro de révision est l'attribut "_rev"
+
+Pour voir si il a été modifié, il suivit de voir l'attribut
+"_revisions":{"start":1,"ids":["60e4a8d75f548f192eed33d09cc61ebe"]}}
+
+en rajoutant à la commande ?rev=true
+
+-- 4 Définition de vues
+
+-- 4.1 MAP Seulement
+
+// 1  MARCHE !!!
+
+curl -X PUT $COUCH3/rouquettecampredonoccitanie/_design/Q411 -d '{"views":{"v1":{"map":"function(doc) { if (doc.type==`old_region`) {emit(doc._id, doc) ;} }"}}}' -H "Content-Type: application/json"
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_design/Q411/_view/v1?reduce=false
+
+// 2 	MARCHE !!!
+
+curl -X PUT $COUCH3/rouquettecampredonoccitanie/_design/Q4121 -d '{"views":{"v1":{"map":"function(doc) {\n if (doc.type==`commune`) {\n emit([doc.nom, doc.latitude,doc.longitude]) ;}\n }"}}}' -H "Content-Type: application/json"
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_design/Q4121/_view/v1?reduce=false
+
+// 3   MARCHE !!!
+
+curl -X PUT $COUCH3/rouquettecampredonoccitanie/_design/Q4131 -d '{"views":{"v2":{"map":"function(doc) { if (doc.nom==`MONTPELLIER`) {emit([doc.codeInsee],[doc.dep, doc.latitude, doc.longitude]) ;} }"}}}' -H "Content-Type: application/json"
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_design/Q4131/_view/v2?reduce=false
+
+// 4
+
+curl -X PUT $COUCH3/rouquettecampredonoccitanie/_design/Q414 -d '{"views":{"v2":{"map":"function(doc) { if (doc.type==`region`) { if (doc.nom_reg == `Occitanie`) {var president = doc.president.prenom + ` ` + doc.president.nom\n emit([doc.nom_reg, president]) ;} }"}}}}' -H "Content-Type: application/json"
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_design/Q3/_view/v1?reduce=false
+
+-- 4.2
+
+// 1 	MARCHE !!!
+
+curl -X PUT $COUCH3/rouquettecampredonoccitanie/_design/Q4215 -d '{"views":{"v1":{"map":"function(doc) { if (doc.type==`commune`){emit([doc.nom, doc.old_region, doc.id], 1) ;} }","reduce":"_count"}}}' -H "Content-Type: application/json"
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_design/Q4215/_view/v1?group_level=3
+
+// 2    MARCHE !!!
+
+curl -X PUT $COUCH3/rouquettecampredonoccitanie/_design/Q6 -d '{"views":{"v2":{"map":"function(doc) { for (var i = 0; i<doc.populations.length; i++){ \nvar pop = doc.populations[i]; if (pop.pop_1985) emit([doc.old_reg, doc.dep, doc.nom], pop.pop_1985);}}","reduce":"_sum"}}}' -H "Content-Type: application/json"
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_design/Q6/_view/v1?group_level=2
+
+-- 4.3
+
+// 1
+
+function(doc){ 
+	if (doc.type==’commune’){ 
+		for (var t in doc.populations){ 
+			var pop = doc.populations[t];
+			if (pop.pop_1985){
+				var p85 = doc.populations[t].pop_1985;
+			}
+			if (pop.pop_1995){
+				var p85 = doc.populations[t].pop_1995;
+			}
+		}
+		var test = p85 - p95;
+		if (test > 0){
+			emit(doc._id, [doc.nom, p85, p95, test]);
+		}
+	}
+}
+
+// 2
+
+"REDUCE_Quatre":{"map":"function(doc) { if (doc.type==’region’)\n
+{ \n emit([doc._id, 0], doc.nom_reg);\n}\n
+if (doc.type==’old_region’)\n{ \n emit([doc.new_reg, 1], doc.nom_reg);\n}\n}"}}
+
+-- 5
+
+// 1
+
+curl -X GET $COUCH3/_membership
+
+{"all_nodes":["couchdb@prodpeda-couchdb3-1.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-2.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-3.infra.umontpellier.fr"],
+
+// 2
+
+2 partitions qui sont repliquees sur les 3 noeuds
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_shards
+
+// 3
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_shards/34102
+{"range":"00000000-7fffffff","nodes":["couchdb@prodpeda-couchdb3-1.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-2.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-3.infra.umontpellier.fr"]}
+
+dans la premiere partition intervalle "00000000-7fffffff"
+
+
+// 4
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_shards
+VISIBLE ICI
+
+
+dans la grande majorite des cas, oui. On lit 2 copies (quorum en lecture) avant de
+retourner la reponse, il y a au moins une copie qui est a jour sur les 3
+partitions et deux qui pour des temps tres courts peuvent ne pas etre a jour
+mais on a de fortes probabilites de lire une copie qui est la derniere sur les
+deux lues
+voir "cluster":{"q":2,"n":3,"w":2,"r":2} quand curl -X GET $COUCH3/rouquettecampredonoccitanie/
+-- avec q = nombre de shards, n = nombre de copies, r = quorum en lecture (nombre
+de shards parcourus avant lecture),
+w = quorum en ecriture (nombre de shards lus avant ecriture)
