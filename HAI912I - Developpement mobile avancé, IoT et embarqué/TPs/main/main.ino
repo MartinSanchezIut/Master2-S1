@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WebServer.h>
-#include "esp_wifi.h"
+//#include <ArduinoJson.h>
+#include <FreeRTOS.h>
 
+#include "esp_wifi.h"
+#include "html.h"
 /*
  *      Parametres réseaux  
  */
@@ -51,9 +54,11 @@ void printConnectedUsers(){ // Source : https://www.upesy.fr/blogs/tutorials/how
  */
 WebServer server(80);
 
-void helloWorld() {
-  Serial.println("/readTemperature = X");
-  server.send(200, "application/json", {"zepofzpofk"});
+
+
+void serverRoot() {
+  Serial.println("racine du webservice");
+  server.send(200, "text/html", HTML);
 }
 
 void readTemp() {
@@ -64,25 +69,31 @@ void readLum() {
   Serial.println("/readLumiere = X");
   server.send(200, "application/json", {"Lumiere = X"});
 }
-int ledStatu = 0;
-void changeLedStatu() {
-  if (ledStatu == 0) 
-  Serial.println("/readTemperature = X");
-  server.send(200, "application/json", {"Temperature = X"});
+void statusLedOn() {
+  Serial.println("/led = ON");
+  server.send(200, "application/json", {"Led = On"});
+}
+void statusLedOff() {
+  Serial.println("/led = OFF");
+  server.send(200, "application/json", {"Led = Off"});
+}
+void statusLedAuto() {
+  Serial.println("/led = AUTO");
+  server.send(200, "application/json", {"Led = Auto"});
 }
 
-
 void setup_routing() {
-  server.on("/", helloWorld);
+  server.on("/", serverRoot);
   server.on("/readTemperature", readTemp);
   server.on("/readLumiere", readLum);
-  server.on("/led/on", changeLedStatu);
-  server.on("/led/off", changeLedStatu);
-//  server.on("/led/auto", changeLedStatu, 2);
+  server.on("/led/on", statusLedOn);
+  server.on("/led/off", statusLedOff);
+  server.on("/led/auto", statusLedAuto);
  
   // start server
   server.begin();
 }
+
 
 /*
  *      CODE 
@@ -91,13 +102,13 @@ void setup_routing() {
 void setup(){
     Serial.begin(115200);
     initWifi();
-    setup_routing();  
+    setup_routing();     
+
 }
 
  
 void loop() {
     delay(1000);
     printConnectedUsers();
-
     server.handleClient();
 }

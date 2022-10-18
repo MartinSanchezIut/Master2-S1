@@ -1,0 +1,53 @@
+<head>
+  <title>ESP32 MM</title>
+</head>
+<body>
+ <!-- https://stackoverflow.com/questions/36975619/how-to-call-a-rest-web-service-api-from-javascript -->
+    <h2>L'ESP32 de Matthieu et Martin</h2>
+          
+
+    <div style="display: flex;">
+        <h4 class="left"> Luminositée : </h4>
+        <h4 id="lum" class="left"> xxx % </h4>
+    </div>
+    <div style="display: flex;">
+        <h4 class="left"> Température : </h4>
+        <h4  id="tem" class="left"> xxx ° </h4>
+    </div>
+    <div style="display: flex;">
+        <h4 class="left"> Led : </h4>
+         
+        <button id="on" style="margin: 10px; color: red;"
+        onclick="editLed('https://www.data.gouv.fr/fr/reuses/coronavirusapi-france/')"
+        >On</button>
+
+        <button id="off" style="margin: 10px; color: red;"
+        onclick="editLed('https://www.data.gouv.fr/fr/reuses/coronavirusapi-france/')"
+        >Off</button>
+           
+        <button id="auto" style="margin: 10px; color: red;"
+        onclick="editLed('https://www.data.gouv.fr/fr/reuses/coronavirusapi-france/')"
+        >Auto</button>
+    </div>
+             
+
+<script>
+	function editLed(url, func) {
+    	var xhttp = new XMLHttpRequest();
+    	xhttp.onreadystatechange = function() {
+    		console.log(this);
+	        if (this.readyState == 4 && this.status == 200) {
+	            alert(this.responseText);
+	        }
+	    };
+	    xhttp.open("GET", url, true);
+	    xhttp.setRequestHeader("Content-type", "application/json");
+	}
+
+
+	function setInnerHtml(id, url){
+		ed
+	}
+
+</script>
+</body>
