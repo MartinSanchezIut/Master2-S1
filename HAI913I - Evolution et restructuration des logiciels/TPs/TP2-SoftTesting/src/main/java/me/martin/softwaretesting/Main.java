@@ -4,10 +4,12 @@ package me.martin.softwaretesting;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.MutableGraph;
-import me.martin.p2Exo2.Utils.Edge;
-import me.martin.p2Exo2.Utils.Graphe;
-import me.martin.p2Exo2.Utils.Vertex;
-import me.martin.p2Exo2.Visitors.MethodVisitor;
+import me.martin.softwaretesting.Utils.Edge;
+import me.martin.softwaretesting.Utils.Graphe;
+import me.martin.softwaretesting.Utils.Utils;
+import me.martin.softwaretesting.Utils.Vertex;
+import me.martin.softwaretesting.Visitors.ClassVisitor;
+import me.martin.softwaretesting.Visitors.MethodVisitor;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.jgrapht.Graph;
@@ -35,21 +37,34 @@ import java.util.Map;
 
 import static guru.nidi.graphviz.model.Factory.graph;
 
-public class Main extends JApplet {
+public class Main  {
+/*
 
-    //  graphe d'appel: https://jgrapht.org/
-    // https://quickchart.io/documentation/graphviz-api/
-    /*
-        Ajouter les appels de connstructeur ?? ConstructorInvocation SuperConstructorInvocation
+        TODO :
+        Dans le parser : classe de la méthodes appellé (called)
+        parametres (types / noms) des méthodes
 
-     */
 
+
+
+
+
+ */
     public static void main(String[] args) throws IOException {
-        CLI cli = CLI.init() ;
+        ArrayList<File> javaFiles = new ArrayList<>();
+        String fileName = "src/main/resources/PP.java";
 
+        final File folder = new File(fileName);
+        if (!folder.exists()) { System.err.println("File to parse not found"); System.exit(2); }
+        if (folder.isDirectory()) {
+            javaFiles = Utils.listJavaFilesForFolder(folder);
+        }else if(folder.isFile() && folder.canRead()) {
+            javaFiles = new ArrayList<>() ;
+            javaFiles.add(folder);
+        }
 
-        Parser parser = new Parser().setMethodVisitor(new MethodVisitor());
-        ArrayList<CompilationUnit> asts = parser.getAstFromFiles(cli.getJavaFiles()) ;
+        Parser parser = new Parser().setMethodVisitor(new ClassVisitor());
+        ArrayList<CompilationUnit> asts = parser.getAstFromFiles(javaFiles) ;
 
 
         Graphe callGraph = parser.buildCallGraph() ;
@@ -68,6 +83,7 @@ public class Main extends JApplet {
         Graph<Vertex, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
         for ( Vertex v : callGraph.getListVertex()) { g.addVertex(v); }
         for ( Edge e : callGraph.getListEdge()) { g.addEdge(e.getV1() , e.getV2()); }
+
         DOTExporter<Vertex, DefaultEdge> exporter = new DOTExporter<>();
         exporter.setVertexAttributeProvider((v) -> {
             Map<String, Attribute> map = new LinkedHashMap<>();

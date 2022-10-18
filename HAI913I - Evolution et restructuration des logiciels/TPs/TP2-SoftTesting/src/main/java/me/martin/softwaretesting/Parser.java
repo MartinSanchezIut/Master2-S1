@@ -4,6 +4,7 @@ package me.martin.softwaretesting;
 import me.martin.softwaretesting.Utils.Edge;
 import me.martin.softwaretesting.Utils.Graphe;
 import me.martin.softwaretesting.Utils.Vertex;
+import me.martin.softwaretesting.Visitors.ClassVisitor;
 import me.martin.softwaretesting.Visitors.MethodCallVisitor;
 import me.martin.softwaretesting.Visitors.MethodVisitor;
 import org.apache.commons.io.FileUtils;
@@ -41,10 +42,10 @@ public class Parser {
 
 
 
-    private MethodVisitor methodVisitor ;
+    private ClassVisitor methodVisitor ;
 
-    public Parser() {         methodVisitor = new MethodVisitor();    }
-    public Parser setMethodVisitor(MethodVisitor methodVisitor) {         this.methodVisitor = methodVisitor; return this;    }
+    public Parser() {         methodVisitor = new ClassVisitor();    }
+    public Parser setMethodVisitor(ClassVisitor methodVisitor) {         this.methodVisitor = methodVisitor; return this;    }
     /**
      * Generate asts for the list of file given, accept the visitors
      * @param files
@@ -73,21 +74,26 @@ public class Parser {
  */
     public Graphe buildCallGraph() {
         Graphe callGraph = new Graphe();
-        for (MethodDeclaration m : methodVisitor.getMethods()){
-            Vertex caller = new Vertex(m.getName().getFullyQualifiedName());
-            MethodCallVisitor mcv = new MethodCallVisitor();
-            m.accept(mcv);
+        for (TypeDeclaration c : methodVisitor.getMethods()){
 
-            for (MethodInvocation i : mcv.getCalledMethods()) {
-                Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
-                callGraph.addVertex(called);
-                callGraph.addEdge(new Edge(caller, called));
-            }
+            for(MethodDeclaration m : c.getMethods()) {
+                Vertex caller = new Vertex(c.getName().toString()+ "." + m.getName().getFullyQualifiedName());
+                callGraph.addVertex(caller);
 
-            for (SuperMethodInvocation i : mcv.getSuperMethods()) {
-                Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
-                callGraph.addVertex(called);
-                callGraph.addEdge(new Edge(caller, called));
+                MethodCallVisitor mcv = new MethodCallVisitor();
+                m.accept(mcv);
+
+                for (MethodInvocation i : mcv.getCalledMethods()) {
+                    Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
+                    callGraph.addVertex(called);
+                    callGraph.addEdge(new Edge(caller, called));
+                }
+
+                for (SuperMethodInvocation i : mcv.getSuperMethods()) {
+                    Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
+                    callGraph.addVertex(called);
+                    callGraph.addEdge(new Edge(caller, called));
+                }
             }
         }
         return callGraph;
