@@ -77,7 +77,12 @@ public class Parser {
         for (TypeDeclaration c : methodVisitor.getMethods()){
 
             for(MethodDeclaration m : c.getMethods()) {
-                Vertex caller = new Vertex(c.getName().toString()+ "." + m.getName().getFullyQualifiedName());
+                String vertexName = c.getName().toString()+ "." + m.getName().getFullyQualifiedName() + "(";
+                for (Object p : m.parameters()) {
+                    vertexName += p.toString() ;
+                }
+                System.out.println(vertexName);
+                Vertex caller = new Vertex(vertexName);
                 callGraph.addVertex(caller);
 
                 MethodCallVisitor mcv = new MethodCallVisitor();
