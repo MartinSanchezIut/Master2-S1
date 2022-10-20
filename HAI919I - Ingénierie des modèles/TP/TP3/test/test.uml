@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" name="model">
+  <packageImport>
+    <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xsi:type="uml:Class" name="StageMachineClass" classifierBehavior="//StageMachineClass/StateMachine1">
+    <ownedAttribute type="//Etat_StageMachineClass" association="//classToState">
+      <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+    </ownedAttribute>
+    <ownedBehavior xsi:type="uml:StateMachine" name="StateMachine1">
+      <ownedOperation name="operationtest"/>
+      <region name="Region1">
+        <transition source="//StageMachineClass/StateMachine1/Region1/Init" target="//StageMachineClass/StateMachine1/Region1/A"/>
+        <transition name="exit()" source="//StageMachineClass/StateMachine1/Region1/B" target="//StageMachineClass/StateMachine1/Region1/Final"/>
+        <transition name="m()" source="//StageMachineClass/StateMachine1/Region1/B" target="//StageMachineClass/StateMachine1/Region1/A">
+          <trigger name="trigger" event="//callEvent"/>
+        </transition>
+        <transition name="m()" source="//StageMachineClass/StateMachine1/Region1/A" target="//StageMachineClass/StateMachine1/Region1/B"/>
+        <subvertex xsi:type="uml:Pseudostate" name="Init"/>
+        <subvertex xsi:type="uml:FinalState" name="Final"/>
+        <subvertex xsi:type="uml:State" name="A"/>
+        <subvertex xsi:type="uml:State" name="B"/>
+      </region>
+    </ownedBehavior>
+  </packagedElement>
+  <packagedElement xsi:type="uml:AnyReceiveEvent" name="event"/>
+  <packagedElement xsi:type="uml:CallEvent" name="callEvent" operation="//StageMachineClass/StateMachine1/operationtest"/>
+  <packagedElement xsi:type="uml:Class" name="Etat_StageMachineClass" isAbstract="true">
+    <ownedAttribute type="//StageMachineClass" association="//classToState">
+      <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+    </ownedAttribute>
+    <ownedOperation name="operationtest" isAbstract="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" name="classToState" memberEnd="//StageMachineClass/@ownedAttribute.0 //Etat_StageMachineClass/@ownedAttribute.0"/>
+  <packagedElement xsi:type="uml:Class" name="c_Final">
+    <generalization general="//Etat_StageMachineClass"/>
+    <ownedOperation name="operationtest"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="c_A">
+    <generalization general="//Etat_StageMachineClass"/>
+    <ownedOperation name="operationtest"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="c_B">
+    <generalization general="//Etat_StageMachineClass"/>
+    <ownedOperation name="operationtest"/>
+  </packagedElement>
+  <profileApplication>
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>

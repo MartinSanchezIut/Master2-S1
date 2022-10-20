@@ -5,10 +5,13 @@
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_nNKOcEruEe2PQ_7BN7twtA" name="StageMachineClass" classifierBehavior="_vL_tQEruEe2PQ_7BN7twtA">
     <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_vL_tQEruEe2PQ_7BN7twtA" name="StateMachine1">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_9Buw8FBzEe2iycLdfY4AzA" name="operationtest"/>
       <region xmi:type="uml:Region" xmi:id="_vjIa4EruEe2PQ_7BN7twtA" name="Region1">
         <transition xmi:type="uml:Transition" xmi:id="_K6VAEErwEe2PQ_7BN7twtA" source="__t6yAErvEe2PQ_7BN7twtA" target="_CY38YErwEe2PQ_7BN7twtA"/>
         <transition xmi:type="uml:Transition" xmi:id="_ZyxbAErwEe2PQ_7BN7twtA" name="exit()" source="_WvVfMErwEe2PQ_7BN7twtA" target="_BGJwQErwEe2PQ_7BN7twtA"/>
-        <transition xmi:type="uml:Transition" xmi:id="_b4H98ErwEe2PQ_7BN7twtA" name="m()" source="_WvVfMErwEe2PQ_7BN7twtA" target="_CY38YErwEe2PQ_7BN7twtA"/>
+        <transition xmi:type="uml:Transition" xmi:id="_b4H98ErwEe2PQ_7BN7twtA" name="m()" source="_WvVfMErwEe2PQ_7BN7twtA" target="_CY38YErwEe2PQ_7BN7twtA">
+          <trigger xmi:type="uml:Trigger" xmi:id="_0gCcsFBzEe2iycLdfY4AzA" name="trigger" event="_9NpGAFBzEe2iycLdfY4AzA"/>
+        </transition>
         <transition xmi:type="uml:Transition" xmi:id="_d1MuoErwEe2PQ_7BN7twtA" name="m()" source="_CY38YErwEe2PQ_7BN7twtA" target="_WvVfMErwEe2PQ_7BN7twtA"/>
         <subvertex xmi:type="uml:Pseudostate" xmi:id="__t6yAErvEe2PQ_7BN7twtA" name="Init"/>
         <subvertex xmi:type="uml:FinalState" xmi:id="_BGJwQErwEe2PQ_7BN7twtA" name="Final"/>
@@ -17,6 +20,8 @@
       </region>
     </ownedBehavior>
   </packagedElement>
+  <packagedElement xmi:type="uml:AnyReceiveEvent" xmi:id="_0D7IcFBzEe2iycLdfY4AzA" name="event"/>
+  <packagedElement xmi:type="uml:CallEvent" xmi:id="_9NpGAFBzEe2iycLdfY4AzA" name="callEvent" operation="_9Buw8FBzEe2iycLdfY4AzA"/>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_eW-mAErwEe2PQ_7BN7twtA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eW-mAUrwEe2PQ_7BN7twtA" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
