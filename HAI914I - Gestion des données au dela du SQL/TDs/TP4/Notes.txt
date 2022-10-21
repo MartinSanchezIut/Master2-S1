@@ -1,0 +1,32 @@
+Fauxton : http://prodpeda-couchdb3-2.infra.umontpellier.fr:5984/_utils/#login
+
+Ma base : curl -X PUT $COUCH3/sanchez_vaccination?q=8
+
+ajout par lot :
+curl -X POST $COUCH3/sanchez_vaccination/_bulk_docs -d @DATA/vaccin1.json -H "Content-Type:application/json"
+curl -X POST $COUCH3/sanchez_vaccination/_bulk_docs -d @DATA/departements.json -H "Content-Type:application/json"
+
+
+Choix: 
+
+Vaccin1, le schéma est plus simple
+Pour l'ameilliorer je ferai sortir l'attribut vaccin du tableau doses
+type n'est pas forcement nessesaire
+
+{
+"_id": "12_27-DEC-20_AstraZeneka",
+"dep": "12",
+"jour": "27-DEC-20" ,
+
+"type": "couverture_vaccinale" ,
+"vaccin": "AstraZeneka", // possiblement null
+
+"doses": [ {"dose1": 0 } , { "dose2": 0 } , {
+"dose3": 0} ]
+}
+
+
+
+
+2.1:  La requette renvoie la population des departements,
+        avec reduce, celui qui a la plus petite population
