@@ -1,0 +1,36 @@
+-- 5
+
+// 1
+
+curl -X GET $COUCH3/_membership
+
+{"all_nodes":["couchdb@prodpeda-couchdb3-1.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-2.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-3.infra.umontpellier.fr"],
+
+// 2
+
+2 partitions qui sont repliquees sur les 3 noeuds
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_shards
+
+// 3
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_shards/34102
+{"range":"00000000-7fffffff","nodes":["couchdb@prodpeda-couchdb3-1.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-2.infra.umontpellier.fr","couchdb@prodpeda-couchdb3-3.infra.umontpellier.fr"]}
+
+dans la premiere partition intervalle "00000000-7fffffff"
+
+
+// 4
+
+curl -X GET $COUCH3/rouquettecampredonoccitanie/_shards
+VISIBLE ICI
+
+
+dans la grande majorite des cas, oui. On lit 2 copies (quorum en lecture) avant de
+retourner la reponse, il y a au moins une copie qui est a jour sur les 3
+partitions et deux qui pour des temps tres courts peuvent ne pas etre a jour
+mais on a de fortes probabilites de lire une copie qui est la derniere sur les
+deux lues
+voir "cluster":{"q":2,"n":3,"w":2,"r":2} quand curl -X GET $COUCH3/rouquettecampredonoccitanie/
+-- avec q = nombre de shards, n = nombre de copies, r = quorum en lecture (nombre
+de shards parcourus avant lecture),
+w = quorum en ecriture (nombre de shards lus avant ecriture)

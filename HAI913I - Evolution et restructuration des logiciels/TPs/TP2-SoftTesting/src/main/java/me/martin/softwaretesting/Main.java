@@ -30,10 +30,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 import static guru.nidi.graphviz.model.Factory.graph;
 
@@ -68,7 +65,7 @@ public class Main  {
 
 
         Graphe callGraph = parser.buildCallGraph() ;
-
+        System.out.println("CallGraph: ");
         System.out.println("Sommets du graphe : ");
         System.out.println(Arrays.toString(callGraph.getListVertex().toArray()));
         System.out.println("\nArretes du graphe : ");
@@ -79,6 +76,22 @@ public class Main  {
 
         System.out.println("\n\n\n");
 
+
+        System.out.println("Couplage(PPeq, PPExpr) = " + Metrics.couplage(callGraph, "PPEq", "PPExpr"));
+
+        Graphe cGraph = Metrics.buildCouplingGraph(callGraph);
+        System.out.println("Coupling graphe: ");
+        System.out.println("Sommets du graphe : ");
+        System.out.println(Arrays.toString(cGraph.getListVertex().toArray()));
+        System.out.println(cGraph.getListVertex().size());
+        System.out.println("\nArretes du graphe : " + cGraph.getListEdge().size());
+        for (Edge e : cGraph.getListEdge()) {
+            System.out.println(e);
+        }
+
+
+
+        /*
 
         Graph<Vertex, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
         for ( Vertex v : callGraph.getListVertex()) { g.addVertex(v); }
@@ -103,6 +116,6 @@ public class Main  {
 
         System.out.println("En cas de non fonctionnement, ouvrez cet url dans un navigateur.");
         System.out.println(urlString);
-
+        */
     }
 }

@@ -77,11 +77,7 @@ public class Parser {
         for (TypeDeclaration c : methodVisitor.getMethods()){
 
             for(MethodDeclaration m : c.getMethods()) {
-                String vertexName = c.getName().toString()+ "." + m.getName().getFullyQualifiedName() + "(";
-                for (Object p : m.parameters()) {
-                    vertexName += p.toString() ;
-                }
-                System.out.println(vertexName);
+                String vertexName = c.getName().toString()+ "." + m.getName().getFullyQualifiedName() ;
                 Vertex caller = new Vertex(vertexName);
                 callGraph.addVertex(caller);
 
@@ -89,7 +85,7 @@ public class Parser {
                 m.accept(mcv);
 
                 for (MethodInvocation i : mcv.getCalledMethods()) {
-                    Vertex called = new Vertex(i.getName().getFullyQualifiedName()) ;
+                    Vertex called = new Vertex(i.getExpression().resolveTypeBinding().getName() + "." + i.getName().getFullyQualifiedName()) ;
                     callGraph.addVertex(called);
                     callGraph.addEdge(new Edge(caller, called));
                 }
