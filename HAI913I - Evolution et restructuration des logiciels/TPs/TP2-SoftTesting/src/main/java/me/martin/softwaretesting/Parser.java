@@ -1,12 +1,11 @@
 package me.martin.softwaretesting;
 
 
-import me.martin.softwaretesting.Utils.Edge;
-import me.martin.softwaretesting.Utils.Graphe;
-import me.martin.softwaretesting.Utils.Vertex;
+import me.martin.softwaretesting.Utils.Graph.Edge;
+import me.martin.softwaretesting.Utils.Graph.Graphe;
+import me.martin.softwaretesting.Utils.Graph.Vertex;
 import me.martin.softwaretesting.Visitors.ClassVisitor;
 import me.martin.softwaretesting.Visitors.MethodCallVisitor;
-import me.martin.softwaretesting.Visitors.MethodVisitor;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;

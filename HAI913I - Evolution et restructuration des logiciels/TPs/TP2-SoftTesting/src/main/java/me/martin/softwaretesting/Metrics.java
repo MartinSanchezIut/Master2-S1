@@ -1,15 +1,40 @@
 package me.martin.softwaretesting;
 
-import me.martin.softwaretesting.Utils.Edge;
-import me.martin.softwaretesting.Utils.Graphe;
-import me.martin.softwaretesting.Utils.Vertex;
-import me.martin.softwaretesting.Utils.WeightedEdge;
+import me.martin.softwaretesting.Utils.Graph.Edge;
+import me.martin.softwaretesting.Utils.Graph.Graphe;
+import me.martin.softwaretesting.Utils.Graph.Vertex;
+import me.martin.softwaretesting.Utils.Graph.WeightedEdge;
+import me.martin.softwaretesting.Utils.Tree.Leaf;
+import me.martin.softwaretesting.Utils.Tree.Node;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Metrics {
+
+    public static Node buildClusteringTree(Graphe couplingGraph) {
+        Node ret = new Node();
+
+        ArrayList<Vertex> classes = new ArrayList<>(couplingGraph.getListVertex());
+        ArrayList<Edge> edges = new ArrayList<>(couplingGraph.getListEdge());
+
+
+        while (classes.size() > 1) {
+            Edge winner = getMostCoupledClasses(edges);
+            edges.remove(winner);
+
+            Vertex c3 = new Vertex(winner.getV1().getName() + "+" + winner.getV2().getName()) ;
+            classes.remove(winner.getV1()) ;
+            classes.remove(winner.getV2());
+
+            classes.add(c3) ;
+
+            //actualiser edges
+        }
+        return ret;
+    }
 
     public static Graphe buildCouplingGraph(Graphe callGraph) {
         Graphe g = new Graphe();
@@ -77,5 +102,17 @@ public class Metrics {
             }
         }
         return false;
+    }
+
+    public static Edge getMostCoupledClasses(ArrayList<Edge> edges) {
+        double max = edges.get(0).getWeight() ;
+        Edge v = edges.get(0);
+        for (Edge e : edges) {
+            if (e.getWeight() > max) {
+                max = e.getWeight();
+                v = e;
+            }
+        }
+        return v;
     }
 }

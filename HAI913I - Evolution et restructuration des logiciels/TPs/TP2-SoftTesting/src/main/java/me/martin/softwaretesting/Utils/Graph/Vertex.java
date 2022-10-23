@@ -1,6 +1,5 @@
-package me.martin.softwaretesting.Utils;
+package me.martin.softwaretesting.Utils.Graph;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class Vertex {

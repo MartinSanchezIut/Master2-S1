@@ -1,6 +1,9 @@
-package me.martin.softwaretesting.Utils;
+package me.martin.softwaretesting.Utils.Graph;
 
-public class WeightedEdge extends Edge{
+import me.martin.softwaretesting.Utils.Graph.Edge;
+import me.martin.softwaretesting.Utils.Graph.Vertex;
+
+public class WeightedEdge extends Edge {
 
     private double weight;
 
@@ -16,6 +19,7 @@ public class WeightedEdge extends Edge{
         return getV1() + " -("+ str +")-> " + getV2();
     }
 
+    @Override
     public double getWeight() {
         return weight;
     }

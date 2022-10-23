@@ -1,4 +1,4 @@
-package me.martin.softwaretesting.Utils;
+package me.martin.softwaretesting.Utils.Graph;
 
 import java.util.Objects;
 
@@ -33,6 +33,9 @@ public class Edge {
         return Objects.hash(v1, v2);
     }
 
+    public double getWeight() {
+        return -1.0 ;
+    }
     @Override
     public String toString() {
         return v1 + " -> " +  v2;

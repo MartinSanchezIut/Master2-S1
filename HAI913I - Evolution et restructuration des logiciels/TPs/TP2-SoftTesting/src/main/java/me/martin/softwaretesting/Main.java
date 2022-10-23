@@ -1,35 +1,14 @@
 package me.martin.softwaretesting;
 
 
-import guru.nidi.graphviz.engine.Format;
-import guru.nidi.graphviz.engine.Graphviz;
-import guru.nidi.graphviz.model.MutableGraph;
-import me.martin.softwaretesting.Utils.Edge;
-import me.martin.softwaretesting.Utils.Graphe;
+import me.martin.softwaretesting.Utils.Graph.Edge;
+import me.martin.softwaretesting.Utils.Graph.Graphe;
+import me.martin.softwaretesting.Utils.Tree.Node;
 import me.martin.softwaretesting.Utils.Utils;
-import me.martin.softwaretesting.Utils.Vertex;
 import me.martin.softwaretesting.Visitors.ClassVisitor;
-import me.martin.softwaretesting.Visitors.MethodVisitor;
-import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.jgrapht.Graph;
-import org.jgrapht.ListenableGraph;
-import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.DefaultListenableGraph;
-import org.jgrapht.io.* ;
-import org.jgrapht.nio.Attribute;
-import org.jgrapht.nio.DefaultAttribute;
-import org.jgrapht.nio.dot.DOTExporter;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 import static guru.nidi.graphviz.model.Factory.graph;
@@ -89,7 +68,12 @@ public class Main  {
             System.out.println(e);
         }
 
+        System.out.println("\n\n\n");
 
+
+        Node tree = Metrics.buildClusteringTree(cGraph);
+        System.out.println("Clustering tree: ");
+        System.out.println(tree);
 
         /*
 
