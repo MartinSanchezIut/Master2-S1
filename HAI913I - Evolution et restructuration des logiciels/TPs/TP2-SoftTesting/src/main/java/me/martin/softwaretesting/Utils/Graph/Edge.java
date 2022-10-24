@@ -19,6 +19,13 @@ public class Edge {
         return v2;
     }
 
+    public void setV1(Vertex v1) {
+        this.v1 = v1;
+    }
+
+    public void setV2(Vertex v2) {
+        this.v2 = v2;
+    }
 
     @Override
     public boolean equals(Object o) {

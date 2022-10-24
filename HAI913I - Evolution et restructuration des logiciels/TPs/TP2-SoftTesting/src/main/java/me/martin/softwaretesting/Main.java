@@ -42,7 +42,7 @@ public class Main  {
         Parser parser = new Parser().setMethodVisitor(new ClassVisitor());
         ArrayList<CompilationUnit> asts = parser.getAstFromFiles(javaFiles) ;
 
-
+        /*
         Graphe callGraph = parser.buildCallGraph() ;
         System.out.println("CallGraph: ");
         System.out.println("Sommets du graphe : ");
@@ -54,7 +54,8 @@ public class Main  {
 
 
         System.out.println("\n\n\n");
-
+        */
+        Graphe callGraph = parser.buildCallGraph() ;
 
         System.out.println("Couplage(PPeq, PPExpr) = " + Metrics.couplage(callGraph, "PPEq", "PPExpr"));
 

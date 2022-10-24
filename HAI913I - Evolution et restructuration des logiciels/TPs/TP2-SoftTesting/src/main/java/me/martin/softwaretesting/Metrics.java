@@ -9,6 +9,7 @@ import me.martin.softwaretesting.Utils.Tree.Node;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,18 +21,24 @@ public class Metrics {
         ArrayList<Vertex> classes = new ArrayList<>(couplingGraph.getListVertex());
         ArrayList<Edge> edges = new ArrayList<>(couplingGraph.getListEdge());
 
-
-        while (classes.size() > 1) {
+        boolean exit = false;
+        while ((classes.size() > 1) && (classes.size() % 2 == 0) && !exit) {
             Edge winner = getMostCoupledClasses(edges);
+            if (winner == null) { exit = true; continue; }
             edges.remove(winner);
 
-            Vertex c3 = new Vertex(winner.getV1().getName() + "+" + winner.getV2().getName()) ;
+            Vertex c3 = new Vertex("( " + winner.getV1().getName() + " " + winner.getV2().getName() + " )") ;
+
+            edges = clusterify(winner.getV1(), winner.getV2(), c3, edges) ;
+
+
             classes.remove(winner.getV1()) ;
             classes.remove(winner.getV2());
-
             classes.add(c3) ;
-
-            //actualiser edges
+        }
+        System.out.println(classes.size());
+        for (Vertex v : classes) {
+            System.out.println(v.toString());
         }
         return ret;
     }
@@ -105,6 +112,7 @@ public class Metrics {
     }
 
     public static Edge getMostCoupledClasses(ArrayList<Edge> edges) {
+        if (edges.isEmpty()) { return null; }
         double max = edges.get(0).getWeight() ;
         Edge v = edges.get(0);
         for (Edge e : edges) {
@@ -114,5 +122,20 @@ public class Metrics {
             }
         }
         return v;
+    }
+
+    public static ArrayList<Edge> clusterify(Vertex v1, Vertex v2, Vertex v3, ArrayList<Edge> edges) {
+        ArrayList<Edge> ret = new ArrayList<>() ;
+        ArrayList<Edge> listEdges = new ArrayList<>(edges) ;
+
+        for (Edge e : listEdges) {
+            if (e.getV1().getName().equalsIgnoreCase(v1.getName())) {e.setV1(v3);}
+            if (e.getV1().getName().equalsIgnoreCase(v2.getName())) {e.setV1(v3);}
+            if (e.getV2().getName().equalsIgnoreCase(v1.getName())) {e.setV1(v3);}
+            if (e.getV2().getName().equalsIgnoreCase(v2.getName())) {e.setV1(v3);}
+
+            if (!ret.contains(e)) {ret.add(e);}
+        }
+        return ret;
     }
 }
