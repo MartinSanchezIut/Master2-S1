@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<enseigne:GammePersonnalisable
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:enseigne="enseigne"
+    xsi:schemaLocation="enseigne My.ecore">
+  <caracteristiquevariable
+      nom="Prix"/>
+  <caracteristiquevariable
+      nom="Image"/>
+  <objects nom="Bol"/>
+  <objects nom="Tasse"/>
+  <elementdepersonnalisation
+      nom="ImpressionTexte"/>
+  <elementdepersonnalisation
+      nom="ImpressionImage"/>
+</enseigne:GammePersonnalisable>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <packagedElement xsi:type="uml:Class" name="ObjetAbstrait" isAbstract="true">
+    <ownedAttribute type="//Decoration" association="//Decore">
+      <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+      <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+    </ownedAttribute>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="ObjetDecore" isAbstract="true">
+    <generalization general="//ObjetAbstrait"/>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="Bol">
+    <generalization general="//ObjetDecore"/>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="Tasse">
+    <generalization general="//ObjetDecore"/>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="Decoration" isAbstract="true">
+    <generalization general="//ObjetAbstrait"/>
+    <ownedAttribute type="//ObjetAbstrait" aggregation="composite" association="//Decore"/>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="ImpressionTexte">
+    <generalization general="//Decoration"/>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="ImpressionImage">
+    <generalization general="//Decoration"/>
+    <ownedOperation name="Prix"/>
+    <ownedOperation name="Image"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" name="Decore" memberEnd="//ObjetAbstrait/@ownedAttribute.0 //Decoration/@ownedAttribute.0"/>
+</uml:Model>

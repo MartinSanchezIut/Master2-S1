@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/TPnoteYanis/src" modelPluginID="TPnoteYanis" modelName="My"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>My.ecore</foreignModel>
+  <genPackages prefix="Enseigne" disposableProviderFactory="true" ecorePackage="My.ecore#/">
+    <genClasses ecoreClass="My.ecore#//GammePersonnalisable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference My.ecore#//GammePersonnalisable/caracteristiquevariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference My.ecore#//GammePersonnalisable/objects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference My.ecore#//GammePersonnalisable/elementdepersonnalisation"/>
+    </genClasses>
+    <genClasses ecoreClass="My.ecore#//Object"/>
+    <genClasses ecoreClass="My.ecore#//ElementDePersonnalisation"/>
+    <genClasses ecoreClass="My.ecore#//CaracteristiqueVariable"/>
+    <genClasses image="false" ecoreClass="My.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute My.ecore#//NamedElement/nom"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
