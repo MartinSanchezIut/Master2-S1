@@ -1,0 +1,37 @@
+{
+  "name": "js-static-analysis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.4",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@egjs/hammerjs": "^2.0.17",
+    "acorn": "^8.8.0",
+    "acorn-walk": "^8.2.0",
+    "component-emitter": "^1.3.0",
+    "keycharm": "^0.4.0",
+    "timsort": "^0.3.0",
+    "uuid": "^9.0.0",
+    "vis-data": "^7.1.4",
+    "vis-network": "^9.1.2",
+    "vis-util": "^5.0.3"
+  }
+}
