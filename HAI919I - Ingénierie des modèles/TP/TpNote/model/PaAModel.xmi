@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paa:PaAModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:paa="paa"
+    xsi:schemaLocation="paa PersistenceAndAccess.ecore">
+  <entities
+      name="Personne">
+    <fields
+        name="nom"/>
+  </entities>
+  <entities
+      superEntity="//@entities.0"
+      name="Client">
+    <fields
+        name="numero"
+        type="int"/>
+  </entities>
+  <repositories
+      typeEntity="//@entities.1">
+    <queries
+        xsi:type="paa:FieldDependantQuery"
+        field="//@entities.0/@fields.0"/>
+  </repositories>
+</paa:PaAModel>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" name="generatedModel">
+  <packagedElement xsi:type="uml:PrimitiveType" name="float"/>
+  <packagedElement xsi:type="uml:PrimitiveType" name="string"/>
+  <packagedElement xsi:type="uml:PrimitiveType" name="int"/>
+  <packagedElement xsi:type="uml:Class" name="Personne">
+    <ownedComment body="@Entity"/>
+    <ownedAttribute name="nom" visibility="private" type="//string"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" name="Client">
+    <ownedComment body="@Entity"/>
+    <generalization general="//Personne"/>
+    <ownedAttribute name="numero" visibility="private" type="//int"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Interface" name="ClientRepository">
+    <ownedComment body="@Repository&lt;Client>"/>
+    <ownedOperation name="findBynom" visibility="public">
+      <ownedParameter name="nom" type="//string"/>
+    </ownedOperation>
+  </packagedElement>
+</uml:Model>

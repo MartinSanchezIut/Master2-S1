@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="paa" nsURI="paa" nsPrefix="paa">
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superEntity" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+        eType="#//Field" containment="true" eOpposite="#//Field/entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PaAModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
+        eType="#//Entity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositories" upperBound="-1"
+        eType="#//Repository" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Repository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeEntity" lowerBound="1"
+        eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queries" upperBound="-1"
+        eType="#//Query" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Field">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FieldBasicType"
+        defaultValueLiteral="String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        eType="#//Entity" eOpposite="#//Entity/fields"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FieldBasicType">
+    <eLiterals name="int"/>
+    <eLiterals name="float" value="1"/>
+    <eLiterals name="String" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Query" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FieldDependantQuery" eSuperTypes="#//Query">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="field" lowerBound="1" eType="#//Field"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//FieldDependantQueryType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicQuery" eSuperTypes="#//Query">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//BasicQueryType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BasicQueryType">
+    <eLiterals name="save"/>
+    <eLiterals name="delete" value="1"/>
+    <eLiterals name="findAll" value="2"/>
+    <eLiterals name="count" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FieldDependantQueryType">
+    <eLiterals name="findBy"/>
+    <eLiterals name="deleteBy" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>
