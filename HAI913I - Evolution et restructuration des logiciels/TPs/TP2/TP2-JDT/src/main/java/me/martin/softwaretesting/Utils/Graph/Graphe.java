@@ -1,0 +1,42 @@
+package me.martin.softwaretesting.Utils.Graph;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Graphe {
+
+    private Set<Vertex> listVertex ;
+    private Set<Edge> listEdge;
+
+    public Graphe() {
+        this.listVertex = new HashSet<>() ;
+        this.listEdge =  new HashSet<>() ;
+    }
+
+    public Graphe(Graphe g) {
+        this.listVertex = new HashSet<>(g.getListVertex()) ;
+        this.listEdge =  new HashSet<>(g.getListEdge()) ;
+    }
+
+    public void addVertex(Vertex v) {        this.listVertex.add(v) ;    }
+
+    public void addEdge(Edge e) {
+        this.listEdge.add(e);
+    }
+
+    public Set<Vertex> getListVertex() {
+        return listVertex;
+    }
+
+    public Set<Edge> getListEdge() {
+        return listEdge;
+    }
+
+    @Override
+    public String toString() {
+        return "Graphe{" +
+                "listVertex=" + listVertex +
+                ", listEdge=" + listEdge +
+                '}';
+    }
+}
