@@ -1,0 +1,11 @@
+,name_without_spaces,index,followers,NoC,SumAddDelSM,AddSM,DelSM,ChurnSM,NoAB,NoNAB,NoCII,NoCnII,NoCE,NonCE,NoInEI,NoIEI,SumAddDelLGM,AddLGM,DelLGM,ChurnGM,NoMGM,SumAddDelLOC,AddLOC,DelLOC,churnLOC,SumAddDelF,AddF,DelF,SumAddDelSAM,AddSAM,DelSAM,ChurnSAM,commit_count_a,DiP,ICT,name,from,to
+0,brianpolster,1,70,246,548,332,216,116,6,430,268,168,136,300,42,70,1566.0,874.0,692.0,182.0,2.0,69380,45546,23834,21712,224,194,30,636,402,234,168,52.0,808.024375,6.569303861788617,brian polster,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+1,elbertbautista,2,15,119,123,92,31,61,4,106,56,54,81,29,9,4,35.0,24.0,11.0,13.0,0.0,6612,6354,258,6096,127,96,31,89,75,14,61,20.0,286.32189814814814,2.4060663709928414,elbert bautista,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+2,jerryocanas,3,9,76,82,51,31,20,0,50,32,18,11,39,21,11,26.0,13.0,13.0,0.0,0.0,3729,3353,376,2977,48,38,10,43,21,22,-1,17.0,283.8149074074074,3.734406676413256,jerry ocanas,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+3,josephfridye,6,6,120,57,51,6,45,0,50,21,29,27,23,4,3,12.0,0.0,12.0,-12.0,0.0,4994,4458,536,3922,48,44,4,25,23,2,21,12.0,256.0347800925926,2.1336231674382717,joseph fridye,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+4,justinmunn,9,15,20,5,3,2,1,0,2,1,1,0,2,1,2,0.0,0.0,0.0,0.0,0.0,496,413,83,330,2,2,0,48,32,16,16,1.0,193.0303587962963,9.651517939814816,justin munn,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+5,kellytisdell,9,44,128,64,48,16,32,3,57,40,20,17,43,3,1,143.0,99.0,44.0,55.0,0.0,5152,4173,979,3194,44,41,3,303,174,129,45,38.0,307.1028125,5.699285158621736,kelly tisdell,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+6,matthewcrumley,10,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,2,1,1,0,0,0,0,0,0,0,0,0.0,0.0,0.0,matthew crumley,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+7,phillipverheyden,0,85,330,196,116,80,36,5,137,82,60,57,85,25,29,32.0,16.0,16.0,0.0,0.0,11740,9731,2009,7722,122,88,34,118,80,38,42,37.0,336.9445601851852,1.021044121773289,phillip verheyden,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+8,prakashjagwani,12,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,8,4,4,0,0,0,0,0,0,0,0,0.0,0.0,0.0,prakash jagwani,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
+9,trevorleffert,15,0,11,1,1,0,1,0,1,1,0,1,0,0,0,0.0,0.0,0.0,0.0,0.0,396,382,14,368,2,2,0,2,2,0,2,1.0,168.19950231481482,16.819950231481478,trevor leffert,broadleaf-1.5.0-GA,broadleaf-2.2.0-GA
