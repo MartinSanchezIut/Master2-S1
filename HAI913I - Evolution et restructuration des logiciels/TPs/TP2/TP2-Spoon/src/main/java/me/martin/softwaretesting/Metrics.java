@@ -15,28 +15,30 @@ import java.util.Set;
 
 public class Metrics {
 
-    public static ArrayList<Vertex> createCluster(double seuil, Graphe cgraphe, Node cTree) {
+    public static ArrayList<Vertex> createCluster(double cp, Graphe cgraphe, Node cTree) {
         ArrayList<Vertex> ret = new ArrayList<>() ;
+        int max = cgraphe.getListVertex().size() / 2 ;
 
-        ArrayList<Vertex> classes = new ArrayList<>(cgraphe.getListVertex());
-        ArrayList<Edge> edges = new ArrayList<>(cgraphe.getListEdge());
+        for (Node child : cTree.getChilds()) {
+            // Est-ce que j'ai la possibilité de créer un cluser ?
+            if ((couplageMoyen(child.getLeafs(), cgraphe) >= cp) && ret.size() < max)  {
+                StringBuilder sb = new StringBuilder() ;
+                sb.append("(") ;
+                for (Leaf l : child.getLeafs()) {
+                    sb.append(" ") ;
+                    sb.append(l.toString()) ;
+                    sb.append(" +") ;
+                }
+                sb.deleteCharAt(sb.length()-1) ;
+                sb.append(")") ;
 
-        boolean exit = false;
-        while (!exit && classes.size() > cgraphe.getListVertex().size()/2) {
-            Edge winner = getMostCoupledClasses(edges);
-            if (winner == null) { exit = true; continue; }
-            if (winner.getWeight() < seuil) { exit = true;
-                System.out.println("out");continue; }
-
-            Vertex c3 = new Vertex("(" + winner.getV1().getName() + " " + winner.getV2().getName() + ")") ;
-
-            edges = clusterify(winner.getV1(), winner.getV2(), c3, edges) ;
-
-            classes.remove(winner.getV1()) ;
-            classes.remove(winner.getV2());
-            classes.add(c3) ;
+                ret.add(new Vertex(sb.toString())) ;
+            }else {
+                ArrayList<Vertex> childClusters = createCluster(cp, cgraphe, child);
+                if (ret.size() + childClusters.size() < max) { ret.addAll(childClusters) ; }
+            }
         }
-        return classes;
+        return ret;
     }
 
 
@@ -193,5 +195,20 @@ public class Metrics {
             if (!ret.contains(e)) {ret.add(e);}
         }
         return ret;
+    }
+
+
+    public static double couplageMoyen(ArrayList<Leaf> leafs, Graphe cgraph) {
+        double sum = 0.0 ;
+        int nbCouples = 0;
+        for (Leaf l1 : leafs) {
+            for (Leaf l2 : leafs) {
+                if (! l1.equals(l2)) {
+                    sum += couplage(cgraph, l1.toString(), l2.toString()) ;
+                    nbCouples += 1;
+                }
+            }
+        }
+        return sum / nbCouples;
     }
 }

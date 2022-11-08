@@ -36,8 +36,8 @@ public class Main  {
         }
 
 
-        System.out.println("Quel parser utiliser ?");
-        System.out.println("0 - JDT");
+        //System.out.println("Quel parser utiliser ?");
+        //System.out.println("0 - JDT");
         //System.out.println("1 - Spoon");
         int val = 0 ; //sc.nextInt();
         if (val == 0) {
@@ -46,22 +46,10 @@ public class Main  {
 
             Graphe callGraph = parser.buildCallGraph() ;
             Graphe cGraph = Metrics.buildCouplingGraph(callGraph);
-            Node tree = Metrics.buildClusteringTree(new Graphe(cGraph));
-
-            handleChoice(callGraph,cGraph,tree);
-        }
-
-/*
-        if (val == 1) {
-            SpoonParser sParser = new SpoonParser();
-            sParser.getAstFromFiles(javaFiles);
-
-            Graphe callGraph = sParser.buildCallGraph() ;
-            Graphe cGraph = Metrics.buildCouplingGraph(callGraph);
             Node tree = Metrics.buildClusteringTree(cGraph);
 
             handleChoice(callGraph,cGraph,tree);
-        }*/
+        }
         System.exit(0);
 
     }
@@ -70,7 +58,7 @@ public class Main  {
         System.out.println("1 - Graphe d'appel");
         System.out.println("2 - Graphe de couplage");
         System.out.println("3 - Arbre de clusturing");
-        System.out.println("4 - Les modules (ne fonctionne pas)");
+        System.out.println("4 - Les modules");
     }
 
     public static void handleChoice(Graphe callGraph, Graphe cGraph, Node tree) {

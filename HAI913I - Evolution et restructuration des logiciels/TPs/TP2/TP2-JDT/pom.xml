@@ -14,7 +14,7 @@
     </properties>
 
     <dependencies>
-        <dependency>
+       <dependency>
             <groupId>org.eclipse.tycho</groupId>
             <artifactId>org.eclipse.jdt.core</artifactId>
             <version>3.9.1.v20130905-0837</version>

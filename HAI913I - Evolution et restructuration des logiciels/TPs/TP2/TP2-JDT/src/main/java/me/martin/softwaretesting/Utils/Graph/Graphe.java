@@ -13,11 +13,6 @@ public class Graphe {
         this.listEdge =  new HashSet<>() ;
     }
 
-    public Graphe(Graphe g) {
-        this.listVertex = new HashSet<>(g.getListVertex()) ;
-        this.listEdge =  new HashSet<>(g.getListEdge()) ;
-    }
-
     public void addVertex(Vertex v) {        this.listVertex.add(v) ;    }
 
     public void addEdge(Edge e) {

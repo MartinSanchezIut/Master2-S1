@@ -70,7 +70,7 @@ public class Main  {
         System.out.println("1 - Graphe d'appel");
         System.out.println("2 - Graphe de couplage");
         System.out.println("3 - Arbre de clusturing");
-        System.out.println("4 - Les modules (ne fonctionne pas)");
+        System.out.println("4 - Les modules");
     }
 
     public static void handleChoice(Graphe callGraph, Graphe cGraph, Node tree) {

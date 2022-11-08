@@ -2,6 +2,7 @@ package me.martin.softwaretesting.Utils.Tree;
 
 import me.martin.softwaretesting.Utils.Graph.Vertex;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Node {
@@ -31,6 +32,20 @@ public class Node {
     }
     public ArrayList<Node> getChilds() {
         return childs;
+    }
+
+    public ArrayList<Leaf> getLeafs() {
+        ArrayList<Leaf> ret = new ArrayList<>() ;
+
+        for (Node c : getChilds()) {
+            if  (c instanceof Leaf) {
+                Leaf l =  (Leaf) c;
+                ret.add(l) ;
+            }else {
+                ret.addAll(getLeafs()) ;
+            }
+        }
+        return ret;
     }
 
     public boolean contains(String name) {
