@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TP2-SoftTesting" />
+        <module name="TP3-Logging" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,0 +1,9 @@
+
+b
+java:S2095J"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
+u
+java:S1149K"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+}
+java:S4087A"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ
+S	java:S106C"9Replace this use of System.out or System.err by a logger.(©þêÜúÿÿÿÿ
+Q	java:S125b"<This block of commented-out lines of code should be removed.(Ó˜»¿
