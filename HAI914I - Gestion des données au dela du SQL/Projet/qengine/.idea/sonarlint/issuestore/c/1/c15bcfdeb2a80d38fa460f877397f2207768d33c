@@ -1,0 +1,29 @@
+
+o	java:S115/"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(æÌ¯
+o	java:S1154"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(íâéî
+o	java:S1159"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Òü§é
+t	java:S115?"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(øÀ¥ƒýÿÿÿÿ
+X	java:S125>"<This block of commented-out lines of code should be removed.(Î¶÷â8…À´ÝÈ0
+]	java:S125G"<This block of commented-out lines of code should be removed.(å§­©øÿÿÿÿ8œ¦þÜÈ0
+N	java:S106P"9Replace this use of System.out or System.err by a logger.(­„õÀ
+M	java:S106V"9Replace this use of System.out or System.err by a logger.(Ž¨â\
+M	java:S106V"9Replace this use of System.out or System.err by a logger.(Ž¨â\
+M	java:S106V"9Replace this use of System.out or System.err by a logger.(Ž¨â\
+S	java:S106]"9Replace this use of System.out or System.err by a logger.(ýÏ“üÿÿÿÿ
+Z	java:S106_"9Replace this use of System.out or System.err by a logger.(õŒ¶Òÿÿÿÿÿ8óúóÜÈ0
+U	java:S106b"9Replace this use of System.out or System.err by a logger.(ÜûÁÅ8†ßˆÝÈ0
+V	java:S125e"<This block of commented-out lines of code should be removed.(ëñõáþÿÿÿÿ
+”
+java:S1130‡"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(¶¸–Ÿÿÿÿÿÿ
+
+java:S1130­"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.( Õ–ú
+R
+java:S1128"5Remove this unused import 'org.apache.jena.base.Sys'.(ÄµÌÄ8Èü†ÝÈ0
+d
+java:S1128"GRemove this unused import 'org.eclipse.rdf4j.query.algebra.Projection'.(¿ÜòÒ8Èü†ÝÈ0
+h
+java:S1128"KRemove this unused import 'org.eclipse.rdf4j.query.algebra.ProjectionElem'.(’Ó—è8Èü†ÝÈ0
+€
+java:S1128"^Remove this unused import 'org.eclipse.rdf4j.query.algebra.helpers.AbstractQueryModelVisitor'.(ãÍÏŽüÿÿÿÿ8Éü†ÝÈ0
+j
+java:S1128"MRemove this unused import 'org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler'.(Ä¦Æõ8Éü†ÝÈ0

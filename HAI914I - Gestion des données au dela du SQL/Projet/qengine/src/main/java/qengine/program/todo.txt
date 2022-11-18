@@ -1,0 +1,9 @@
+Refaire le get de Index pour prendre 3 parametres, gérer le null.
+
+
+Fonction qui fait l'intersection d'un ensemble de réponses de requettes donné par get (Arraylist Integer)
+
+
+
+
+(Faire un objet 'reponse', qui donnerai le tripplet, facilitera la selection. )

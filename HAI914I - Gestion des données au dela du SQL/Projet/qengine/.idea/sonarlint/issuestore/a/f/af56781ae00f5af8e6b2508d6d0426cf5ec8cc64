@@ -1,0 +1,31 @@
+
+E
+java:S3740Z"/Provide the parametrized type for this generic.(¸šõ‚
+E
+java:S3740\"/Provide the parametrized type for this generic.(Û÷¬¤
+F
+java:S1066¡"/Merge this if statement with the enclosing one.(Ş÷«º
+…
+java:S1319}"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(õ ¸4
+‡
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¦ÔÉË
+‡
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(…öúù
+w
+java:S1319"`The type of "map" should be an interface such as "Map" rather than the implementation "HashMap".(…öúù
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(š»Š³ÿÿÿÿÿ
+b
+java:S2095>"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
+u
+java:S1149?"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+}
+java:S4087j"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ
+S	java:S106l"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+M
+java:S1172"/Remove these unused method parameters "p", "o".(¦ÔÉË8†ÊÜÈ0
+K	java:S108")Either remove or fill this block of code.(Ï­ùˆıÿÿÿÿ8ÓÓäÜÈ0
+W	java:S125í"<This block of commented-out lines of code should be removed.(îò‰şÿÿÿÿ
+a
+java:S1128"DRemove this unused import 'org.eclipse.rdf4j.model.util.Statements'.(Œ¬Îâ8¼·åÜÈ0
+j
+java:S1128"MRemove this unused import 'org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler'.(Ä¦Æõ8¼·åÜÈ0

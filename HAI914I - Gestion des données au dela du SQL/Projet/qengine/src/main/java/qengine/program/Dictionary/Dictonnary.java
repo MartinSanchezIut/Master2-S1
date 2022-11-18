@@ -1,16 +1,7 @@
 package qengine.program.Dictionary;
 
 
-import org.eclipse.rdf4j.model.Statement;
-import org.eclipse.rdf4j.rio.RDFFormat;
-import org.eclipse.rdf4j.rio.RDFParser;
-import org.eclipse.rdf4j.rio.Rio;
-import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler;
-import qengine.program.Index.Index;
-import qengine.program.MainRDFHandler;
-
 import java.io.*;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,13 +22,13 @@ public class Dictonnary {
     }
 
 
-    HashMap<Integer, String> map1;
-    HashMap<String, Integer> map2;
+    HashMap<Integer, String> reverseDico;
+    HashMap<String, Integer> Dico;
     int index;
 
     public Dictonnary() {
-        this.map1 = new HashMap<>();
-        this.map2 = new HashMap<>();
+        this.reverseDico = new HashMap<>();
+        this.Dico = new HashMap<>();
         index = 0;
         dictionaryFile = new File(dictionaryFilePath);
         loadDictionary();
@@ -55,7 +46,7 @@ public class Dictonnary {
             sb.append("String");
             sb.append('\n');
 
-            for (Map.Entry m : map1.entrySet()){
+            for (Map.Entry m : reverseDico.entrySet()){
                 sb.append(m.getKey());
                 sb.append(',');
                 sb.append(m.getValue());
@@ -77,8 +68,8 @@ public class Dictonnary {
             while((line = br.readLine()) != null)       {
                 String[] csv = line.split(",");
                 if(!csv[0].equals("id") && !csv[1].equals("id") ){
-                    map1.put(Integer.valueOf(csv[0]),csv[1]);
-                    map2.put(csv[1],Integer.valueOf(csv[0]));
+                    reverseDico.put(Integer.valueOf(csv[0]),csv[1]);
+                    Dico.put(csv[1],Integer.valueOf(csv[0]));
                 }
                 sb.append("\n");
             }
@@ -89,9 +80,9 @@ public class Dictonnary {
 
 
     public void add(String attribut) {
-        if (!map1.containsValue(attribut)) {
-            map1.put(index, attribut);
-            map2.put(attribut,index);
+        if (Dico.get(attribut) == null) {
+            Dico.put(attribut,index);
+            reverseDico.put(index, attribut);
             ++index;
         }
         // On vera plus tard
@@ -99,9 +90,9 @@ public class Dictonnary {
     }
 
     public int encode(String attribut){
-        return map2.get(attribut);
+        return Dico.get(attribut);
     }
     public String decode(int val){
-        return map1.get(val);
+        return reverseDico.get(val);
     }
 }

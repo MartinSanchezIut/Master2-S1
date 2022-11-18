@@ -4,6 +4,7 @@ import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.model.util.Statements;
 import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler;
 import qengine.program.Dictionary.Dictonnary;
+import qengine.program.Utils.Result;
 
 import java.io.*;
 import java.util.*;
@@ -136,6 +137,17 @@ public class Index {
         return ret;
     }
 
+    // A FAIRE !!!!!!
+    public ArrayList<Result> get(String s, String p, String o) {
+        ArrayList<Result> ret = new ArrayList<>() ;
+
+        if (s == null) {
+
+        }
+
+        return ret ;
+    }
+
     /**
      * Look if map contains a list for values i1 and i2
      * @param map
@@ -198,10 +210,7 @@ public class Index {
     private void indexInMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, int first, int second, int third) {
         if (map.containsKey(first)) {
             if (map.get(first).containsKey(second)) {
-                if (map.get(first).get(second).contains(third)) {
-                    // Existe déja.
-                    return;
-                }else {
+                if (!map.get(first).get(second).contains(third)) {
                     map.get(first).get(second).add(third) ;
                 }
             }else {

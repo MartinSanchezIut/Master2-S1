@@ -1,9 +1,15 @@
 
+E
+java:S37401"/Provide the parametrized type for this generic.(–ğı¤
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ıÄŠ­
 b
-java:S2095J"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
+java:S2095A"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
+j
+java:S3824S"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™äÇ8•¨“İÈ0
+p	java:S116"ORename this field "Dico" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ«÷şÿÿÿÿ8êØİÈ0
 u
-java:S1149K"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+java:S1149B"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
 }
-java:S4087A"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ
-S	java:S106C"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
-Q	java:S125b"<This block of commented-out lines of code should be removed.(Ó˜»¿
+java:S40878"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ
+S	java:S106:"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+Q	java:S125Y"<This block of commented-out lines of code should be removed.(Ó˜»¿

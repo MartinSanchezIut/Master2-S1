@@ -4,15 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 import org.apache.jena.base.Sys;
+import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.query.algebra.Projection;
+import org.eclipse.rdf4j.query.algebra.ProjectionElem;
 import org.eclipse.rdf4j.query.algebra.StatementPattern;
 import org.eclipse.rdf4j.query.algebra.helpers.AbstractQueryModelVisitor;
 import org.eclipse.rdf4j.query.algebra.helpers.StatementPatternCollector;
@@ -24,6 +25,7 @@ import org.eclipse.rdf4j.rio.Rio;
 import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler;
 import qengine.program.Dictionary.Dictonnary;
 import qengine.program.Index.Index;
+import qengine.program.Utils.EvaluateRequest;
 
 /**
  * Programme simple lisant un fichier de requête et un fichier de données.
@@ -57,7 +59,8 @@ final class Main {
 	/**
 	 * Fichier contenant des données rdf
 	 */
-	static final String dataFile = workingDir + "sample_data.nt";
+	//static final String dataFile = workingDir + "sample_data.nt";
+	static final String dataFile = workingDir + "100K.nt";
 
 	// ========================================================================
 
@@ -65,9 +68,37 @@ final class Main {
 	 * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
 	 */
 	public static void processAQuery(ParsedQuery query) {
+		//System.out.println(query.toString());
 		List<StatementPattern> patterns = StatementPatternCollector.process(query.getTupleExpr());
 
-		System.out.println("first pattern : " + patterns.get(0));
+		ArrayList<Integer> results = new ArrayList<>() ;
+
+		Dictonnary d = Dictonnary.getInstance();
+		Index i = Index.getInstance();
+
+		for(StatementPattern sp : patterns) {
+			System.out.println("pattern : " + sp);
+
+			Value s = sp.getSubjectVar().getValue();
+			Value p = sp.getPredicateVar().getValue();
+			Value o = sp.getObjectVar().getValue();
+
+			System.out.println("S : " + s); System.out.println("P : " + p); System.out.println("O : " + o);
+			if (results.isEmpty()) { results.addAll(i.get(p.toString(), o.toString())) ;}
+			else {
+				EvaluateRequest.intersect(results, i.get(p.toString(), o.toString())) ;
+			}
+		}
+
+		System.out.println("Result : " + Arrays.toString(results.toArray()));
+		for (int r : results) {
+			System.out.println(d.decode(r));
+		}
+
+		System.out.println("\n\n\n\n\n\n");
+
+
+/*		System.out.println("first pattern : " + patterns.get(0));
 
 		System.out.println("object of the first pattern : " + patterns.get(0).getObjectVar().getValue());
 
@@ -79,25 +110,21 @@ final class Main {
 			public void meet(Projection projection) {
 				System.out.println(projection.getProjectionElemList().getElements());
 			}
-		});
+		});*/
 	}
 
 	/**
 	 * Entrée du programme
 	 */
 	public static void main(String[] args) throws Exception {
-		Dictonnary dictonnary = new Dictonnary();
-
 		parseData();
 		parseQueries();
 
-		/*
+
 		Dictonnary d = Dictonnary.getInstance();
 		Index i = Index.getInstance();
 		d.saveDictionnary();
 		i.saveIndex();
-		System.out.println(i.get(""4432131"","http://db.uwaterloo.ca/~galuc/wsdbm/User6%22));
-		*/
 	}
 
 	// ========================================================================
