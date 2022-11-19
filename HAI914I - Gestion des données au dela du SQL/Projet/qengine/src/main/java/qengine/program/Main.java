@@ -4,28 +4,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 
-import org.apache.jena.base.Sys;
-import org.eclipse.rdf4j.model.Value;
-import org.eclipse.rdf4j.query.algebra.Projection;
-import org.eclipse.rdf4j.query.algebra.ProjectionElem;
-import org.eclipse.rdf4j.query.algebra.StatementPattern;
-import org.eclipse.rdf4j.query.algebra.helpers.AbstractQueryModelVisitor;
-import org.eclipse.rdf4j.query.algebra.helpers.StatementPatternCollector;
 import org.eclipse.rdf4j.query.parser.ParsedQuery;
 import org.eclipse.rdf4j.query.parser.sparql.SPARQLParser;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParser;
 import org.eclipse.rdf4j.rio.Rio;
-import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler;
 import qengine.program.Dictionary.Dictonnary;
 import qengine.program.Index.Index;
-import qengine.program.Utils.EvaluateRequest;
+import qengine.program.Utils.EvaluateStarRequest;
 
 /**
  * Programme simple lisant un fichier de requête et un fichier de données.
@@ -68,34 +59,18 @@ final class Main {
 	 * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
 	 */
 	public static void processAQuery(ParsedQuery query) {
-		//System.out.println(query.toString());
-		List<StatementPattern> patterns = StatementPatternCollector.process(query.getTupleExpr());
+		long lStartTime = System.nanoTime();
+		ArrayList<Integer> results = EvaluateStarRequest.evaluateStarRequest(query) ;
+		long lEndTime = System.nanoTime();
 
-		ArrayList<Integer> results = new ArrayList<>() ;
+		long executionTime = (lEndTime - lStartTime) / 1000000;
+		System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 
-		Dictonnary d = Dictonnary.getInstance();
-		Index i = Index.getInstance();
+		System.out.println("Querry : " + query);
+		System.out.println("Result (in " + executionTime + " ms) : " + Arrays.toString(results.toArray()));
+		for (int r : results) { System.out.println(Dictonnary.getInstance().decode(r)); }
 
-		for(StatementPattern sp : patterns) {
-			System.out.println("pattern : " + sp);
-
-			Value s = sp.getSubjectVar().getValue();
-			Value p = sp.getPredicateVar().getValue();
-			Value o = sp.getObjectVar().getValue();
-
-			System.out.println("S : " + s); System.out.println("P : " + p); System.out.println("O : " + o);
-			if (results.isEmpty()) { results.addAll(i.get(p.toString(), o.toString())) ;}
-			else {
-				EvaluateRequest.intersect(results, i.get(p.toString(), o.toString())) ;
-			}
-		}
-
-		System.out.println("Result : " + Arrays.toString(results.toArray()));
-		for (int r : results) {
-			System.out.println(d.decode(r));
-		}
-
-		System.out.println("\n\n\n\n\n\n");
+		System.out.println("\n\n\n");
 
 
 /*		System.out.println("first pattern : " + patterns.get(0));

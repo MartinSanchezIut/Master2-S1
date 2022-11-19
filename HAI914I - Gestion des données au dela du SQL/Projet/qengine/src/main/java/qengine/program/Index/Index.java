@@ -124,41 +124,36 @@ public class Index {
      */
     public ArrayList<Integer> get(String info1, String info2) {
         ArrayList<Integer> ret = new ArrayList<>() ;
-        Dictonnary d = Dictonnary.getInstance() ;
-        int i1 = d.encode(info1) ;
-        int i2 = d.encode(info2) ;
 
-        ret.addAll(getFromMap(spo, i1, i2)) ;
-        ret.addAll(getFromMap(pso, i1, i2)) ;
-        ret.addAll(getFromMap(osp, i1, i2)) ;
-        ret.addAll(getFromMap(sop, i1, i2)) ;
-        ret.addAll(getFromMap(pos, i1, i2)) ;
-        ret.addAll(getFromMap(ops, i1, i2)) ;
+        ret.addAll(getFromMap(spo, info1, info2)) ;
+        ret.addAll(getFromMap(pso, info1, info2)) ;
+        ret.addAll(getFromMap(osp, info1, info2)) ;
+        ret.addAll(getFromMap(sop, info1, info2)) ;
+        ret.addAll(getFromMap(pos, info1, info2)) ;
+        ret.addAll(getFromMap(ops, info1, info2)) ;
         return ret;
     }
 
-    // A FAIRE !!!!!!
-    public ArrayList<Result> get(String s, String p, String o) {
-        ArrayList<Result> ret = new ArrayList<>() ;
+    public ArrayList<Integer> getFromPOS(String info1, String info2) {
+        ArrayList<Integer> ret = new ArrayList<>(getFromMap(pos, info1, info2)) ;
 
-        if (s == null) {
-
-        }
-
-        return ret ;
+        return ret;
     }
 
     /**
      * Look if map contains a list for values i1 and i2
      * @param map
-     * @param i1
-     * @param i2
+     * @param info1
+     * @param info2
      * @return List of values (i1 (i2 l))
      */
-    public ArrayList<Integer> getFromMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, int i1, int i2) {
+    private ArrayList<Integer> getFromMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, String info1, String info2) {
         ArrayList<Integer> ret = new ArrayList<>() ;
-        if (map.containsKey(i1)) {
-            if (map.get(i1).containsKey(i2)) {
+        int i1 = Dictonnary.getInstance().encode(info1) ;
+        int i2 = Dictonnary.getInstance().encode(info2) ;
+
+        if (map.get(i1) != null) {
+            if (map.get(i1).get(i2)  != null) {
                 ret.addAll(map.get(i1).get(i2)) ;
             }
         }
