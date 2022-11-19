@@ -1,8 +1,14 @@
 package me.sanchez.logging.User;
 
+import me.sanchez.logging.Product.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
 public class UserRepository {
+
+    final Logger logger =  LoggerFactory.getLogger(UserRepository.class);
 
     private ArrayList<User> users;
 
@@ -25,9 +31,10 @@ public class UserRepository {
             throw new Exception("Already known user") ;
         }
         users.add(u) ;
+        logger.info("User with id = " + u.getId() + " add to UserRepository");
     }
 
-    public User getUserById(int id) {
+    public User getUserById(Long id) {
         for (User u : users) {
             if (u.getId() == id)
                 return u;
@@ -39,11 +46,11 @@ public class UserRepository {
         return users;
     }
 
-    public void removeUser(int id) {
+    public void removeUser(Long id) {
         users.removeIf(u -> u.getId() == id);
     }
 
-    public void editUser(int id, User u) throws Exception {
+    public void editUser(Long id, User u) throws Exception {
         removeUser(id);
         addUser(u);
     }

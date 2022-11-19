@@ -1,10 +1,14 @@
 package me.sanchez.logging.User;
 
+import me.sanchez.logging.Product.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Objects;
 
 public class User {
     private static Long countID = 0L;
-
+    final Logger logger =  LoggerFactory.getLogger(User.class);
     private Long id;
     private String nom;
     private Integer age;
@@ -17,6 +21,12 @@ public class User {
         this.age = age;
         this.email = email;
         this.password = password;
+        logger.info("User ID = " + id +'\n' +
+                "User Nom = " + nom +'\n' +
+                "User age = " + age +'\n' +
+                "User email = " + email+'\n' +
+                        "User password = " + password+'\n'
+                );
     }
 
     public Long getId() { return id; }
