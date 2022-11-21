@@ -1,0 +1,29 @@
+Language,Intended use,Imperative,Object-oriented,Functional,Procedural,Generic,Reflective,Event-driven,Other paradigm(s),Standardized?
+APL,"Application, data processing",0,0,0,0,0,0,0,"array-oriented, tacit","1989, ISO"
+Bash,"Shell, scripting",1,0,0,1,0,0,0,0,0
+C,"Application, system, general purpose, low-level operations",1,0,0,1,0,0,0,0,"1989, ANSI C89, ISO C90, ISO C99, ISO C11"
+C++,"Application, system",1,1,1,1,1,0,0,0,"1998, ISO/IEC 1998, ISO/IEC 2003, ISO/IEC 2011"
+C#,"Application, RAD, business, client-side, general, server-side, Web",1,1,1,1,1,1,1,"structured, concurrent","2000, ECMA, ISO"
+COBOL,"Application, business",1,1,0,1,0,0,0,0,"ANSI X3.23 1968, 1974, 1985; ISO/IEC 1989:1985, 2002, 2014"
+Common Lisp,General,1,1,1,1,1,1,1,"extensible syntax, syntactic macros, multiple dispatch","1994, ANSI"
+Dart,"Application, Web",1,1,0,0,0,0,0,structured,Ecma-408 standard
+Go,"Application, Web, server-side",1,0,0,1,0,1,1,concurrent,0
+Groovy,"Application, general, scripting, Web",1,1,1,0,0,0,0,aspect-oriented,"In progress, JCP"
+J,Data processing,0,0,0,0,0,0,0,"array-oriented, function-level, tacit",0
+Java,"Application, business, client-side, general, server-side, Web",1,1,1,1,1,1,0,concurrent,De facto standard via Java Language Specification
+JavaScript,"Client-side, Server-side, Web",1,1,1,0,0,1,0,prototype-based,"1997, ECMA"
+Kotlin,"Application, mobile development, server-sider, client-side, Web",1,1,1,0,1,1,0,0,0
+Lisp,General,0,0,1,0,0,0,0,0,Unk0wn
+Lua,"Application, embedded scripting",1,1,1,1,0,1,0,aspect-oriented,0
+Objective-C,"Application, general",1,1,0,0,0,1,0,concurrent,0
+OCaml,Application,1,1,1,0,1,0,0,0,0
+Perl,"Application, scripting, text processing, Web",1,1,1,1,1,1,0,0,0
+PHP,"Server-side, Web Application, Web",1,1,0,1,0,1,0,0,0
+Prolog,"Application, artificial intelligence",0,0,0,0,0,0,0,logic,"1995, ISO"
+Python,"Application, general, Web, scripting, artificial intelligence, scientific computing",1,1,1,0,0,1,0,aspect-oriented,0
+Ruby,"Application, scripting, Web",1,1,1,0,0,1,0,aspect-oriented,"2011(JIS X 3017), 2012(ISO/IEC 30170)"
+S,"Application, statistics",1,1,1,1,0,0,0,0,0
+Scheme,"Education, general",0,0,1,0,0,0,0,0,"1998, RRS"
+Smalltalk,"Application, General, Business, Web, Artificial Intelligence, Education",1,1,0,1,0,1,1,"concurrent, declarative","1998, ANSI"
+Visual Basic,"Application, RAD, education, business, general, (Includes VBA), office automation",1,1,0,0,1,0,1,component-oriented,0
+Language,Intended use,Imperative,Object-oriented,Functional,Procedural,Generic,Reflective,Event-driven,Other paradigm(s),Standardized?

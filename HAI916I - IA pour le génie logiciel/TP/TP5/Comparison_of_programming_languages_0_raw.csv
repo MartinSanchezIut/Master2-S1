@@ -1,0 +1,29 @@
+Language,Intended use,Imperative,Object-oriented,Functional,Procedural,Generic,Reflective,Event-driven,Other paradigm(s),Standardized?
+APL,"Application, data processing",No,No,No,No,No,No,No,"array-oriented, tacit","1989, ISO"
+Bash,"Shell, scripting",Yes,No,No,Yes,No,No,No,No,No
+C,"Application, system, general purpose, low-level operations",Yes,No,No,Yes,No,No,No,No,"1989, ANSI C89, ISO C90, ISO C99, ISO C11"
+C++,"Application, system",Yes,Yes,Yes,Yes,Yes,No,No,No,"1998, ISO/IEC 1998, ISO/IEC 2003, ISO/IEC 2011"
+C#,"Application, RAD, business, client-side, general, server-side, Web",Yes,Yes,Yes,Yes,Yes,Yes,Yes,"structured, concurrent","2000, ECMA, ISO"
+COBOL,"Application, business",Yes,Yes,No,Yes,No,No,No,No,"ANSI X3.23 1968, 1974, 1985; ISO/IEC 1989:1985, 2002, 2014"
+Common Lisp,General,Yes,Yes,Yes,Yes,Yes,Yes,Yes,"extensible syntax, syntactic macros, multiple dispatch","1994, ANSI"
+Dart,"Application, Web",Yes,Yes,No,No,No,No,No,structured,Ecma-408 standard
+Go,"Application, Web, server-side",Yes,No,No,Yes,No,Yes,Yes,concurrent,No
+Groovy,"Application, general, scripting, Web",Yes,Yes,Yes,No,No,No,No,aspect-oriented,"In progress, JCP"
+J,Data processing,No,No,No,No,No,No,No,"array-oriented, function-level, tacit",No
+Java,"Application, business, client-side, general, server-side, Web",Yes,Yes,Yes,Yes,Yes,Yes,No,concurrent,De facto standard via Java Language Specification
+JavaScript,"Client-side, Server-side, Web",Yes,Yes,Yes,No,No,Yes,No,prototype-based,"1997, ECMA"
+Kotlin,"Application, mobile development, server-sider, client-side, Web",Yes,Yes,Yes,No,Yes,Yes,No,No,No
+Lisp,General,No,No,Yes,No,No,No,No,No,Unknown
+Lua,"Application, embedded scripting",Yes,Yes,Yes,Yes,No,Yes,No,aspect-oriented,No
+Objective-C,"Application, general",Yes,Yes,No,No,No,Yes,No,concurrent,No
+OCaml,Application,Yes,Yes,Yes,No,Yes,No,No,No,No
+Perl,"Application, scripting, text processing, Web",Yes,Yes,Yes,Yes,Yes,Yes,No,No,No
+PHP,"Server-side, Web Application, Web",Yes,Yes,No,Yes,No,Yes,No,No,No
+Prolog,"Application, artificial intelligence",No,No,No,No,No,No,No,logic,"1995, ISO"
+Python,"Application, general, Web, scripting, artificial intelligence, scientific computing",Yes,Yes,Yes,No,No,Yes,No,aspect-oriented,No
+Ruby,"Application, scripting, Web",Yes,Yes,Yes,No,No,Yes,No,aspect-oriented,"2011(JIS X 3017), 2012(ISO/IEC 30170)"
+S,"Application, statistics",Yes,Yes,Yes,Yes,No,No,No,No,No
+Scheme,"Education, general",No,No,Yes,No,No,No,No,No,"1998, RRS"
+Smalltalk,"Application, General, Business, Web, Artificial Intelligence, Education",Yes,Yes,No,Yes,No,Yes,Yes,"concurrent, declarative","1998, ANSI"
+Visual Basic,"Application, RAD, education, business, general, (Includes VBA), office automation",Yes,Yes,No,No,Yes,No,Yes,component-oriented,No
+Language,Intended use,Imperative,Object-oriented,Functional,Procedural,Generic,Reflective,Event-driven,Other paradigm(s),Standardized?
