@@ -1,0 +1,51 @@
+Q 1.1:
+
+context MultiplicityElement inv : lowerBound() > 0
+context MultiplicityElement inv : upperBound() > lowerBound()
+
+context MultiplicityElement::lower derive = lowerBound()
+context MultiplicityElement::upper derive = upperBound()
+
+
+context MultiplicityElement
+def : isMultivaluated() : boolean = (upperBound() > 1)
+
+context MultiplicityElement::isMultivaluated()
+pre : upperValue->notEmpty()
+
+
+context MultiplicityElement
+def : includesMultiplicity(M : MultiplicityElement) : boolean = 
+(self.lower < m.lower and self.upper > m.upper)
+
+context MultiplicityElement::includesMultiplicity(M : MultiplicityElement)
+pre : self.upperValue->notEmpty() and  M.upperValue->notEmpty()
+
+
+
+Q 2.2:
+context Classifier
+def : getFeatures() : Collection(Feature)= features.select(p | p.isStatic()); 
+
+
+context Classifier
+def : getBehaviouralFeatures() : Collection(Feature) = features.select(p | p.oclIsKindOf(BehaviouralFeature) and p.oclAsType(BehaviouralFeature).isAbstract()); 
+
+
+context BehavioralFeatures 
+inv : isAbstract() implies method->isEmpty()
+	
+
+context Classifier def getBagFeatures() : Collection(Feature) =
+features.select(f | f.oclIsKindOf(StructuralFeature) and f.oclAsType(StructuralFeature).isOrdered = false and  f.oclAsType(StructuralFeature).isUnique = false) 
+
+
+
+context Classifier
+def : getBehaviouralFeaturesSorted() : Sequence(Feature) = 
+getBehaviouralFeatures().sortedby(feature.oclIsKindOf(BehavioralFeature).olcAsType(BehavioralFeature).ownerParameterSet->Size())
+
+
+context Classifier def getNamesOfInReturnBFeature() : Collection(String)
+ = 
+getBehaviouralFeatures()->select(f | f.asOclType(BehaviouralFeature).ownedParameterSet()->select(diretion = in or direction = return).size() ==  f.asOclType(BehaviouralFeature).ownedParameterSet().size()  )->collect(name)
