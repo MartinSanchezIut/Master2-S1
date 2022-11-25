@@ -1,0 +1,14 @@
+name,ConceptBase,Db4o,GemStone/S,NeoDatis ODB,ObjectDatabase++,ObjectDB,Objectivity/DB,ObjectStore,ODABA,OpenAccess,Picolisp,Twig,WakandaDB
+Java,0,1,0,1,0,1,1,0,0,0,0,1,0
+.NET,0,0,0,0,1,0,0,1,1,0,0,0,0
+Telos,1,0,0,0,0,0,0,0,0,0,0,0,0
+C#,0,1,0,1,0,0,1,0,0,0,0,0,0
+Smalltalk,0,0,1,0,0,0,1,0,0,0,0,0,0
+Mono,0,0,0,1,0,0,0,0,0,0,0,0,0
+TScript,0,0,0,0,1,0,0,0,0,0,0,0,0
+Python,0,0,0,0,0,0,1,0,0,0,0,0,0
+XML,0,0,0,0,0,0,1,0,0,0,0,0,0
+Picolisp,0,0,0,0,0,0,0,0,0,0,1,0,0
+JavaScript,0,0,0,0,0,0,0,0,0,0,0,0,1
+C++,0,0,0,0,1,0,1,1,1,1,0,0,1
+name,ConceptBase,Db4o,GemStone/S,NeoDatis ODB,ObjectDatabase++,ObjectDB,Objectivity/DB,ObjectStore,ODABA,OpenAccess,Picolisp,Twig,WakandaDB
