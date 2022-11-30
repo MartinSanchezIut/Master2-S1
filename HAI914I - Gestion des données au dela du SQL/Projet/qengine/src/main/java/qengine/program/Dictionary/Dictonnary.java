@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public class Dictonnary {
 
+
     private String dictionaryFilePath = "src/main/resources/dico.csv" ;
     private File dictionaryFile ;
     private static Dictonnary instance = null;
@@ -22,6 +23,7 @@ public class Dictonnary {
     }
 
 
+    //On crée 2 Map pour décoder de String->Integer et Integer->String en O(1)
     HashMap<Integer, String> reverseDico;
     HashMap<String, Integer> Dico;
     int index;
@@ -38,6 +40,9 @@ public class Dictonnary {
 
 
 
+    /*
+    Cette fonction permet de sauver le disctionnaire en CSV sur le disque dure
+     */
     public void saveDictionnary() {
         try (PrintWriter writer = new PrintWriter(dictionaryFile)) {
             StringBuilder sb = new StringBuilder();
@@ -59,6 +64,9 @@ public class Dictonnary {
         }
     }
 
+    /*
+    Permet de charger le dictionnaire en fonction d'un CSV
+     */
     public void loadDictionary() {
         try  {
             FileReader fr = new FileReader(dictionaryFile);
@@ -79,20 +87,30 @@ public class Dictonnary {
     }
 
 
+
+    //Permet d'ajouter une valeur dans le dico
     public void add(String attribut) {
+        //si la valeur existe déjà on ne le met pas dans le dico
         if (Dico.get(attribut) == null) {
             Dico.put(attribut,index);
             reverseDico.put(index, attribut);
             ++index;
         }
-        // On vera plus tard
-        //      saveDictionnary();
     }
 
     public int encode(String attribut){
-        return Dico.get(attribut);
+        if(Dico.get(attribut)==null){
+            return -1;
+        }else{
+            return Dico.get(attribut);
+        }
+
     }
     public String decode(int val){
-        return reverseDico.get(val);
+        if(reverseDico.get(val)==null){
+            return null;
+        }else{
+            return reverseDico.get(val);
+        }
     }
 }

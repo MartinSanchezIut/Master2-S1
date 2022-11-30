@@ -16,7 +16,7 @@ import org.eclipse.rdf4j.rio.RDFParser;
 import org.eclipse.rdf4j.rio.Rio;
 import qengine.program.Dictionary.Dictonnary;
 import qengine.program.Index.Index;
-import qengine.program.Utils.EvaluateStarRequest;
+import qengine.program.Utils.EvaluateRequest;
 
 /**
  * Programme simple lisant un fichier de requête et un fichier de données.
@@ -36,56 +36,48 @@ import qengine.program.Utils.EvaluateStarRequest;
  */
 final class Main {
 	static final String baseURI = null;
-
 	/**
 	 * Votre répertoire de travail où vont se trouver les fichiers à lire
 	 */
 	static final String workingDir = "data/";
-
 	/**
 	 * Fichier contenant les requêtes sparql
 	 */
-	static final String queryFile = workingDir + "sample_query.queryset";
-
+	static String queryFile = workingDir + "STAR_ALL_workload.queryset";
 	/**
 	 * Fichier contenant des données rdf
 	 */
-	//static final String dataFile = workingDir + "sample_data.nt";
-	static final String dataFile = workingDir + "100K.nt";
+	static String dataFile = workingDir + "100K.nt";
+	/**
+	 * Fichier de output
+	 */
+	static String outputFile;
+	/**
+	 * Vérification des résultats avec jena
+	 */
+	static boolean Jena = false;
+	/**
+	 * Echauffement du systeme avec x% de requettes prises au hazard
+	 */
+	static int warm = 0;
+	/**
+	 * Melanger la liste des requettes en entrée
+	 */
+	static boolean shuffle = false;
+
 
 	// ========================================================================
 
 	/**
 	 * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
 	 */
-	public static void processAQuery(ParsedQuery query) {
-		long lStartTime = System.nanoTime();
-		ArrayList<Integer> results = EvaluateStarRequest.evaluateStarRequest(query) ;
-		long lEndTime = System.nanoTime();
-
-		long executionTime = (lEndTime - lStartTime) / 1000000;
-		System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+	public static ArrayList<String> processAQuery(ParsedQuery query) {
+		ArrayList<Integer> results = EvaluateRequest.evaluateStarRequest(query) ;
+		ArrayList<String> verbalResult = new ArrayList<>() ;
 
 		System.out.println("Querry : " + query);
-		System.out.println("Result (in " + executionTime + " ms) : " + Arrays.toString(results.toArray()));
-		for (int r : results) { System.out.println(Dictonnary.getInstance().decode(r)); }
-
-		System.out.println("\n\n\n");
-
-
-/*		System.out.println("first pattern : " + patterns.get(0));
-
-		System.out.println("object of the first pattern : " + patterns.get(0).getObjectVar().getValue());
-
-		System.out.println("variables to project : ");
-
-		// Utilisation d'une classe anonyme
-		query.getTupleExpr().visit(new AbstractQueryModelVisitor<RuntimeException>() {
-
-			public void meet(Projection projection) {
-				System.out.println(projection.getProjectionElemList().getElements());
-			}
-		});*/
+		for (int r : results) { verbalResult.add(Dictonnary.getInstance().decode(r)); }
+		return verbalResult;
 	}
 
 	/**
@@ -93,13 +85,30 @@ final class Main {
 	 */
 	public static void main(String[] args) throws Exception {
 		parseData();
-		parseQueries();
+		// Jena
+		Jena jena;
+		if(Jena) { jena = new Jena(dataFile); }
+
+		ArrayList<ParsedQuery> queries = parseQueries();
 
 
-		Dictonnary d = Dictonnary.getInstance();
-		Index i = Index.getInstance();
-		d.saveDictionnary();
-		i.saveIndex();
+		// Warming code
+		for (int i=0; i<warm; i++) {
+			int i1 = new Random().nextInt((queries.size()) + 1);
+			processAQuery(queries.get(i1));
+		}
+		// Shuffle code
+		if (shuffle) { Collections.shuffle(queries) ; }
+
+
+		// Execute querries
+		for (ParsedQuery query : queries) {
+			processAQuery(query);
+		}
+
+		// Serialize Dictionary and Index on disk
+		Dictonnary.getInstance().saveDictionnary();
+		Index.getInstance().saveIndex();
 	}
 
 	// ========================================================================
@@ -107,7 +116,7 @@ final class Main {
 	/**
 	 * Traite chaque requête lue dans {@link #queryFile} avec {@link #processAQuery(ParsedQuery)}.
 	 */
-	private static void parseQueries() throws FileNotFoundException, IOException {
+	private static ArrayList<ParsedQuery> parseQueries() throws FileNotFoundException, IOException {
 		/**
 		 * Try-with-resources
 		 * 
@@ -117,6 +126,7 @@ final class Main {
 		 * On utilise un stream pour lire les lignes une par une, sans avoir à toutes les stocker
 		 * entièrement dans une collection.
 		 */
+		ArrayList<ParsedQuery> parsedQueries = new ArrayList<>();
 		try (Stream<String> lineStream = Files.lines(Paths.get(queryFile))) {
 			SPARQLParser sparqlParser = new SPARQLParser();
 			Iterator<String> lineIterator = lineStream.iterator();
@@ -134,12 +144,14 @@ final class Main {
 				if (line.trim().endsWith("}")) {
 					ParsedQuery query = sparqlParser.parseQuery(queryString.toString(), baseURI);
 
-					processAQuery(query); // Traitement de la requête, à adapter/réécrire pour votre programme
+					parsedQueries.add(query);
+					// processAQuery(query); // Traitement de la requête, à adapter/réécrire pour votre programme
 
 					queryString.setLength(0); // Reset le buffer de la requête en chaine vide
 				}
 			}
 		}
+		return parsedQueries;
 	}
 
 	/**

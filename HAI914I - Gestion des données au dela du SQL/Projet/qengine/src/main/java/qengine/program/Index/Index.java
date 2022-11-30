@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  *  Notre index s'appuie sur le pattern singleton, on veut une unique instance d'index.
- *  On utilise les méthode loadIndex et saveIndex pour faire persister notre index en le stockant dans un fichier .csv
+ *  On utilise les méthodes loadIndex et saveIndex pour faire persister notre index en le stockant dans un fichier .csv
  */
 public class Index {
 
@@ -38,6 +38,7 @@ public class Index {
 
     /** ------------------------------------------------------------------- */
 
+
     private String indexFilePath = "src/main/resources/index.csv" ;
     private File indexFile ;
     private static Index instance = null;
@@ -56,6 +57,9 @@ public class Index {
 
 
 
+    /*
+    Cette fonction permet de charger un index en fonction d'un fichier CSV
+     */
     public void loadIndex() {
         try  {
             FileReader fr = new FileReader(indexFile);
@@ -77,6 +81,9 @@ public class Index {
     }
 
 
+    /*
+    Cette fonction permet de sauvegarder l'index en fichier CSV sur le disque dure.
+     */
     public void saveIndex() {
         try (PrintWriter writer = new PrintWriter(indexFile)) {
             StringBuilder sb = new StringBuilder();
@@ -111,50 +118,38 @@ public class Index {
 
 
 
-
-    /**
-     *             Fonctions de recherche dans notre index
+    /*
+    GetFromPos prend en paramètre un predicat et un obect qui sont des String.
+    Elle retourne le résultat de la request sur l'arbre POS
      */
-
-    /**
-     * Recherche dans l'index tout elements correspondant aux 2 info donnés
-     * @param info1 a Subject, predicate or object
-     * @param info2 a Subject, predicate or object
-     * @return Values found
-     */
-    public ArrayList<Integer> get(String info1, String info2) {
-        ArrayList<Integer> ret = new ArrayList<>() ;
-
-        ret.addAll(getFromMap(spo, info1, info2)) ;
-        ret.addAll(getFromMap(pso, info1, info2)) ;
-        ret.addAll(getFromMap(osp, info1, info2)) ;
-        ret.addAll(getFromMap(sop, info1, info2)) ;
-        ret.addAll(getFromMap(pos, info1, info2)) ;
-        ret.addAll(getFromMap(ops, info1, info2)) ;
+    public ArrayList<Integer> getFromPOS(String predicat, String object) {
+        ArrayList<Integer> ret = new ArrayList<>(getFromMap(pos, predicat, object)) ;
         return ret;
     }
 
-    public ArrayList<Integer> getFromPOS(String info1, String info2) {
-        ArrayList<Integer> ret = new ArrayList<>(getFromMap(pos, info1, info2)) ;
-
-        return ret;
-    }
-
-    /**
-     * Look if map contains a list for values i1 and i2
-     * @param map
-     * @param info1
-     * @param info2
-     * @return List of values (i1 (i2 l))
+    /*
+    Prend en paramètre une map (qui correspond à 1 des 6 arbres ),
+    info1 et info2 qui sont soit des predicat, object ou subject.
+    Elle retourne le résultat de la request de info1 et info2 en fonction de map.
      */
     private ArrayList<Integer> getFromMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, String info1, String info2) {
         ArrayList<Integer> ret = new ArrayList<>() ;
+
+        //On récupère les entiers qui correspond a info1 et info2 dans le dictionnaire
         int i1 = Dictonnary.getInstance().encode(info1) ;
         int i2 = Dictonnary.getInstance().encode(info2) ;
 
-        if (map.get(i1) != null) {
-            if (map.get(i1).get(i2)  != null) {
-                ret.addAll(map.get(i1).get(i2)) ;
+
+        //si le dictionnaire return -1 cela veut dire que le mot n'existe pas dans le dicrionnaire
+        if(i1!=-1 && i2 != -1){
+
+            //On voit si la première valeur est dans le premier noeud de l'arbre (On utilise get car est en O(1))
+            if (map.get(i1) != null) {
+                //On voir si la 2 ème valeur est dans le 2 ème noeud
+                if (map.get(i1).get(i2)  != null) {
+                    //on retourne toutes les feuilles du resultat de la requèt
+                    ret.addAll(map.get(i1).get(i2)) ;
+                }
             }
         }
         return ret;
@@ -164,12 +159,6 @@ public class Index {
 
     /**
      *             Fonction d'indexation d'un statement ou d'un triplet d'entier
-     */
-
-
-    /**
-     * Indexe un statement s
-     * @param s
      */
     public void indexStatement(Statement s) {
         Dictonnary d = Dictonnary.getInstance() ;
@@ -182,11 +171,9 @@ public class Index {
 
     /**
      * Indexe un tripplet s p o
-     * @param s the subject
-     * @param p the predicate
-     * @param o the object
      */
     public void indexSPO(int s, int p, int o) {
+        //On ajoute le truplet spo dans chaque arbre d'index
         indexInMap(spo, s, p, o);
         indexInMap(pso, p, s, o);
         indexInMap(osp, o, s, p);
@@ -197,23 +184,23 @@ public class Index {
 
     /**
      * Index in map elements first, second and third
-     * @param map
-     * @param first
-     * @param second
-     * @param third
      */
     private void indexInMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, int first, int second, int third) {
+        //On vérifie si first est dans le premier noeud alors on vérifie pour le noeud 2 et 3 avec second et third
         if (map.containsKey(first)) {
             if (map.get(first).containsKey(second)) {
                 if (!map.get(first).get(second).contains(third)) {
+                    //On rajoute la feuille third
                     map.get(first).get(second).add(third) ;
                 }
+                //Sinon on rajoute une branche dans le noeud second avec le noeud third
             }else {
                 ArrayList<Integer> lvl3List = new ArrayList<>() ;
 
                 lvl3List.add(third);
                 map.get(first).put(second, lvl3List);
             }
+            //Sinon on crée une nouvelle branche dans larbre avec first second et third
         }else {
             HashMap<Integer, ArrayList<Integer>> lvl2Hashmap = new HashMap<>();
             ArrayList<Integer> lvl3List = new ArrayList<>();
@@ -225,31 +212,3 @@ public class Index {
     }
 }
 
-
-
-/*
-         //  SPO
-        if (spo.containsKey(sub)) {
-            if (spo.get(sub).containsKey(pre)) {
-                if (spo.get(sub).get(pre).contains(obj)) {
-                    // Existe déja.
-                    return;
-                }else {
-                    spo.get(sub).get(pre).add(obj) ;
-                }
-            }else {
-                ArrayList<Integer> lvl3List = new ArrayList<>() ;
-
-                lvl3List.add(obj);
-                spo.get(sub).put(pre, lvl3List);
-            }
-        }else {
-            HashMap<Integer, ArrayList<Integer>> lvl2Hashmap = new HashMap<>();
-            ArrayList<Integer> lvl3List = new ArrayList<>();
-
-            lvl3List.add(obj);
-            lvl2Hashmap.put(pre, lvl3List);
-            spo.put(sub, lvl2Hashmap);
-        }
-
- */
