@@ -1,7 +1,6 @@
 package qengine.program;
 
 import org.apache.commons.cli.*;
-import org.apache.jena.base.Sys;
 
 public class JarCliMain {
 
@@ -20,16 +19,15 @@ public class JarCliMain {
         if (data != null) { Main.dataFile = data; }
         if (output != null) { Main.outputFile = output; }  // Not implemented yet
 
-        if (jena) { Main.Jena = true; } // Jena
+        if (jena) { Main.useJena = true; } // Jena
         if (warm != null) { Main.warm = Integer.parseInt(warm);} // Warm
         if (shuffle) { Main.shuffle = true;} // Shuffle
 
-        System.err.println("BaseUri = " + Main.baseURI);
         System.err.println("WorkindDir = " + Main.workingDir);
         System.out.println("QueryFile = " + Main.queryFile);    // Is working
         System.out.println("DataFile = " + Main.dataFile);      // Is working
         System.out.println("OutputFile = " + Main.outputFile);
-        System.out.println("Jena = " + Main.Jena);
+        System.out.println("Jena = " + Main.useJena);
         System.out.println("Warm = " + Main.warm);              // Is working
         System.out.println("Shuffle = " + Main.shuffle);        // Is working
 

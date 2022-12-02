@@ -19,10 +19,6 @@ public class Jena {
     static final String baseURI = null;
 
     /**
-     * Fichier contenant les requêtes sparql
-     */
-    static String queryFile = Main.queryFile;
-    /**
      * Fichier contenant des données rdf
      */
     static String dataFile = Main.dataFile;
@@ -31,11 +27,14 @@ public class Jena {
      */
     private static Model model ;
 
+    // ========================================================================
 
     /**
      * Parse les données
      */
-    private static void parseData() { model = RDFDataMgr.loadModel(dataFile) ; }
+    public static void parseData() { model = RDFDataMgr.loadModel(dataFile) ; }
+
+    // ========================================================================
 
     /**
      * Execute une requette avec jena
@@ -56,29 +55,4 @@ public class Jena {
        qe.close();
        return results;
    }
-
-    /**
-     * Parse le fichier des requettes, et retourne une liste de requettes
-     * @return liste de requettes sous forme de string
-     * @throws IOException
-     */
-    public static List<String> parseQueries() throws IOException {
-        List<String> queries = new ArrayList<>();
-
-        try (Stream<String> lineStream = Files.lines(Paths.get(queryFile))) {
-            Iterator<String> lineIterator = lineStream.iterator();
-            StringBuilder queryString = new StringBuilder();
-
-            while (lineIterator.hasNext()) {
-                String line = lineIterator.next();
-                queryString.append(line);
-
-                if (line.trim().endsWith("}")) {
-                    queries.add(queryString.toString());
-                    queryString.setLength(0);
-                }
-            }
-        }
-        return queries;
-    }
 }
