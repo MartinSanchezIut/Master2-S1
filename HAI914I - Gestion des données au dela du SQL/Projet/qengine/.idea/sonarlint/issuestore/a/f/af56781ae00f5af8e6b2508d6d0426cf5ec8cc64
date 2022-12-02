@@ -1,0 +1,27 @@
+
+E
+java:S3740c"/Provide the parametrized type for this generic.(¸šõ‚
+E
+java:S3740e"/Provide the parametrized type for this generic.(Û÷¬¤
+F
+java:S1066•"/Merge this if statement with the enclosing one.(‹‡Ï‘
+K
+java:S1066—"/Merge this if statement with the enclosing one.(ÃÍ‡‘ÿÿÿÿÿ
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¢­­éÿÿÿÿÿ
+w
+java:S1488€"[Immediately return this expression instead of assigning it to the temporary variable "ret".(ä™Ä¥ùÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(š»Š³ÿÿÿÿÿ
+b
+java:S2095D"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
+u
+java:S1149E"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+„
+java:S4087s"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ8“´™Í0
+Z	java:S106u"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ8¡“´™Í0
+a
+java:S1128"DRemove this unused import 'org.eclipse.rdf4j.model.util.Statements'.(Œ¬Îâ8õ·™Í0
+j
+java:S1128"MRemove this unused import 'org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler'.(Ä¦Æõ8ö·™Í0
+[
+java:S1128"9Remove this unused import 'qengine.program.Utils.Result'.(·‹õ³øÿÿÿÿ8ö·™Í0

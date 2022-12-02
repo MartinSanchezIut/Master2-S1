@@ -1,27 +1,44 @@
 package qengine.program.Utils;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class QueryResultLogger {
 
-    private String resultOutput = "src/main/resources/index.csv" ;
+    private String resultOutput = "src/main/resources/queriesresults.csv" ;
+    private PrintWriter writer ;
 
-    public QueryResultLogger() {
-        // Ici créer le ficheir, ecrire l'entete
+    public QueryResultLogger() throws FileNotFoundException {
+        writer = new PrintWriter(resultOutput) ;
+        StringBuilder sb = new StringBuilder();
+        sb.append("query");
+        sb.append(',');
+        sb.append("nbResult");
+        sb.append(',');
+        sb.append("results");
+        sb.append('\n');
+        writer.write(sb.toString());
         // query, nbResult, results
     }
 
     public void logQueryResult(String query, List<String> queryResult) {
         // Ajouter au csv :
-
-        /*
-
-        System.out.println(query + " ("+ queryResult.size()+") : ");
+        StringBuilder sb = new StringBuilder() ;
+        sb.append(query) ;
+        sb.append(',');
+        sb.append(queryResult.size()) ;
+        sb.append(',');
         for (String result : queryResult) {
-            System.out.println("    " + result);
+            sb.append(result);
+            sb.append(',');
         }
+        sb.append('\n');
+        writer.write(sb.toString());
+    }
 
-         */
+    public void close() {
+        writer.close();
     }
 
 

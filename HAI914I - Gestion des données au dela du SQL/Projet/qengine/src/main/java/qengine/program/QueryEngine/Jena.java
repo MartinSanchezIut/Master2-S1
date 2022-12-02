@@ -41,7 +41,7 @@ public class Jena {
      * @param queryString la requette en question
      * @return la liste des resultats
      */
-   public static List<String> processAQuery(String queryString) {
+ /*  public static List<String> processAQuery(String queryString) {
        ArrayList<String> results = new ArrayList<>();
 
        // Construction de la requete
@@ -51,8 +51,44 @@ public class Jena {
        // Récupération des resultats
        ResultSet res = qe.execSelect();
        // On sauvegarde les resultats dans notre arraylist
-       while ( res.hasNext() ) { results.add(ResultSetFormatter.asText(res)); }
+       while ( res.hasNext() ) {
+           QuerySolution soln = res.next() ;
+
+           while ( soln.varNames().hasNext() ) {
+
+               String var = soln.varNames().next();
+               results.add(soln.get(var).toString());
+
+           }
+
+       }
        qe.close();
        return results;
-   }
+   } */
+
+
+
+    public static List<String> processAQuery(String queryString) {
+        ArrayList<String> results = new ArrayList<>();
+
+        // Construction de la requete
+        Query query = QueryFactory.create(queryString);
+        // Execution de la requette
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        // Récupération des resultats
+        Iterator<QuerySolution> res = qe.execSelect();
+        // On sauvegarde les resultats dans notre arraylist
+
+        //System.out.println(queryString);
+        for ( ; res.hasNext() ; )
+        {
+            QuerySolution soln = res.next() ;
+            results.add(soln.get("v0").toString());
+            //System.out.println(soln.get("v0"));
+        }
+        qe.close();
+        //System.out.println(results.size());
+        return results;
+    }
+
 }

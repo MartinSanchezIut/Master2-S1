@@ -1,5 +1,8 @@
 package qengine.program.Utils;
 
+import java.io.File;
+import java.io.IOException;
+
 public class OutputData {
 
     /*
@@ -23,7 +26,7 @@ public class OutputData {
     private double timeWorkloadExecution, timeAllProgram;
 
 
-    public OutputData() {
+    public OutputData() throws IOException {
         this.dataFileName = "NON_DISPONIBLE";
         this.queriesFileName = "NON_DISPONIBLE";
         this.numberOfData = -1;
@@ -48,95 +51,91 @@ public class OutputData {
     }
 
 
+    public OutputData setDataFileName(String dataFileName) {
+        this.dataFileName = dataFileName; return this;
+    }
 
+    public OutputData setQueriesFileName(String queriesFileName) {
+        this.queriesFileName = queriesFileName;return this;
+    }
 
+    public OutputData setNumberOfData(int numberOfData) {
+        this.numberOfData = numberOfData;return this;
+    }
 
+    public OutputData setNumberOfQueries(int numberOfQueries) {
+        this.numberOfQueries = numberOfQueries;return this;
+    }
+
+    public OutputData setTimeReadingData(double timeReadingData) {
+        this.timeReadingData = timeReadingData;return this;
+    }
+
+    public OutputData setTimeReadingQueries(double timeReadingQueries) {
+        this.timeReadingQueries = timeReadingQueries;return this;
+    }
+
+    public OutputData setTimeCreatingDictionary(double timeCreatingDictionary) {
+        this.timeCreatingDictionary = timeCreatingDictionary;return this;
+    }
+
+    public OutputData setAmountOfIndexes(int amountOfIndexes) {
+        this.amountOfIndexes = amountOfIndexes;return this;
+    }
+
+    public OutputData setTimeCreatingIndex(double timeCreatingIndex) {
+        this.timeCreatingIndex = timeCreatingIndex;return this;
+    }
+
+    public OutputData setTimeWorkloadExecution(double timeWorkloadExecution) {
+        this.timeWorkloadExecution = timeWorkloadExecution;return this;
+    }
+
+    public OutputData setTimeAllProgram(double timeAllProgram) {
+        this.timeAllProgram = timeAllProgram; return this;
+    }
 
     public String getDataFileName() {
         return dataFileName;
-    }
-
-    public void setDataFileName(String dataFileName) {
-        this.dataFileName = dataFileName;
     }
 
     public String getQueriesFileName() {
         return queriesFileName;
     }
 
-    public void setQueriesFileName(String queriesFileName) {
-        this.queriesFileName = queriesFileName;
-    }
-
     public int getNumberOfData() {
         return numberOfData;
-    }
-
-    public void setNumberOfData(int numberOfData) {
-        this.numberOfData = numberOfData;
     }
 
     public int getNumberOfQueries() {
         return numberOfQueries;
     }
 
-    public void setNumberOfQueries(int numberOfQueries) {
-        this.numberOfQueries = numberOfQueries;
-    }
-
     public double getTimeReadingData() {
         return timeReadingData;
-    }
-
-    public void setTimeReadingData(double timeReadingData) {
-        this.timeReadingData = timeReadingData;
     }
 
     public double getTimeReadingQueries() {
         return timeReadingQueries;
     }
 
-    public void setTimeReadingQueries(double timeReadingQueries) {
-        this.timeReadingQueries = timeReadingQueries;
-    }
-
     public double getTimeCreatingDictionary() {
         return timeCreatingDictionary;
-    }
-
-    public void setTimeCreatingDictionary(double timeCreatingDictionary) {
-        this.timeCreatingDictionary = timeCreatingDictionary;
-    }
-
-    public double getTimeCreatingIndex() {
-        return timeCreatingIndex;
-    }
-
-    public void setTimeCreatingIndex(double timeCreatingIndex) {
-        this.timeCreatingIndex = timeCreatingIndex;
     }
 
     public int getAmountOfIndexes() {
         return amountOfIndexes;
     }
 
-    public void setAmountOfIndexes(int amountOfIndexes) {
-        this.amountOfIndexes = amountOfIndexes;
+    public double getTimeCreatingIndex() {
+        return timeCreatingIndex;
     }
 
     public double getTimeWorkloadExecution() {
         return timeWorkloadExecution;
     }
 
-    public void setTimeWorkloadExecution(double timeWorkloadExecution) {
-        this.timeWorkloadExecution = timeWorkloadExecution;
-    }
-
     public double getTimeAllProgram() {
         return timeAllProgram;
-    }
-
-    public void setTimeAllProgram(double timeAllProgram) {
-        this.timeAllProgram = timeAllProgram;
     }
 }

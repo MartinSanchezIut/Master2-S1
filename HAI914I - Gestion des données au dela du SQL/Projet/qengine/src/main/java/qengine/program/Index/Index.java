@@ -43,7 +43,7 @@ public class Index {
     private File indexFile ;
     private static Index instance = null;
     public static Index getInstance() {
-        if (instance == null) { instance = new Index() ; }
+        if (instance == null) {instance = new Index() ;}
         return instance;
     }
 
@@ -52,10 +52,12 @@ public class Index {
         spo = new HashMap<>() ; sop = new HashMap<>() ;
         pso = new HashMap<>() ; pos = new HashMap<>() ;
         osp = new HashMap<>() ; ops = new HashMap<>() ;
+        size = 0;
         loadIndex();
     }
 
-
+    private int size;
+    public int getSize() {return size; }
 
     /*
     Cette fonction permet de charger un index en fonction d'un fichier CSV
@@ -186,6 +188,7 @@ public class Index {
      * Index in map elements first, second and third
      */
     private void indexInMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, int first, int second, int third) {
+        size++ ;
         //On vérifie si first est dans le premier noeud alors on vérifie pour le noeud 2 et 3 avec second et third
         if (map.containsKey(first)) {
             if (map.get(first).containsKey(second)) {

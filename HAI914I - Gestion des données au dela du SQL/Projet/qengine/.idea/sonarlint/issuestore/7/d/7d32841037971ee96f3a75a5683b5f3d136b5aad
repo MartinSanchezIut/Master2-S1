@@ -1,0 +1,11 @@
+
+v
+java:S1104""[Make timeReadingData a static final constant or non-public and provide accessors if needed.(²¥Ï ÿÿÿÿÿ
+P
+java:S1444""5Make this "public static timeReadingData" field final(²¥Ï ÿÿÿÿÿ
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ğŠ¥t
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(æÌ¯
+U
+java:S1118":Add a private constructor to hide the implicit public one.(š¦Ôèúÿÿÿÿ
+S
+java:S1481N"1Remove this unused "firstPassage" local variable.(šÔ¾ûÿÿÿÿ8¹÷­›Í0

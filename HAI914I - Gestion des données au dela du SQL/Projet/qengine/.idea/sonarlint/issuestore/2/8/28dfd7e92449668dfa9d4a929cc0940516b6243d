@@ -1,0 +1,22 @@
+
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ğŠ¥t
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(æÌ¯
+U
+java:S1118":Add a private constructor to hide the implicit public one.(çÚ€ªùÿÿÿÿ
+Q	java:S125,"<This block of commented-out lines of code should be removed.(ÕŸ„”
+I
+java:S1264S",Replace this "for" loop with a "while" loop.(¹½Ò8ì’ÛšÍ0
+X	java:S125R"<This block of commented-out lines of code should be removed.(™ã®ÿ8ì’ÛšÍ0
+X	java:S125W"<This block of commented-out lines of code should be removed.(ÍÈì8í’ÛšÍ0
+X	java:S125Z"<This block of commented-out lines of code should be removed.(¢Ó€£8í’ÛšÍ0
+Y
+java:S1128"CRemove this unused import 'org.apache.jena.rdf.model.ModelFactory'.(’Ö–
+9
+java:S1128	"$Remove this unused import 'java.io'.(¬›ãD
+F
+java:S1128
+"0Remove this unused import 'java.nio.file.Files'.(‚ƒü
+F
+java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯
+J
+java:S1128"4Remove this unused import 'java.util.stream.Stream'.(ó÷”

@@ -37,7 +37,8 @@ public class Dictonnary {
     }
 
 
-
+    private int size;
+    public int getSize() {return size; }
 
 
     /*
@@ -90,6 +91,7 @@ public class Dictonnary {
 
     //Permet d'ajouter une valeur dans le dico
     public void add(String attribut) {
+        size++;
         //si la valeur existe déjà on ne le met pas dans le dico
         if (Dico.get(attribut) == null) {
             Dico.put(attribut,index);

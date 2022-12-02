@@ -1,5 +1,7 @@
 package qengine.program;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,6 +12,7 @@ import qengine.program.Dictionary.Dictonnary;
 import qengine.program.Index.Index;
 import qengine.program.QueryEngine.Jena;
 import qengine.program.QueryEngine.QEngine;
+import qengine.program.Utils.OutputData;
 import qengine.program.Utils.QueryResultLogger;
 
 public final class Main {
@@ -31,7 +34,7 @@ public final class Main {
 	/**
 	 * Fichier de output
 	 */
-	public static String outputFile;
+	public static String outputFile = null;
 	/**
 	 * Vérification des résultats avec jena
 	 */
@@ -49,11 +52,12 @@ public final class Main {
 	// ========================================================================
 
 
-
 	/**
 	 * Entrée du programme
 	 */
 	public static void main(String[] args) throws IOException {
+		long totalExecutionTime;   long totalstartTime = System.nanoTime();
+
 		QEngine.parseData();
 		// Si on utilise Jena, on par les data pour jena
 		if (useJena) { Jena.parseData(); }
@@ -67,17 +71,59 @@ public final class Main {
 		if (shuffle) { Collections.shuffle(queries); }
 
 
+		QueryResultLogger logger = new QueryResultLogger() ;
+		long workloadTime;   long startTime = System.nanoTime();
 		for (String query : queries) {
 			List<String> qEngineResult = QEngine.processAQuery(query);
+			logger.logQueryResult(query, qEngineResult);
 
 			if (useJena) {
 				List<String> jenaResult = Jena.processAQuery(query);
-
-				
+				Comparaison.verificationJena(jenaResult, qEngineResult);
 
 			}
 		}
+		long endTime = System.nanoTime();   workloadTime = (endTime - startTime) / 1000000;
+		logger.close();
 
+		long totalendTime = System.nanoTime(); 	totalExecutionTime = (totalendTime - totalstartTime) / 1000000;
+
+
+
+		OutputData data = new OutputData()
+				.setDataFileName(dataFile)
+				.setQueriesFileName(queryFile)
+				.setNumberOfData(Dictonnary.getInstance().getSize())
+				.setNumberOfQueries(queries.size())
+
+				.setTimeReadingData(QEngine.timeReadingData)
+				.setTimeReadingQueries(timeReadingQueries)
+				.setTimeCreatingDictionary(-1)
+
+				.setAmountOfIndexes(Index.getInstance().getSize())
+				.setTimeCreatingIndex(-1)
+				.setTimeWorkloadExecution(workloadTime)
+				.setTimeAllProgram(totalExecutionTime) ;
+
+		// Si output file, alors creer l'objet et l'ecrire
+		if (outputFile != null) {
+			File f = new File(outputFile);
+			if(!f.exists()){
+				f.createNewFile();
+				FileOutputStream fos = new FileOutputStream(outputFile, true);
+				fos.write(OutputData.getCSVHeader().getBytes());
+				fos.write("\n".getBytes());
+				fos.close();
+			}
+
+			FileOutputStream fos = new FileOutputStream(outputFile, true);
+			fos.write(data.toCSV().getBytes());
+			fos.write("\n".getBytes());
+			fos.close();
+		}
+
+		System.out.println(OutputData.getCSVHeader());
+		System.out.println(data.toCSV());
 
 		// Serialize Dictionary and Index on disk
 		Dictonnary.getInstance().saveDictionnary();
@@ -91,9 +137,10 @@ public final class Main {
 	 * @return liste de requettes sous forme de string
 	 * @throws IOException
 	 */
+	public static long timeReadingQueries;
 	public static ArrayList<String> parseQueries() throws IOException {
 		ArrayList<String> queries = new ArrayList<>();
-
+		long startTime = System.nanoTime();
 		try (Stream<String> lineStream = Files.lines(Paths.get(queryFile))) {
 			Iterator<String> lineIterator = lineStream.iterator();
 			StringBuilder queryString = new StringBuilder();
@@ -108,6 +155,8 @@ public final class Main {
 				}
 			}
 		}
+		long endTime = System.nanoTime();
+		timeReadingQueries = (endTime - startTime) / 1000000;
 		return queries;
 	}
 }

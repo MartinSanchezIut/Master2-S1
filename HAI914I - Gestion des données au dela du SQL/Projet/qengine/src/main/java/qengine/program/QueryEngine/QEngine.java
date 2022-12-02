@@ -31,7 +31,9 @@ public class QEngine {
     /**
      * Traite chaque triple lu dans {@link #dataFile} avec {@link MainRDFHandler}.
      */
+    public static long timeReadingData;
     public static void parseData() throws IOException {
+        long startTime = System.nanoTime();
         try (Reader dataReader = new FileReader(dataFile)) {
             // On va parser des données au format ntriples
             RDFParser rdfParser = Rio.createParser(RDFFormat.NTRIPLES);
@@ -42,6 +44,8 @@ public class QEngine {
             // Parsing et traitement de chaque triple par le handler
             rdfParser.parse(dataReader, baseURI);
         }
+        long endTime = System.nanoTime();
+        timeReadingData = (endTime - startTime) / 1000000;
     }
 
     // ========================================================================
@@ -68,12 +72,13 @@ public class QEngine {
      * @return la liste des resultats avant decodage par le dictionaire
      */
     private static ArrayList<Integer> evaluateStarRequest(ParsedQuery query) {
-        ArrayList<Integer> results = new ArrayList<>() ;
+        ArrayList<Integer> results = null;
         List<StatementPattern> patterns = StatementPatternCollector.process(query.getTupleExpr());
         //On parcourt chaque request
+        boolean firstPassage = true;
         for(StatementPattern sp : patterns) {
             //Si le resultat est null oon exécute la première request
-            if (results.isEmpty()) { results.addAll(evaluateStatementPatern(sp)) ;}
+            if (results == null) { results = new ArrayList<>() ; results.addAll(evaluateStatementPatern(sp)) ;}
             //Sinon on fait l'intersection entre les resultats précédent des request avec le résultat de la nouvelle requèt
             else { results = intersect(results, evaluateStatementPatern(sp)) ; }
         }

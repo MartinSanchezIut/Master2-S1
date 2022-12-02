@@ -1,0 +1,12 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Óö´Œùÿÿÿÿ
+C
+java:S1659"-Declare "queriesFileName" on a separate line.(Ïññ
+H
+java:S1659"-Declare "numberOfQueries" on a separate line.(‹ÊŠîıÿÿÿÿ
+e
+java:S1659"ODeclare "timeReadingQueries" and all following declarations on a separate line.(Ä”†÷
+B
+java:S1659",Declare "timeAllProgram" on a separate line.(Ù×ÑŞ
+F
+java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8áŠô˜Í0
