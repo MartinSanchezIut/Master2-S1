@@ -34,7 +34,7 @@ import qengine.program.Utils.EvaluateRequest;
  * 
  * @author Olivier Rodriguez <olivier.rodriguez1@umontpellier.fr>
  */
-final class Main {
+public final class Main {
 	static final String baseURI = null;
 	/**
 	 * Votre répertoire de travail où vont se trouver les fichiers à lire
@@ -43,11 +43,11 @@ final class Main {
 	/**
 	 * Fichier contenant les requêtes sparql
 	 */
-	static String queryFile = workingDir + "STAR_ALL_workload.queryset";
+	public static String queryFile = workingDir + "STAR_ALL_workload.queryset";
 	/**
 	 * Fichier contenant des données rdf
 	 */
-	static String dataFile = workingDir + "100K.nt";
+	public static String dataFile = workingDir + "100K.nt";
 	/**
 	 * Fichier de output
 	 */
@@ -71,7 +71,10 @@ final class Main {
 	/**
 	 * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
 	 */
-	public static List<String> processAQuery(ParsedQuery query) {
+	public static List<String> processAQuery(String queryString) {
+		SPARQLParser sparqlParser = new SPARQLParser();
+		ParsedQuery query = sparqlParser.parseQuery(queryString, baseURI);
+
 		ArrayList<Integer> results = EvaluateRequest.evaluateStarRequest(query) ;
 		ArrayList<String> verbalResult = new ArrayList<>() ;
 
@@ -85,11 +88,8 @@ final class Main {
 	 */
 	public static void main(String[] args) throws Exception {
 		parseData();
-		// Jena
-		Jena jena;
-		if(Jena) { jena = new Jena(dataFile); }
 
-		ArrayList<ParsedQuery> queries = parseQueries();
+		ArrayList<String> queries = parseQueries();
 
 
 		// Warming code
@@ -102,7 +102,7 @@ final class Main {
 
 
 		// Execute querries
-		for (ParsedQuery query : queries) {
+		for (String query : queries) {
 			processAQuery(query);
 		}
 
@@ -116,7 +116,7 @@ final class Main {
 	/**
 	 * Traite chaque requête lue dans {@link #queryFile} avec {@link #processAQuery(ParsedQuery)}.
 	 */
-	private static ArrayList<ParsedQuery> parseQueries() throws FileNotFoundException, IOException {
+	public static ArrayList<String> parseQueries() throws FileNotFoundException, IOException {
 		/**
 		 * Try-with-resources
 		 * 
@@ -126,9 +126,9 @@ final class Main {
 		 * On utilise un stream pour lire les lignes une par une, sans avoir à toutes les stocker
 		 * entièrement dans une collection.
 		 */
-		ArrayList<ParsedQuery> parsedQueries = new ArrayList<>();
+		ArrayList<String> parsedQueries = new ArrayList<>();
 		try (Stream<String> lineStream = Files.lines(Paths.get(queryFile))) {
-			SPARQLParser sparqlParser = new SPARQLParser();
+//			SPARQLParser sparqlParser = new SPARQLParser();
 			Iterator<String> lineIterator = lineStream.iterator();
 			StringBuilder queryString = new StringBuilder();
 
@@ -142,9 +142,9 @@ final class Main {
 				queryString.append(line);
 
 				if (line.trim().endsWith("}")) {
-					ParsedQuery query = sparqlParser.parseQuery(queryString.toString(), baseURI);
+//					ParsedQuery query = sparqlParser.parseQuery(queryString.toString(), baseURI);
 
-					parsedQueries.add(query);
+					parsedQueries.add(queryString.toString());
 					// processAQuery(query); // Traitement de la requête, à adapter/réécrire pour votre programme
 
 					queryString.setLength(0); // Reset le buffer de la requête en chaine vide
