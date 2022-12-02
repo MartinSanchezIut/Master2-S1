@@ -7,6 +7,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Jena {
 
@@ -16,6 +17,7 @@ public class Jena {
         model = createModel(dataPath) ;
     }
 
+    // Parsedata
     private Model createModel(String path) throws IOException {
        InputStream in = Files.newInputStream(new File(path).toPath());
 
@@ -26,7 +28,7 @@ public class Jena {
        return model;
    }
 
-   public ArrayList<String> processAQuerry(String queryString) {
+   public List<String> processAQuerry(String queryString) {
        ArrayList<String> results = new ArrayList<>();
 
        Query query = QueryFactory.create(queryString);

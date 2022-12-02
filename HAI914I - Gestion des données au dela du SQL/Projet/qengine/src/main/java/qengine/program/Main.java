@@ -71,7 +71,7 @@ final class Main {
 	/**
 	 * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
 	 */
-	public static ArrayList<String> processAQuery(ParsedQuery query) {
+	public static List<String> processAQuery(ParsedQuery query) {
 		ArrayList<Integer> results = EvaluateRequest.evaluateStarRequest(query) ;
 		ArrayList<String> verbalResult = new ArrayList<>() ;
 
