@@ -23,11 +23,11 @@ public class JarCliMain {
         if (warm != null) { Main.warm = Integer.parseInt(warm);} // Warm
         if (shuffle) { Main.shuffle = true;} // Shuffle
 
-        System.err.println("WorkindDir = " + Main.workingDir);
+        System.err.println("WorkindDir = " + Main.workingDir);  // Is working
         System.out.println("QueryFile = " + Main.queryFile);    // Is working
         System.out.println("DataFile = " + Main.dataFile);      // Is working
         System.out.println("OutputFile = " + Main.outputFile);
-        System.out.println("Jena = " + Main.useJena);
+        System.out.println("Jena = " + Main.useJena);           // Is working
         System.out.println("Warm = " + Main.warm);              // Is working
         System.out.println("Shuffle = " + Main.shuffle);        // Is working
 

@@ -1,15 +1,17 @@
 package qengine.program.QueryEngine;
 
+import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.query.algebra.StatementPattern;
+import org.eclipse.rdf4j.query.algebra.helpers.StatementPatternCollector;
 import org.eclipse.rdf4j.query.parser.ParsedQuery;
 import org.eclipse.rdf4j.query.parser.sparql.SPARQLParser;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFParser;
 import org.eclipse.rdf4j.rio.Rio;
 import qengine.program.Dictionary.Dictonnary;
+import qengine.program.Index.Index;
 import qengine.program.Main;
-import qengine.program.Utils.EvaluateRequest;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -23,23 +25,6 @@ public class QEngine {
      * Fichier contenant des données rdf
      */
     static String dataFile = Main.dataFile;
-
-    // ========================================================================
-
-    /**
-     * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
-     */
-    public static List<String> processAQuery(String queryString) {
-        SPARQLParser sparqlParser = new SPARQLParser();
-        ParsedQuery query = sparqlParser.parseQuery(queryString, baseURI);
-
-        ArrayList<Integer> results = EvaluateRequest.evaluateStarRequest(query) ;
-        ArrayList<String> verbalResult = new ArrayList<>() ;
-
-        System.out.println("Querry : " + query);
-        for (int r : results) { verbalResult.add(Dictonnary.getInstance().decode(r)); }
-        return verbalResult;
-    }
 
     // ========================================================================
 
@@ -59,4 +44,70 @@ public class QEngine {
         }
     }
 
+    // ========================================================================
+
+    /**
+     * Méthode utilisée ici lors du parsing de requête sparql pour agir sur l'objet obtenu.
+     */
+    public static List<String> processAQuery(String queryString) {
+        SPARQLParser sparqlParser = new SPARQLParser();
+        ParsedQuery query = sparqlParser.parseQuery(queryString, baseURI);
+
+        ArrayList<Integer> results = evaluateStarRequest(query) ;
+        ArrayList<String> verbalResult = new ArrayList<>() ;
+
+        for (int r : results) { verbalResult.add(Dictonnary.getInstance().decode(r)); }
+        return verbalResult;
+    }
+
+    // ========================================================================
+
+    /**
+     * Evalue une requette en etoile
+     * @param query
+     * @return la liste des resultats avant decodage par le dictionaire
+     */
+    private static ArrayList<Integer> evaluateStarRequest(ParsedQuery query) {
+        ArrayList<Integer> results = new ArrayList<>() ;
+        List<StatementPattern> patterns = StatementPatternCollector.process(query.getTupleExpr());
+        //On parcourt chaque request
+        for(StatementPattern sp : patterns) {
+            //Si le resultat est null oon exécute la première request
+            if (results.isEmpty()) { results.addAll(evaluateStatementPatern(sp)) ;}
+            //Sinon on fait l'intersection entre les resultats précédent des request avec le résultat de la nouvelle requèt
+            else { results = intersect(results, evaluateStatementPatern(sp)) ; }
+        }
+        return results ;
+    }
+
+
+    /**
+     * Evalue un statement d'une requette en etoile
+      * @param sp
+     * @return la liste des resultats du statement avant decodage
+     */
+    private static ArrayList<Integer> evaluateStatementPatern(StatementPattern sp) {
+
+        //On récupère le prédicat et l'object du StatementPattern
+        Value p = sp.getPredicateVar().getValue();
+        Value o = sp.getObjectVar().getValue();
+
+        //On éxécute ces 2 valeurs sur l'arbre POS et on retourne le résultat.
+        return new ArrayList<>(Index.getInstance().getFromPOS(p.toString(), o.toString()));
+    }
+
+
+    /**
+     * Fait l'intersection entre deux ensemble d'entier
+     * @param a1
+     * @param a2
+     * @return l'intersection
+     */
+    private static ArrayList<Integer> intersect(ArrayList<Integer> a1, ArrayList<Integer> a2) {
+        ArrayList<Integer> ret = new ArrayList<>();
+
+        //Pour chaque valeur de a1 voit si il existe dans a2 et retourne chaque intersection
+        for(Integer i : a1) { if (a2.contains(i)) { ret.add(i) ; } }
+        return ret;
+    }
 }
