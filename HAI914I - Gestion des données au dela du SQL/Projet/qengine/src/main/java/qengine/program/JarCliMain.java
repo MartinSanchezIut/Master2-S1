@@ -30,7 +30,7 @@ public class JarCliMain {
         System.out.println("Jena = " + Main.useJena);           // Is working
         System.out.println("Warm = " + Main.warm);              // Is working
         System.out.println("Shuffle = " + Main.shuffle);        // Is working
-
+        System.out.println("\n");
         Main.main(args);
     }
 

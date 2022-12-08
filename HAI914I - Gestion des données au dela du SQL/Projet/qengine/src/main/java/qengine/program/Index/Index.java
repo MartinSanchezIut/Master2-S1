@@ -53,8 +53,11 @@ public class Index {
         pso = new HashMap<>() ; pos = new HashMap<>() ;
         osp = new HashMap<>() ; ops = new HashMap<>() ;
         size = 0;
+        timeReadingData = 0;
         loadIndex();
     }
+    public long timeReadingData;
+
 
     private int size;
     public int getSize() {return size; }
@@ -188,6 +191,7 @@ public class Index {
      * Index in map elements first, second and third
      */
     private void indexInMap(HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> map, int first, int second, int third) {
+        long startTime = System.currentTimeMillis();
         size++ ;
         //On vérifie si first est dans le premier noeud alors on vérifie pour le noeud 2 et 3 avec second et third
         if (map.containsKey(first)) {
@@ -212,6 +216,8 @@ public class Index {
             lvl2Hashmap.put(second, lvl3List);
             map.put(first, lvl2Hashmap);
         }
+        long endTime = System.currentTimeMillis();
+        timeReadingData = (endTime - startTime);
     }
 }
 

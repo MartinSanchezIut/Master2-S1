@@ -1,14 +1,16 @@
 
 E
-java:S37407"/Provide the parametrized type for this generic.(–ðý¤
+java:S3740:"/Provide the parametrized type for this generic.(–ðý¤
+x
+java:S1104("[Make timeReadingData a static final constant or non-public and provide accessors if needed.(ñìÏÕ8ëÍ¸Ï0
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ýÄŠ­
 b
-java:S2095J"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
+java:S2095N"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(´ÓñÊ
 c
-java:S3824`"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™äÇ
+java:S3824g"NReplace this "Map.get()" and condition with a call to "Map.computeIfAbsent()".(™äÇ
 i	java:S116"ORename this field "Dico" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ«÷þÿÿÿÿ
 u
-java:S1149K"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+java:S1149O"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
 }
-java:S4087>"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ
-S	java:S106@"9Replace this use of System.out or System.err by a logger.(©þêÜúÿÿÿÿ
+java:S4087A"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(ÄËªŸÿÿÿÿÿ
+S	java:S106C"9Replace this use of System.out or System.err by a logger.(©þêÜúÿÿÿÿ

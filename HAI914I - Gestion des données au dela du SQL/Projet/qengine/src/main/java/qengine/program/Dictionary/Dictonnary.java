@@ -33,8 +33,11 @@ public class Dictonnary {
         this.Dico = new HashMap<>();
         index = 0;
         dictionaryFile = new File(dictionaryFilePath);
+        timeReadingData = 0;
         loadDictionary();
     }
+
+    public long timeReadingData;
 
 
     private int size;
@@ -69,6 +72,7 @@ public class Dictonnary {
     Permet de charger le dictionnaire en fonction d'un CSV
      */
     public void loadDictionary() {
+        long startTime = System.currentTimeMillis();
         try  {
             FileReader fr = new FileReader(dictionaryFile);
             BufferedReader br = new BufferedReader(fr);
@@ -85,12 +89,15 @@ public class Dictonnary {
             fr.close();
         }
         catch(IOException e)        {            e.printStackTrace();        }
+        long endTime = System.currentTimeMillis();
+        timeReadingData += (endTime - startTime);
     }
 
 
 
     //Permet d'ajouter une valeur dans le dico
     public void add(String attribut) {
+        long startTime = System.currentTimeMillis();
         size++;
         //si la valeur existe déjà on ne le met pas dans le dico
         if (Dico.get(attribut) == null) {
@@ -98,6 +105,9 @@ public class Dictonnary {
             reverseDico.put(index, attribut);
             ++index;
         }
+        long endTime = System.currentTimeMillis();
+        timeReadingData += (endTime - startTime);
+
     }
 
     public int encode(String attribut){

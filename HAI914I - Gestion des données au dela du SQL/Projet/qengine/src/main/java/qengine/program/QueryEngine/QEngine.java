@@ -33,7 +33,7 @@ public class QEngine {
      */
     public static long timeReadingData;
     public static void parseData() throws IOException {
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         try (Reader dataReader = new FileReader(dataFile)) {
             // On va parser des données au format ntriples
             RDFParser rdfParser = Rio.createParser(RDFFormat.NTRIPLES);
@@ -44,8 +44,8 @@ public class QEngine {
             // Parsing et traitement de chaque triple par le handler
             rdfParser.parse(dataReader, baseURI);
         }
-        long endTime = System.nanoTime();
-        timeReadingData = (endTime - startTime) / 1000000;
+        long endTime = System.currentTimeMillis();
+        timeReadingData = (endTime - startTime);
     }
 
     // ========================================================================

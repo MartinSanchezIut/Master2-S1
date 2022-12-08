@@ -30,7 +30,7 @@ public class Comparaison {
 
 
 
-    public static void verificationJena(List<String> JenaRequest, List<String> QEngineRequest) {
+    public static boolean verificationJena(List<String> JenaRequest, List<String> QEngineRequest) {
         ArrayList<String> difference = new ArrayList<>();
 
         for (String j : QEngineRequest) {
@@ -42,8 +42,7 @@ public class Comparaison {
         for (String d : difference) {
             System.out.println(d);
         }
-        if (! difference.isEmpty()) { System.out.println("\n\n\n\n"); }
-
+        return difference.isEmpty() ;
 /*
         boolean result = true;
         for (String j : JenaRequest) {

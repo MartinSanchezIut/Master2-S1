@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 
+import org.eclipse.rdf4j.query.parser.ParsedQuery;
 import qengine.program.Dictionary.Dictonnary;
 import qengine.program.Index.Index;
 import qengine.program.QueryEngine.Jena;
@@ -56,37 +57,46 @@ public final class Main {
 	 * Entrée du programme
 	 */
 	public static void main(String[] args) throws IOException {
-		long totalExecutionTime;   long totalstartTime = System.nanoTime();
+		long totalExecutionTime;   long totalstartTime = System.currentTimeMillis();
 
+		System.out.println("QEngine parsing data.");
 		QEngine.parseData();
 		// Si on utilise Jena, on par les data pour jena
-		if (useJena) { Jena.parseData(); }
+		if (useJena) { System.out.println("Jena parsing data."); Jena.parseData(); }
 
 		// Liste des queries présentes dans le fichier
 		ArrayList<String> queries = parseQueries();
 
 		// Si warm, alors choisir un nombre de requettes et les executer avec QEngine
-		for(int i=0; i<warm; i++) { QEngine.processAQuery(queries.get(new Random().nextInt(queries.size()))) ; }
+		if (warm > 0) { 			System.out.println("QEngine warming with "+ warm +" queries"); }
+			for(int i=0; i<warm; i++) {
+			String qu = queries.get(new Random().nextInt(queries.size()));
+			QEngine.processAQuery(qu) ;
+		}
 		// Si shuffle, melanger la liste des requetes
-		if (shuffle) { Collections.shuffle(queries); }
+		if (shuffle) { System.out.println("Shuffeling querries"); Collections.shuffle(queries); }
 
 
 		QueryResultLogger logger = new QueryResultLogger() ;
-		long workloadTime;   long startTime = System.nanoTime();
+		long workloadTime;   long startTime = System.currentTimeMillis();
+		boolean isEqual = true;
 		for (String query : queries) {
 			List<String> qEngineResult = QEngine.processAQuery(query);
 			logger.logQueryResult(query, qEngineResult);
 
 			if (useJena) {
 				List<String> jenaResult = Jena.processAQuery(query);
-				Comparaison.verificationJena(jenaResult, qEngineResult);
-
+				if (! Comparaison.verificationJena(jenaResult, qEngineResult)) {
+					isEqual = false;
+				}
 			}
 		}
-		long endTime = System.nanoTime();   workloadTime = (endTime - startTime) / 1000000;
+		if (useJena) { System.out.println("Jena result == QEngine résult ? = " + isEqual); }
+
+		long endTime = System.currentTimeMillis();   workloadTime = (endTime - startTime) ;
 		logger.close();
 
-		long totalendTime = System.nanoTime(); 	totalExecutionTime = (totalendTime - totalstartTime) / 1000000;
+		long totalendTime = System.currentTimeMillis(); 	totalExecutionTime = (totalendTime - totalstartTime) ;
 
 
 
@@ -98,15 +108,16 @@ public final class Main {
 
 				.setTimeReadingData(QEngine.timeReadingData)
 				.setTimeReadingQueries(timeReadingQueries)
-				.setTimeCreatingDictionary(-1)
+				.setTimeCreatingDictionary(Dictonnary.getInstance().timeReadingData)
 
 				.setAmountOfIndexes(Index.getInstance().getSize())
-				.setTimeCreatingIndex(-1)
+				.setTimeCreatingIndex(Index.getInstance().timeReadingData)
 				.setTimeWorkloadExecution(workloadTime)
 				.setTimeAllProgram(totalExecutionTime) ;
 
 		// Si output file, alors creer l'objet et l'ecrire
 		if (outputFile != null) {
+			System.out.println("Exporting to output file");
 			File f = new File(outputFile);
 			if(!f.exists()){
 				f.createNewFile();
@@ -140,7 +151,7 @@ public final class Main {
 	public static long timeReadingQueries;
 	public static ArrayList<String> parseQueries() throws IOException {
 		ArrayList<String> queries = new ArrayList<>();
-		long startTime = System.nanoTime();
+		long startTime = System.currentTimeMillis();
 		try (Stream<String> lineStream = Files.lines(Paths.get(queryFile))) {
 			Iterator<String> lineIterator = lineStream.iterator();
 			StringBuilder queryString = new StringBuilder();
@@ -155,8 +166,8 @@ public final class Main {
 				}
 			}
 		}
-		long endTime = System.nanoTime();
-		timeReadingQueries = (endTime - startTime) / 1000000;
+		long endTime = System.currentTimeMillis();
+		timeReadingQueries = (endTime - startTime);
 		return queries;
 	}
 }

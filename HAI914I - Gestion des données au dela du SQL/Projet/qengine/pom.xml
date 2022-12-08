@@ -22,7 +22,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>qengine.program.Main</mainClass>
+							<mainClass>qengine.program.JarCliMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -34,7 +34,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>qengine.program.Main</mainClass>
+							<mainClass>qengine.program.JarCliMain</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
