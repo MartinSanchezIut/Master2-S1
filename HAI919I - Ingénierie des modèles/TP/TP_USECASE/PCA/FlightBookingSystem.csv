@@ -1,0 +1,36 @@
+FBsystem1,customer,searching a flight
+FBsystem1,customer,booking a flight
+FBsystem1,customer,changing a reservation
+FBsystem1,customer,paying a booked flight
+FBsystem1,airline company,assign seat
+FBsystem1,airline company,validate passenger
+FBsystem1,airline company,check in luggage
+FBsystem1,travel agency employee,searching a flight
+FBsystem1,travel agency employee,booking a flight
+FBsystem1,travel agency employee,changing a reservation
+FBsystem2,customer,paying a booked flight
+FBsystem2,airline company,assign seat
+FBsystem2,airline company,validate passenger
+FBsystem2,airline company,check in luggage
+FBsystem2,travel agency employee,searching a flight
+FBsystem2,travel agency employee,booking a flight
+FBsystem2,travel agency employee,booking a flight by airline company
+FBsystem2,travel agency employee,booking a flight by travel platform
+FBsystem2,travel agency employee,changing a reservation
+FBsystem3,customer,searching a flight
+FBsystem3,customer,booking a flight
+FBsystem3,customer,changing a reservation
+FBsystem3,customer,paying a booked flight
+FBsystem3,airline company,assign seat
+FBsystem3,airline company,validate passenger
+FBsystem3,airline company,check in luggage
+FBsystem3,customer,check in luggage
+FBsystem3,customer,change seat
+FBsystem4,customer,searching a flight
+FBsystem4,customer,booking a flight
+FBsystem4,customer,changing a reservation
+FBsystem4,customer,paying a booked flight
+FBsystem4,customer,choose seat
+FBsystem4,customer,check in luggage
+FBsystem4,customer,pay extra luggage
+FBsystem4,airline company,validate passenger
