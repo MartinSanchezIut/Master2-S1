@@ -26,28 +26,24 @@ public class Main {
             }
         }
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter("output_500K.csv"));
-        BufferedWriter writer2 = new BufferedWriter(new FileWriter("nbResults_500K.csv"));
-        BufferedWriter writer3 = new BufferedWriter(new FileWriter("nbStatement_500K.csv"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("output_2M.csv"));
+        BufferedWriter writer2 = new BufferedWriter(new FileWriter("nbResults_2M.csv"));
 
 
         int requetzero = 0;
         int nbResultat[] = new int [500];
         for (int i = 0; i<nbResultat.length; i++) { nbResultat[i] = 0; }
 
-        int nbStatement[] = new int [10];
-        for (int i = 0; i<nbStatement.length; i++) { nbStatement[i] = 0; }
-
+        Collections.shuffle(queries);
         for (String query : queries) {
             List<String> jenaResult = Jena.processAQuery(query);
 
-            if (jenaResult.size() <= 500) {
+            if (jenaResult.size() < 500) {
                 nbResultat[jenaResult.size()] += 1;
             }
 
             String statements = query.substring(query.indexOf('{')+1, query.indexOf('}')) ;
             int nbStatements = statements.length() - statements.replace("?","").length();
-            nbStatement[nbStatements] += 1 ;
 
 
             writer.write(query + ", " + jenaResult.size() + ", " + nbStatements + "\n");
@@ -57,13 +53,10 @@ public class Main {
         for (int i = 0; i<nbResultat.length; i++) {
             writer2.write(i + ", "+ nbResultat[i] + "\n");
         }
-        for (int i = 0; i<nbStatement.length; i++) {
-            writer3.write(i + ", "+ nbStatement[i] + "\n");
-        }
+
 
         writer.close();
         writer2.close();
-        writer3.close();
         System.out.println("\n\n\n");
         System.out.println("Taux de requettes sans réponse : " + requetzero + "/" + queries.size());
     }
