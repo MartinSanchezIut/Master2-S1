@@ -1,0 +1,64 @@
+# Neo4j:
+Mots clés: CREATE, DELETE, SET, MATCH, MERGE, WHERE, RETURN, UNION, WITH
+
+Merge : permet de creer les elements de la requettes qui n'existent pas encore.
+Union : permet de concatener les resultats de plusieurs requettes.
+
+Exemple de requettes intéréssants de 42 à 55.
+
+
+Notion d'index et de constraint: Create ou Drop
+
+Neo4j offre un service REST
+Neo4j est utilisable en java (voir code sur moodle)
+
+Cypher met en place des procedures : CALL dbms.procedures() (un peu comme plsql)
+
+
+neosemantics est un plugins pour neo4j qui permet de stocker les données en RDF (tripplés N1-(R)-N2))
+
+
+Revoir la Cypher refcard
+
+
+
+# CouchDB
+Systeme orienté document
+Fonctionne particulierement bien avec le web (services rest, fauxton)
+Get : recup une ressources
+post : ajouter une ressources
+delete : supprimer une ressource.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
