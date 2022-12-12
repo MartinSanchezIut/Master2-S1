@@ -1,3 +1,6 @@
+import csv
+
+
 elmt = ["searching_a_flight","booking_a_flight","changing_a_reservation","paying_a_booked_flight","assign_seat",
 "validate_passenger","check_in_luggage","searching_a_flight","booking_a_flight","changing_a_reservation",
 "paying_a_booked_flight","assign_seat","validate_passenger","check_in_luggage","searching_a_flight",
@@ -7,7 +10,32 @@ elmt = ["searching_a_flight","booking_a_flight","changing_a_reservation","paying
 "change_seat","searching_a_flight","booking_a_flight","changing_a_reservation","paying_a_booked_flight",
 "choose_seat","check_in_luggage","pay_extra_luggage","validate_passenger"]
 
+
 mylist = list(set(elmt))
+
+
+print(mylist)
+with open('FlightBookingSystem.csv', 'r') as f:
+    csv_reader = csv.reader(f)
+    act_obj = ""
+
+    for line in csv_reader:
+        obj = line[0]
+        actor = line[1]
+        attribut = line[2]
+
+
+
+
+
+
+
+
+
+
+
+
+
 #print(mylist) 
 #print(len(mylist))
 
@@ -26,4 +54,4 @@ for i in range(1, 5):
 		a = input(str(x) + " ?")
 		line.append(str(a))
 
-	print(line)
+#	print(line)

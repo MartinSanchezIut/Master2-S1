@@ -1,0 +1,30 @@
+digraph G { 
+	rankdir=BT;
+0 [shape=record,style=filled,fillcolor=lightblue,label="{0 (I: 10, E: 4)|customer\nairline_company\nsearching_a_flight\nvalidate_passenger\npaying_a_booked_flight\nbooking_a_flight\nchanging_a_reservation\ncheck_in_luggage\nc_paying_a_booked_flight\nac_validate_passenger\n|}"];
+1 [shape=record,style=filled,fillcolor=lightblue,label="{1 (I: 17, E: 2)|travel_agency_employee\ntae_booking_a_flight\ntae_searching_a_flight\ntae_changing_a_reservation\n|}"];
+2 [shape=record,style=filled,label="{2 (I: 21, E: 1)|booking_a_flight_by_travel_platform\nbooking_a_flight_by_airline_company\ntae_booking_a_flight_by_airline_company\ntae_booking_a_flight_by_travel_platform\n|FBSystem2\n}"];
+3 [shape=record,style=filled,fillcolor=lightblue,label="{3 (I: 13, E: 3)|assign_seat\nac_check_in_luggage\nac_assign_seat\n|}"];
+4 [shape=record,style=filled,fillcolor=lightblue,label="{4 (I: 51, E: 0)|ac_pay_extra_luggage\ntae_pay_extra_luggage\ntae_check_in_luggage\nac_paying_a_booked_flight\ntae_paying_a_booked_flight\nc_booking_a_flight_by_airline_company\nac_booking_a_flight_by_airline_company\nc_booking_a_flight_by_travel_platform\nac_booking_a_flight_by_travel_platform\nac_booking_a_flight\nc_validate_passenger\ntae_validate_passenger\nac_searching_a_flight\nc_assign_seat\ntae_assign_seat\nac_choose_seat\ntae_choose_seat\nac_change_seat\ntae_change_seat\nac_changing_a_reservation\n|}"];
+5 [shape=record,style=filled,label="{5 (I: 18, E: 1)|choose_seat\npay_extra_luggage\nc_pay_extra_luggage\nc_choose_seat\n|FBSystem4\n}"];
+6 [shape=record,style=filled,label="{6 (I: 19, E: 1)|change_seat\nc_change_seat\n|FBSystem3\n}"];
+7 [shape=record,style=filled,fillcolor=lightblue,label="{7 (I: 14, E: 2)|c_check_in_luggage\n|}"];
+8 [shape=record,style=filled,label="{8 (I: 20, E: 1)||FBSystem1\n}"];
+9 [shape=record,style=filled,fillcolor=lightblue,label="{9 (I: 16, E: 2)||}"];
+10 [shape=record,style=filled,fillcolor=lightblue,label="{10 (I: 13, E: 3)|c_booking_a_flight\nc_searching_a_flight\nc_changing_a_reservation\n|}"];
+	1 -> 3
+	2 -> 1
+	3 -> 0
+	4 -> 2
+	4 -> 5
+	4 -> 6
+	4 -> 8
+	5 -> 7
+	6 -> 7
+	6 -> 9
+	7 -> 10
+	8 -> 1
+	8 -> 9
+	9 -> 3
+	9 -> 10
+	10 -> 0
+}
