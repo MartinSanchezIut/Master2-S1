@@ -18,6 +18,7 @@ public class Main {
         Jena.parseData();
 
         ArrayList<String> queries = new ArrayList<>();
+        ArrayList<String> queriesSet = new ArrayList<>();
         File dir = new File(queryFile);
         File[] liste = dir.listFiles();
         for (File item : liste) {

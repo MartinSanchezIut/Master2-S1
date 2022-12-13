@@ -24,9 +24,6 @@ class HomePage extends StatelessWidget {
                 return const QuizzPage(title: "Quizz");
               }));
             }),
-
-
-
           ],
         ),
       ),
