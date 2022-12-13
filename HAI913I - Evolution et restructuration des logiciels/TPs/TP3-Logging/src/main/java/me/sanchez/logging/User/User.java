@@ -21,12 +21,6 @@ public class User {
         this.age = age;
         this.email = email;
         this.password = password;
-        logger.info("User ID = " + id +'\n' +
-                "User Nom = " + nom +'\n' +
-                "User age = " + age +'\n' +
-                "User email = " + email+'\n' +
-                        "User password = " + password+'\n'
-                );
     }
 
     public Long getId() { return id; }

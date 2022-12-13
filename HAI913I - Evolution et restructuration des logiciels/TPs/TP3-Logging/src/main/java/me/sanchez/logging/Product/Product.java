@@ -26,6 +26,12 @@ public class Product {
                 "Product Prix = " + prix +'\n' +
                 "Product Date Expiration = " + expDate);
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%o) %s -%s- : %s", id, nom, expDate, prix.toString()) ;
+    }
+
     public Long getId() { return id;}
     public String getNom() { return nom;}
     public void setNom(String nom) { this.nom = nom; }
