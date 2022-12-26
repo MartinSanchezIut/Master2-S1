@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp3_firebase/Models/Database.dart';
 import 'package:tp3_firebase/Models/Question.dart';
 
 import 'QuizzPage.dart';
@@ -143,21 +144,25 @@ class AddQuestionState extends State<AddQuestion> {
 
             if (valid) {
               Question addQuestion = Question(questionText: text, theme: theme, isCorrect: answer) ;
-              if (img.isNotEmpty) {
-                addQuestion.img = img ;
-                print(addQuestion.toString()) ;
-              }
-              print(addQuestion.toString()) ;
+              if (img.isNotEmpty) {addQuestion.img = img ;}
+              // print(addQuestion.toString()) ;
+              Database.addQuestion(addQuestion) ;
 
               setState(() {
                 btnOk = Colors.greenAccent ;
               });
+
             }else {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Le formulaire n\'est pas valide')));
               setState(() {
                 btnOk = Colors.redAccent ;
               });
             }
+
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return  QuizzPage(title: 'Quizz App with Firebase');
+            }));
+
           },
           child: const Text("Ajouter ! ",
               textAlign: TextAlign.left,style: TextStyle(color: Colors.black87,fontSize: 20,fontWeight: FontWeight.bold)),

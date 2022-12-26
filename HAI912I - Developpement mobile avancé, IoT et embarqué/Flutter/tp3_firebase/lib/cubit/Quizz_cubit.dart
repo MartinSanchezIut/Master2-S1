@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:tp3_firebase/Models/QuestionRepository.dart';
 
+import '../Models/Database.dart';
 import '../Models/Question.dart';
 part 'Quizz_state.dart';
 
@@ -14,13 +15,16 @@ class QuizzCubit extends Cubit<QuizzState> {
   Color correct = Colors.blue;
   Color wrong = Colors.blue;
 
-  QuizzCubit({required this.q}) : super(InitialState(question: q));
+  late QuestionRepository repo;
 
+  QuizzCubit({required this.q}) : super(InitialState(question: q)) {
+    Database.getQuestions().then((value) => repo = QuestionRepository(value)) ;
+  }
   // InitialState(this.question, this.correct=Colors.blue, this.wrong=Colors.blue, this.hasAnwsered=false);
 
   void nextQuestion() {
     if (hasAnswered) {
-      q = QuestionRepository().getAnotherQuestion(q);
+      q = repo.getAnotherQuestion(q);
       hasAnswered = false;
       correct = Colors.blue;
       wrong = Colors.blue;
