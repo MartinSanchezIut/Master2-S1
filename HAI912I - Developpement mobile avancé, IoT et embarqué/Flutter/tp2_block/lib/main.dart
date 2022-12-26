@@ -16,13 +16,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     QuestionRepository repo = QuestionRepository() ;
     return BlocProvider(
-      create: (_) => HomepageCubit(q: Question(questionText: "AHHH", isCorrect: false, img: "esp.jpg")),
+      create: (_) => HomepageCubit(q: repo.getRandomQuestion()),
       child: BlocBuilder<HomepageCubit, HomepageState>(
         builder: (_, theme) {
           return MaterialApp(
             title: 'First Flutter App Martin',
             theme: ThemeData(),
-            home: const HomePage(title: "QuizzApp"),
+            home: HomePage(title: "QuizzApp"),
           );
         },
       ));

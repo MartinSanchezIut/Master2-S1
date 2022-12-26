@@ -22,14 +22,13 @@ class HomepageCubit extends Cubit<HomepageState> {
 
   void nextQuestion() {
     if (givedAnswer) {
-      print("nextQuestion ! ");
       Question newQuestion = repo.getAnotherQuestion(q);
       q = newQuestion;
       givedAnswer = false;
+      correct = Colors.blue;
+      wrong = Colors.blue;
       print("Next is : ${q.questionText} (${q.isCorrect})");
-      print(state.toString()) ;
       emit(HomepageInitial(question: newQuestion, hasAnwsered: givedAnswer, wrong: wrong, correct: correct));
-      print(state.toString()) ;
     }
   }
 
@@ -37,15 +36,13 @@ class HomepageCubit extends Cubit<HomepageState> {
     if (!givedAnswer) {
       print("answerQuestion ! ");
       if (q.isCorrect) {
-        print("Correct");
-        Color correct = Colors.green;
-        Color wrong = Colors.red;
+        correct = Colors.green;
+        wrong = Colors.red;
         givedAnswer = true;
         emit(HomepageInitial(question: q, hasAnwsered: givedAnswer, wrong: wrong, correct: correct));
       } else {
-        print("Wrong");
-        Color wrong = Colors.green;
-        Color correct = Colors.red;
+        wrong = Colors.green;
+        correct = Colors.red;
         givedAnswer = true;
         emit(HomepageInitial(question: q, hasAnwsered: givedAnswer, wrong: wrong, correct: correct));
       }
@@ -53,9 +50,14 @@ class HomepageCubit extends Cubit<HomepageState> {
   }
 
   Question get question => q;
-  Color get getcorrect => correct;
-  Color get getwrong => wrong;
-  bool get hasAnswer => givedAnswer;
+  Color getcorrect() {
+    return correct;
+  }
+  Color getwrong() {
+    return wrong;
+  }
+    bool get hasAnswer => givedAnswer;
+
 
 
 }
