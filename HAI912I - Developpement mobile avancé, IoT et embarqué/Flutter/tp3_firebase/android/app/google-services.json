@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "399318831479",
+    "project_id": "flutterquizz-f7621",
+    "storage_bucket": "flutterquizz-f7621.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399318831479:android:f1e573e53d50384afd1172",
+        "android_client_info": {
+          "package_name": "com.example.tp3_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399318831479-ioadv0suf8ib1fio1oomi711i1d53j06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGO9Wn6HMWTM94ZNE4lzhQrbJa63vH8xI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399318831479-ioadv0suf8ib1fio1oomi711i1d53j06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
