@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tp3_firebase/Models/Database.dart';
 import 'package:tp3_firebase/Models/Question.dart';
 import 'package:tp3_firebase/Models/QuestionRepository.dart';
+import 'package:tp3_firebase/Views/HomePage.dart';
 import 'package:tp3_firebase/Views/QuizzPage.dart';
 
 import 'cubit/Quizz_cubit.dart';
@@ -23,13 +24,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => QuizzCubit(q: Question(questionText: "Etes vous pret a commencer le quizz ?", theme: "Tp Flutter", isCorrect: true)),
+        create: (_) => QuizzCubit(q: Question(questionText: "Répondez par vrai ou par faux aux question qui vont vous être posés. Compris ?", theme: "Tutoriel", isCorrect: true)),
         child: BlocBuilder<QuizzCubit, QuizzState>(
           builder: (_, theme) {
             return MaterialApp(
               title: 'Quizz App Martin',
               theme: ThemeData(),
-              home: QuizzPage(title: 'Quizz App with Firebase'),
+              home: HomePage(title: 'QuizzApp with Firebase'),
             );
           },
         ));

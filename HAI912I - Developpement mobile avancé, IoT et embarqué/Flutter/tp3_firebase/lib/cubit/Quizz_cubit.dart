@@ -16,13 +16,17 @@ class QuizzCubit extends Cubit<QuizzState> {
   Color wrong = Colors.blue;
 
   late QuestionRepository repo;
+  static List<String> themes = [] ;
 
   QuizzCubit({required this.q}) : super(InitialState(question: q)) {
-    Database.getQuestions().then((value) => repo = QuestionRepository(value)) ;
+    Database.getQuestions(themes).then((value) => repo = QuestionRepository(value)) ;
   }
   // InitialState(this.question, this.correct=Colors.blue, this.wrong=Colors.blue, this.hasAnwsered=false);
 
   void nextQuestion() {
+    print(themes) ;
+    Database.getQuestions(themes).then((value) => repo = QuestionRepository(value)) ;
+
     if (hasAnswered) {
       q = repo.getAnotherQuestion(q);
       hasAnswered = false;
@@ -34,6 +38,8 @@ class QuizzCubit extends Cubit<QuizzState> {
   }
 
   void answerQuestion() {
+    Database.getQuestions(themes).then((value) => repo = QuestionRepository(value)) ;
+
     if (!hasAnswered) {
       if (q.isCorrect) {
         correct = Colors.green;

@@ -47,15 +47,6 @@ class AddQuestionState extends State<AddQuestion> {
     return AppBar(
       title: Text(title),
       centerTitle: true,
-      leading: IconButton(
-        icon: const Icon(Icons.keyboard_return_sharp),
-        tooltip: 'Retour au quizz',
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return  QuizzPage(title: 'Quizz App with Firebase');
-          }));
-        },
-      ),
     );
   }
 
@@ -160,7 +151,7 @@ class AddQuestionState extends State<AddQuestion> {
             }
 
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return  QuizzPage(title: 'Quizz App with Firebase');
+              return  QuizzPage();
             }));
 
           },

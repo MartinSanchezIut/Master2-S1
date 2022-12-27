@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tp3_firebase/Views/AddQuestion.dart';
+import 'package:tp3_firebase/Views/HomePage.dart';
 
 import '../Models/Question.dart';
 import '../cubit/Quizz_cubit.dart';
 
 class QuizzPage extends StatefulWidget {
-  QuizzPage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  QuizzPage({Key? key}) : super(key: key);
+  final String title = "Quizz Firebase";
 
   @override
   State<QuizzPage> createState() => QuizzPageState();
@@ -49,17 +50,6 @@ class QuizzPageState extends State<QuizzPage> {
     return AppBar(
       title: Text(title),
       centerTitle: true,
-      leading: IconButton(
-          icon: const Icon(Icons.add),
-          tooltip: 'Ajouter une question',
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Formulaire d\'ajout de question')));
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddQuestion();
-            }));
-          },
-        ),
-
     );
   }
 
