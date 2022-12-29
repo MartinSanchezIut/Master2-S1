@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tp3_firebase/Models/Database.dart';
-import 'package:tp3_firebase/Views/AddQuestion.dart';
-import 'package:tp3_firebase/cubit/Quizz_cubit.dart';
+import 'package:tp3_firebase/data/Models/Database.dart';
+import 'package:tp3_firebase/presentation/Views/AddQuestion.dart';
+import 'package:tp3_firebase/buisnesslogic/cubit/Quizz_cubit.dart';
 
 import 'QuizzPage.dart';
 

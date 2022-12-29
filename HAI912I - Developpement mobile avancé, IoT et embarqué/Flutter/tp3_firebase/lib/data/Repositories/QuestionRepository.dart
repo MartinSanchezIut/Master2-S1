@@ -1,6 +1,6 @@
-import 'package:tp3_firebase/Models/Database.dart';
+import 'package:tp3_firebase/data/Models/Database.dart';
 
-import 'Question.dart';
+import '../Models/Question.dart';
 
 class QuestionRepository {
   List<Question> questions = [];

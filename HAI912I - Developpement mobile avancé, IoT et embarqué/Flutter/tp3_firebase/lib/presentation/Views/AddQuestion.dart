@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tp3_firebase/Models/Database.dart';
-import 'package:tp3_firebase/Models/Question.dart';
+import 'package:tp3_firebase/data/Models/Database.dart';
+import 'package:tp3_firebase/data/Models/Question.dart';
 
 import 'QuizzPage.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tp3_firebase/Views/AddQuestion.dart';
-import 'package:tp3_firebase/Views/HomePage.dart';
+import 'package:tp3_firebase/presentation/Views/AddQuestion.dart';
+import 'package:tp3_firebase/presentation/Views/HomePage.dart';
 
-import '../Models/Question.dart';
-import '../cubit/Quizz_cubit.dart';
+import '../../data/Models/Question.dart';
+import '../../buisnesslogic/cubit/Quizz_cubit.dart';
 
 class QuizzPage extends StatefulWidget {
   QuizzPage({Key? key}) : super(key: key);

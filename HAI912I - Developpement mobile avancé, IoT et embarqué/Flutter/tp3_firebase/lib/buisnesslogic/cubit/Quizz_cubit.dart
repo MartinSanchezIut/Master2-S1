@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:tp3_firebase/Models/QuestionRepository.dart';
+import 'package:tp3_firebase/data/Repositories/QuestionRepository.dart';
 
-import '../Models/Database.dart';
-import '../Models/Question.dart';
+import '../../data/Models/Database.dart';
+import '../../data/Models/Question.dart';
 part 'Quizz_state.dart';
 
 class QuizzCubit extends Cubit<QuizzState> {

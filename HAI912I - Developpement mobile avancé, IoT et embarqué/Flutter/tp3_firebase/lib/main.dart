@@ -1,13 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tp3_firebase/Models/Database.dart';
-import 'package:tp3_firebase/Models/Question.dart';
-import 'package:tp3_firebase/Models/QuestionRepository.dart';
-import 'package:tp3_firebase/Views/HomePage.dart';
-import 'package:tp3_firebase/Views/QuizzPage.dart';
+import 'package:tp3_firebase/presentation/Views/HomePage.dart';
+import 'package:tp3_firebase/presentation/Views/QuizzPage.dart';
 
-import 'cubit/Quizz_cubit.dart';
+import 'buisnesslogic/cubit/Quizz_cubit.dart';
+import 'data/Models/Question.dart';
 import 'firebase_options.dart';
 
 void main() async {
