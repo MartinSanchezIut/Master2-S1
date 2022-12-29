@@ -1,16 +1,10 @@
-# tp2_block
+# TP2 : HAI912I
 
-A new Flutter project.
+L'application contient une une application de Quizz (avec bloc)
 
-## Getting Started
+Github :  https://github.com/MartinSanchezIut/Master2-S1/tree/main/HAI912I%20-%20Developpement%20mobile%20avanc%C3%A9%2C%20IoT%20et%20embarqu%C3%A9/Flutter
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Executer
+Pour exécuter le projet, ouvrez le avec Android studio.
+Ensuite, lancez "main.dart"
+(De préférence avec un device web comme Chrome, vous pourrez ensuite redimensionner la page grace à la console)
