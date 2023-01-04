@@ -39,7 +39,8 @@ public class Index {
     /** ------------------------------------------------------------------- */
 
 
-    private String indexFilePath = "src/main/resources/index.csv" ;
+//    private String indexFilePath = "src/main/resources/index.csv" ;
+    private String indexFilePath = "resources/index.csv" ;
     private File indexFile ;
     private static Index instance = null;
     public static Index getInstance() {
@@ -49,6 +50,14 @@ public class Index {
 
     private Index() {
         indexFile = new File(indexFilePath);
+        if (! indexFile.exists()) {
+            try {
+                indexFile.getParentFile().mkdirs();
+                indexFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         spo = new HashMap<>() ; sop = new HashMap<>() ;
         pso = new HashMap<>() ; pos = new HashMap<>() ;
         osp = new HashMap<>() ; ops = new HashMap<>() ;

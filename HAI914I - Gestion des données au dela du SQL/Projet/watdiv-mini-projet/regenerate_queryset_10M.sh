@@ -1,4 +1,4 @@
-for n in {0..100};  
+for n in {0..300};  
 do
 for qt in testsuite/templates/*.sparql-template; 
 do

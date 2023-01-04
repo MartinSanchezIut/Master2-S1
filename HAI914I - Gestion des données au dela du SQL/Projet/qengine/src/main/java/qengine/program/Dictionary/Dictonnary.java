@@ -12,7 +12,8 @@ import java.util.Map;
 public class Dictonnary {
 
 
-    private String dictionaryFilePath = "src/main/resources/dico.csv" ;
+//    private String dictionaryFilePath = "src/main/resources/dico.csv" ;
+    private String dictionaryFilePath = "resources/dico.csv" ;
     private File dictionaryFile ;
     private static Dictonnary instance = null;
     public static Dictonnary getInstance() {
@@ -33,6 +34,14 @@ public class Dictonnary {
         this.Dico = new HashMap<>();
         index = 0;
         dictionaryFile = new File(dictionaryFilePath);
+        if (! dictionaryFile.exists()) {
+            try {
+                dictionaryFile.getParentFile().mkdirs();
+                dictionaryFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         timeReadingData = 0;
         loadDictionary();
     }
