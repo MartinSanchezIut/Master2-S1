@@ -1,0 +1,6 @@
+ String queries = cmd.getOptionValue("queries") ;
+        String data = cmd.getOptionValue("data") ;
+        String output = cmd.getOptionValue("output") ;
+        boolean jena = cmd.hasOption("Jena") ;
+        String warm = cmd.getOptionValue("warm") ;
+        boolean shuffle = cmd.hasOption("shuffle") ;

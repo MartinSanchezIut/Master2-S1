@@ -1,0 +1,14 @@
+WorkindDir = data/
+QueryFile = queries/STAR_ALL_workload.queryset
+DataFile = data/500K.nt
+OutputFile = null
+Jena = true
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+Jena parsing data.
+Jena result == QEngine résult ? = true
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/500K.nt, queries/STAR_ALL_workload.queryset, 1588740, 1200, 49618.0, 7.0, 487.0, 52941852, 0.0, 2474.0, 56404.0,

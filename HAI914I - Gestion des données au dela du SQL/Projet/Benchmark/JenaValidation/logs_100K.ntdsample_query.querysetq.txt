@@ -1,0 +1,14 @@
+WorkindDir = data/
+QueryFile = queries/sample_query.queryset
+DataFile = data/100K.nt
+OutputFile = null
+Jena = true
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+Jena parsing data.
+Jena result == QEngine résult ? = true
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/100K.nt, queries/sample_query.queryset, 322014, 4, 15137.0, 3.0, 250.0, 20578086, 0.0, 228.0, 16416.0,

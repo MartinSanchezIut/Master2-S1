@@ -1,0 +1,150 @@
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+Invalid maximum heap size: -Xmx
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/2M.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/2M.nt, queries/3K.queryset, 6376449, 2903, 17590.0, 6.0, 1082.0, 25407282, 0.0, 544.0, 18142.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/2M.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/2M.nt, queries/3K.queryset, 6376449, 2903, 17574.0, 32.0, 1070.0, 25407282, 0.0, 535.0, 18142.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/2M.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/2M.nt, queries/3K.queryset, 6376449, 2903, 17490.0, 6.0, 1023.0, 25407282, 0.0, 488.0, 17985.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/2M.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/2M.nt, queries/3K.queryset, 6376449, 2903, 17703.0, 6.0, 1068.0, 25407282, 0.0, 514.0, 18224.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/2M.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/2M.nt, queries/3K.queryset, 6376449, 2903, 17472.0, 6.0, 1062.0, 25407282, 0.0, 535.0, 18014.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/500K.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/500K.nt, queries/3K.queryset, 1588740, 2903, 10924.0, 7.0, 431.0, 15831864, 0.0, 764.0, 11697.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/500K.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/500K.nt, queries/3K.queryset, 1588740, 2903, 13165.0, 5.0, 430.0, 18924234, 0.0, 681.0, 13853.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/500K.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/500K.nt, queries/3K.queryset, 1588740, 2903, 14025.0, 5.0, 395.0, 20943300, 0.0, 566.0, 14598.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/500K.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/500K.nt, queries/3K.queryset, 1588740, 2903, 13814.0, 6.0, 416.0, 20943300, 0.0, 631.0, 14453.0,
+WorkindDir = data/
+QueryFile = queries/3K.queryset
+DataFile = data/500K.nt
+OutputFile = null
+Jena = false
+Warm = 0
+Shuffle = false
+
+
+QEngine parsing data.
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms),
+data/500K.nt, queries/3K.queryset, 1588740, 2903, 13773.0, 5.0, 380.0, 20943300, 0.0, 662.0, 14442.0,

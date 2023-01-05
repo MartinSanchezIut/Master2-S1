@@ -31,18 +31,22 @@ public class Main {
 
         ArrayList<String> queries = new ArrayList<>();
         File dir = new File(queryFile);
-        File[] liste = dir.listFiles();
-        for (File item : liste) {
-            if (item.isFile()) {
-                queries.addAll(parseQueries(item.getPath()));
+        if (dir.isFile()) {
+            queries.addAll(parseQueries(dir.getPath()));
+        }else if (dir.isDirectory()) {
+            File[] liste = dir.listFiles();
+            for (File item : liste) {
+                if (item.isFile()) {
+                    queries.addAll(parseQueries(item.getPath()));
 
 /*                String[] split = item.getName().split(".");
                 String extention = split[split.length-1];
 
                 if (extention.equals("queryset"))
-  */          }
+  */
+                }
+            }
         }
-
        // BufferedWriter writer = new BufferedWriter(new FileWriter("output_2M.csv"));
         //BufferedWriter writer2 = new BufferedWriter(new FileWriter("nbResults_2M.csv"));
 

@@ -1,0 +1,9 @@
+nom du fichier de données, nom du dossier des requêtes, nombre de triplets RDF, nombre de requêtes, temps de lecture des données (ms),temps de lecture des requêtes (ms), temps création dico (ms), nombre d’index, temps de création des index (ms),temps total d’évaluation du workload (ms), temps total (du début à la fin du programme) (ms)
+data/2M.nt, queries/3K.queryset,6376449,2903,25940,6,1292,33941376,0,589,26668
+data/2M.nt, queries/3K.queryset,6376449,2903,25901,6,1143,33941376,0,554,26583
+data/2M.nt, queries/3K.queryset,6376449,2903,25474,5,1328,33941376,0,541,26154
+data/2M.nt, queries/3K.queryset,6376449,2903,26101,8,1379,33941376,0,594,26836
+data/2M.nt, queries/3K.queryset,6376449,2903,25555,7,1173,33941376,0,550,26255
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,25794.2,6.4,1263,,0,565.6,26499.2

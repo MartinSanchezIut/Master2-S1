@@ -120,6 +120,7 @@ public final class Main {
 			System.out.println("Exporting to output file");
 			File f = new File(outputFile);
 			if(!f.exists()){
+				f.getParentFile().mkdirs();
 				f.createNewFile();
 				FileOutputStream fos = new FileOutputStream(outputFile, true);
 				fos.write(OutputData.getCSVHeader().getBytes());

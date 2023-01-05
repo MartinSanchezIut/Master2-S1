@@ -33,32 +33,21 @@ public class Comparaison {
     public static boolean verificationJena(List<String> JenaRequest, List<String> QEngineRequest) {
         ArrayList<String> difference = new ArrayList<>();
 
+        if (JenaRequest.size() != QEngineRequest.size()) {
+            System.out.println("JenaSize = " + JenaRequest.size() + " / QEngineSize = " + QEngineRequest.size());
+            return false;
+        }
+
         for (String j : QEngineRequest) {
             if (! JenaRequest.contains(j)) {
                 difference.add(j);
             }
         }
-
-        for (String d : difference) {
+        if (difference.size() > 0 )
+            System.out.println("Delta : " + difference.size());
+      /*  for (String d : difference) {
             System.out.println(d);
-        }
-        return difference.isEmpty() ;
-/*
-        boolean result = true;
-        for (String j : JenaRequest) {
-            if (!QEngineRequest.contains(j)) {
-                result = false;
-            }
-        }
-
-        for (String j : QEngineRequest) {
-            if (!JenaRequest.contains(j)) {
-                result = false;
-            }
-        }
-        System.out.println(result);
-        if(!result){
-
         }*/
+        return difference.isEmpty() ;
     }
 }
